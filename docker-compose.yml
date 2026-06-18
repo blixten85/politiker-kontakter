@@ -1,0 +1,10 @@
+services:
+  scraper:
+    build: ./scraper
+    container_name: politiker_scraper
+    restart: "no"
+    volumes:
+      - ${OUTPUT_DIR:-./output}:/output
+      - ${LOG_DIR:-./logs}:/logs
+    environment:
+      - TZ=Europe/Stockholm
