@@ -1,0 +1,11 @@
+arbetsmarknadsdepartementet.registrator@regeringskansliet.se
+finansdepartementet.registrator@regeringskansliet.se
+forsvarsdepartementet.registrator@regeringskansliet.se
+justitiedepartementet.registrator@regeringskansliet.se
+klimat-naringslivsdepartementet.registrator@regeringskansliet.se
+kulturdepartementet.registrator@regeringskansliet.se
+landsbygds-infrastrukturdepartementet.registrator@regeringskansliet.se
+socialdepartementet.registrator@regeringskansliet.se
+statsradsberedningen.registrator@regeringskansliet.se
+utbildningsdepartementet.registrator@regeringskansliet.se
+utrikesdepartementet.registrator@regeringskansliet.se
