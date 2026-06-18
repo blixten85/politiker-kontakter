@@ -1,7 +1,7 @@
 version: 2
 updates:
-  # npm
-  - package-ecosystem: "npm"
+  # Python (pip)
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -12,7 +12,7 @@ updates:
       - "blixten85"
     labels:
       - "dependencies"
-      - "javascript"
+      - "python"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
