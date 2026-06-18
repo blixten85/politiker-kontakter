@@ -366,8 +366,10 @@ async def main():
                 )
             elif region["typ"] == "troman":
                 emails = await scrape_troman(context, namn, region["url"])
-            else:
+            elif region["typ"] == "mailto":
                 emails = await scrape_mailto(context, namn, region["url"])
+            else:
+                raise ValueError(f"{namn}: okänd typ '{region['typ']}'")
 
             if emails:
                 alla_emails[namn] = emails
