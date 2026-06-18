@@ -13,6 +13,7 @@ import logging
 import os
 import re
 import sys
+from urllib.parse import unquote
 from playwright.async_api import async_playwright, Error as PlaywrightError
 
 LOG_DIR  = os.environ.get("LOG_DIR",    "/logs")
@@ -173,6 +174,13 @@ def is_valid_email(email: str) -> bool:
     return not any(kw in email for kw in SKIP_KEYWORDS)
 
 
+def email_from_mailto_href(href: str) -> str:
+    """Plockar ut e-postadressen ur en mailto-href, t.ex. 'mailto:%20a@b.se?subject=x'.
+    unquote() krävs eftersom browsern url-kodar källans whitespace (t.ex. ett
+    inledande blanksteg blir %20) innan strip() annars hade kunnat ta bort den."""
+    return unquote(href.replace("mailto:", "")).split("?")[0].strip().lower()
+
+
 async def accept_cookies(page):
     for text in ["Acceptera alla", "Acceptera", "Jag förstår", "Accept all", "Accept", "Godkänn"]:
         try:
@@ -216,7 +224,7 @@ async def scrape_netpublicator(context, namn, registry_id, board_id):
                     "els => els.map(e => e.href)"
                 )
                 for href in mailto_hrefs:
-                    email = href.replace("mailto:", "").split("?")[0].strip().lower()
+                    email = email_from_mailto_href(href)
                     if is_valid_email(email):
                         emails.add(email)
             except PlaywrightError:
@@ -260,7 +268,7 @@ async def scrape_troman(context, namn, org_url):
                     "els => els.map(e => e.href)"
                 )
                 for href in mailto_hrefs:
-                    email = href.replace("mailto:", "").split("?")[0].strip().lower()
+                    email = email_from_mailto_href(href)
                     if is_valid_email(email):
                         emails.add(email)
             except PlaywrightError:
@@ -294,7 +302,7 @@ async def scrape_mailto(context, namn, url):
             "els => els.map(e => e.href)"
         )
         for href in hrefs:
-            email = href.replace("mailto:", "").split("?")[0].strip().lower()
+            email = email_from_mailto_href(href)
             if is_valid_email(email):
                 emails.add(email)
 
