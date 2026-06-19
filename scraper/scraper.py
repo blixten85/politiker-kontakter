@@ -164,6 +164,69 @@ REGIONER = [
         "typ": "troman",
         "url": "https://gotland.tromanpublik.se/organisation/9bc13dfd-c20e-474f-b68e-be766963da33",
     },
+
+    # === Kommuner (första omgången, av ~290) ===
+    # Verifierade Troman-baserade kommunfullmäktige
+    {
+        "namn": "Göteborgs Stad",
+        "typ": "troman",
+        "url": "https://goteborg.tromanpublik.se/organisation/8f8da821-ebcd-4d1a-8a91-b1427de24de5",
+    },
+    {
+        "namn": "Linköpings kommun",
+        "typ": "troman",
+        "url": "https://linkoping.tromanpublik.se/organisation/f837afca-8263-462d-b73f-b8058346ca19",
+    },
+    {
+        "namn": "Örebro kommun",
+        "typ": "troman",
+        "url": "https://orebro.tromanpublik.se/organisation/59a7d59a-4f7b-4bde-997f-9f0d45255b44",
+    },
+    {
+        "namn": "Helsingborgs stad",
+        "typ": "troman",
+        "url": "https://helsingborg.tromanpublik.se/organisation/c972abcd-f878-496d-bd4f-f76cfd22899b",
+    },
+    {
+        "namn": "Norrköpings kommun",
+        "typ": "troman",
+        "url": "https://norrkoping.tromanpublik.se/organisation/8e518403-bcf5-4595-bbe2-ed2f042600bc",
+    },
+    {
+        # Eget system (Evald), inte Netpublicator/Troman. Aktivt blockerad (403)
+        # mot enkla HTTP-anrop vid verifiering - kvar som bästa kända URL.
+        "namn": "Stockholms stad",
+        "typ": "mailto",
+        "url": "https://evald.stockholm.se/extern/Organ/1052",
+    },
+    {
+        # JS-renderad MeetingPlus-portal utan synliga mailto-länkar vid
+        # verifiering - ger troligen 0 träffar tills en annan källa läggs till.
+        "namn": "Malmö stad",
+        "typ": "mailto",
+        "url": "https://motenmedborgarportal.malmo.se/committees/kommunfullmaktige/representatives",
+    },
+    {
+        # Eget sök/filter-system utan centralt mailto-register - profilsidor
+        # kan ha e-post men kräver annan crawl-logik än de tre stödda typerna.
+        "namn": "Uppsala kommun",
+        "typ": "mailto",
+        "url": "https://www.uppsala.se/kommun-och-politik/sa-fungerar-kommunen/fortroendevalda/",
+    },
+    {
+        # Ledamotssidan visar endast telefonnummer, inga e-postadresser alls.
+        # Kvar som bästa kända källa, ger troligen 0 träffar.
+        "namn": "Västerås stad",
+        "typ": "mailto",
+        "url": "https://www.vasteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter.html",
+    },
+    {
+        # Kommunens Netpublicator-instans används bara för möteshandlingar,
+        # inte det publika "elected"-registret som regionen använder.
+        "namn": "Jönköpings kommun",
+        "typ": "mailto",
+        "url": "https://www.jonkoping.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
 ]
 
 
