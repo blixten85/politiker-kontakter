@@ -227,6 +227,657 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.jonkoping.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
     },
+    # === Kommuner (andra omgången, Troman-verifierade) ===
+    {
+        "namn": "Ale kommun",
+        "typ": "troman",
+        "url": "https://ale.tromanpublik.se/organisation/284d0c84-42de-411a-907d-8ef34000966d",
+    },
+    {
+        "namn": "Arvika kommun",
+        "typ": "troman",
+        "url": "https://arvika.tromanpublik.se/organisation/40d54ad7-dc0d-4d03-9c3c-b8666947110d",
+    },
+    {
+        "namn": "Avesta kommun",
+        "typ": "troman",
+        "url": "https://avesta.tromanpublik.se/organisation/d5272b72-712f-4d1e-a663-cbe6638d9f62",
+    },
+    {
+        "namn": "Bollebygds kommun",
+        "typ": "troman",
+        "url": "https://bollebygd.tromanpublik.se/organisation/bbab0ee2-5c13-4e03-b072-97862d52c740",
+    },
+    {
+        "namn": "Borås kommun",
+        "typ": "troman",
+        "url": "https://boras.tromanpublik.se/organisation/0e066f5d-3b71-4fc3-a57f-361daee1bbd5",
+    },
+    {
+        "namn": "Botkyrka kommun",
+        "typ": "troman",
+        "url": "https://botkyrka.tromanpublik.se/organisation/b447fd5e-c354-4796-ba82-3b0f838940da",
+    },
+    {
+        "namn": "Burlövs kommun",
+        "typ": "troman",
+        "url": "https://burlov.tromanpublik.se/organisation/1059cec2-780d-46ee-8557-d557aaeaa8c7",
+    },
+    {
+        "namn": "Båstads kommun",
+        "typ": "troman",
+        "url": "https://bastad.tromanpublik.se/organisation/92b85d1d-53ac-4383-8046-bd9b124fd85f",
+    },
+    {
+        "namn": "Danderyds kommun",
+        "typ": "troman",
+        "url": "https://danderyd.tromanpublik.se/organisation/983d5be0-28b1-4493-bb16-46c51e378457",
+    },
+    {
+        "namn": "Degerfors kommun",
+        "typ": "troman",
+        "url": "https://degerfors.tromanpublik.se/organisation/5cab7073-b84f-4282-9edd-54e939571bd5",
+    },
+    {
+        "namn": "Eda kommun",
+        "typ": "troman",
+        "url": "https://eda.tromanpublik.se/organisation/8715f78b-ea24-4464-b371-3602d2a9c47a",
+    },
+    {
+        "namn": "Emmaboda kommun",
+        "typ": "troman",
+        "url": "https://emmaboda.tromanpublik.se/organisation/bbb681b0-5510-42f5-8acf-e044931e0f66",
+    },
+    {
+        "namn": "Eskilstuna kommun",
+        "typ": "troman",
+        "url": "https://eskilstuna.tromanpublik.se/organisation/2e40ae20-e555-4954-88b9-bf7c14680374",
+    },
+    {
+        "namn": "Finspångs kommun",
+        "typ": "troman",
+        "url": "https://finspang.tromanpublik.se/organisation/dc0cc9ad-b842-4ae4-bd37-5e40c282ee30",
+    },
+    {
+        "namn": "Flens kommun",
+        "typ": "troman",
+        "url": "https://flen.tromanpublik.se/organisation/0b9c6240-fcc0-41c8-9c9c-d5748cdb1e8a",
+    },
+    {
+        "namn": "Forshaga kommun",
+        "typ": "troman",
+        "url": "https://forshaga.tromanpublik.se/organisation/60de73c0-c92a-409a-bd9a-b4cf736c8f63",
+    },
+    {
+        "namn": "Gagnefs kommun",
+        "typ": "troman",
+        "url": "https://gagnef.tromanpublik.se/organisation/5237fdbf-35dc-4d62-87fd-8c8a57c56be0",
+    },
+    {
+        "namn": "Gislaveds kommun",
+        "typ": "troman",
+        "url": "https://gislaved.tromanpublik.se/organisation/2fd29714-9f8a-4e56-a640-39e0d6faeea1",
+    },
+    {
+        "namn": "Gnesta kommun",
+        "typ": "troman",
+        "url": "https://gnesta.tromanpublik.se/organisation/917f6e78-cf77-4b63-ae19-444597087572",
+    },
+    {
+        "namn": "Gnosjö kommun",
+        "typ": "troman",
+        "url": "https://gnosjo.tromanpublik.se/organisation/992934df-7a20-4518-8c57-8f061616522a",
+    },
+    {
+        "namn": "Gällivare kommun",
+        "typ": "troman",
+        "url": "https://gallivare.tromanpublik.se/organisation/cf429125-c8f1-444a-9981-719a5df6c789",
+    },
+    {
+        "namn": "Gävle kommun",
+        "typ": "troman",
+        "url": "https://gavle.tromanpublik.se/organisation/b4ca3498-5172-4b98-a157-bc6f7303e956",
+    },
+    {
+        "namn": "Hagfors kommun",
+        "typ": "troman",
+        "url": "https://hagfors.tromanpublik.se/organisation/6c91a023-2720-41b4-8035-29f3ed740676",
+    },
+    {
+        "namn": "Hallsbergs kommun",
+        "typ": "troman",
+        "url": "https://hallsberg.tromanpublik.se/organisation/d6b41149-cf0c-431f-9106-edbed43b090c",
+    },
+    {
+        "namn": "Hammarö kommun",
+        "typ": "troman",
+        "url": "https://hammaro.tromanpublik.se/organisation/edff2660-f2a8-4351-8e5b-11320973f152",
+    },
+    {
+        "namn": "Haninge kommun",
+        "typ": "troman",
+        "url": "https://haninge.tromanpublik.se/organisation/21940027-8047-4712-81bb-55b61de14d16",
+    },
+    {
+        "namn": "Haparanda kommun",
+        "typ": "troman",
+        "url": "https://haparanda.tromanpublik.se/organisation/28f83e2d-96f8-4034-9537-deae22b73d95",
+    },
+    {
+        "namn": "Hedemora kommun",
+        "typ": "troman",
+        "url": "https://hedemora.tromanpublik.se/organisation/314dc275-ee52-4957-9ef8-f28fbfad1c35",
+    },
+    {
+        "namn": "Hylte kommun",
+        "typ": "troman",
+        "url": "https://hylte.tromanpublik.se/organisation/0ae75ca2-0e7b-4df7-801b-c60a86c1228f",
+    },
+    {
+        "namn": "Härnösands kommun",
+        "typ": "troman",
+        "url": "https://harnosand.tromanpublik.se/organisation/2fc0c15d-6966-47af-a3fa-427227c4d61c",
+    },
+    {
+        "namn": "Härryda kommun",
+        "typ": "troman",
+        "url": "https://harryda.tromanpublik.se/organisation/f005a072-ca6f-4b64-9cd2-0613d3617e2d",
+    },
+    {
+        "namn": "Hässleholms kommun",
+        "typ": "troman",
+        "url": "https://hassleholm.tromanpublik.se/organisation/67bc961c-29f0-4dde-9d98-4c5630ddac44",
+    },
+    {
+        "namn": "Höganäs kommun",
+        "typ": "troman",
+        "url": "https://hoganas.tromanpublik.se/organisation/c94b500b-8b85-4a77-9804-8bc4642f4221",
+    },
+    {
+        "namn": "Järfälla kommun",
+        "typ": "troman",
+        "url": "https://jarfalla.tromanpublik.se/organisation/ec55e51d-9fab-44d4-9909-59d44678c599",
+    },
+    {
+        "namn": "Kalix kommun",
+        "typ": "troman",
+        "url": "https://kalix.tromanpublik.se/organisation/593e24ed-4664-4d7c-a4b6-2e1464062909",
+    },
+    {
+        "namn": "Kalmar kommun",
+        "typ": "troman",
+        "url": "https://kalmar.tromanpublik.se/organisation/5368c2ed-f82d-4577-b6c0-03f34170d357",
+    },
+    {
+        "namn": "Karlskoga kommun",
+        "typ": "troman",
+        "url": "https://karlskoga.tromanpublik.se/organisation/d6212650-0706-4ece-aec4-1369d3db3647",
+    },
+    {
+        "namn": "Karlskrona kommun",
+        "typ": "troman",
+        "url": "https://karlskrona.tromanpublik.se/organisation/9da5078b-abea-4bb2-bd33-86ecd4c11fc8",
+    },
+    {
+        "namn": "Karlstads kommun",
+        "typ": "troman",
+        "url": "https://karlstad.tromanpublik.se/organisation/fd2ccc4c-120c-4baa-9f63-e13c4d9c7947",
+    },
+    {
+        "namn": "Katrineholms kommun",
+        "typ": "troman",
+        "url": "https://katrineholm.tromanpublik.se/organisation/1d2f7922-fe6e-4039-ab94-f4a40002a5e9",
+    },
+    {
+        "namn": "Kils kommun",
+        "typ": "troman",
+        "url": "https://kil.tromanpublik.se/organisation/a49b6e5a-01c5-49c5-a73f-89ceebaf70dc",
+    },
+    {
+        "namn": "Kinda kommun",
+        "typ": "troman",
+        "url": "https://kinda.tromanpublik.se/organisation/9dedab02-646d-4ac9-afd8-be42a602c01d",
+    },
+    {
+        "namn": "Knivsta kommun",
+        "typ": "troman",
+        "url": "https://knivsta.tromanpublik.se/organisation/9e2541c0-d9e4-45ad-b529-5ff0d72bdd5d",
+    },
+    {
+        "namn": "Krokoms kommun",
+        "typ": "troman",
+        "url": "https://krokom.tromanpublik.se/organisation/cabf9994-4867-4e1a-b368-859649acaa8b",
+    },
+    {
+        "namn": "Kumla kommun",
+        "typ": "troman",
+        "url": "https://kumla.tromanpublik.se/organisation/017a4dd9-cda0-4d41-9d78-2f5d3506c857",
+    },
+    {
+        "namn": "Kungsbacka kommun",
+        "typ": "troman",
+        "url": "https://kungsbacka.tromanpublik.se/organisation/7723aaee-423b-43a6-b631-3564b63dd746",
+    },
+    {
+        "namn": "Kungälvs kommun",
+        "typ": "troman",
+        "url": "https://kungalv.tromanpublik.se/organisation/87044574-bac2-4ba3-8a7c-70eeb8122720",
+    },
+    {
+        "namn": "Kävlinge kommun",
+        "typ": "troman",
+        "url": "https://kavlinge.tromanpublik.se/organisation/17759e2c-0d22-4616-862f-2e2187b5258e",
+    },
+    {
+        "namn": "Landskrona kommun",
+        "typ": "troman",
+        "url": "https://landskrona.tromanpublik.se/organisation/ddadc7ad-bd40-4d7a-bcb1-1b80c0c08e0a",
+    },
+    {
+        "namn": "Lekebergs kommun",
+        "typ": "troman",
+        "url": "https://lekeberg.tromanpublik.se/organisation/dc2fe6d2-e731-4863-ac1d-90cd359263c3",
+    },
+    {
+        "namn": "Lerums kommun",
+        "typ": "troman",
+        "url": "https://lerum.tromanpublik.se/organisation/46089da5-8ee8-46b3-a120-c564b86482cc",
+    },
+    {
+        "namn": "Lidingö kommun",
+        "typ": "troman",
+        "url": "https://lidingo.tromanpublik.se/organisation/88b78d38-bf85-4f96-ae75-87fb7c777768",
+    },
+    {
+        "namn": "Lilla Edets kommun",
+        "typ": "troman",
+        "url": "https://lillaedet.tromanpublik.se/organisation/ba2a541a-2da6-4a65-abb2-74ae0784850a",
+    },
+    {
+        "namn": "Lindesbergs kommun",
+        "typ": "troman",
+        "url": "https://lindesberg.tromanpublik.se/organisation/756b67ac-8320-4c9f-8832-4e9147b9c8d2",
+    },
+    {
+        "namn": "Ljungby kommun",
+        "typ": "troman",
+        "url": "https://ljungby.tromanpublik.se/organisation/c44560f5-67cc-4a94-b04d-022d80911e99",
+    },
+    {
+        "namn": "Lomma kommun",
+        "typ": "troman",
+        "url": "https://lomma.tromanpublik.se/organisation/99aed780-2e5b-4e15-861c-7752989bc996",
+    },
+    {
+        "namn": "Ludvika kommun",
+        "typ": "troman",
+        "url": "https://ludvika.tromanpublik.se/organisation/b9e1853b-4ef5-4a37-b7f0-99a9b033562c",
+    },
+    {
+        "namn": "Lycksele kommun",
+        "typ": "troman",
+        "url": "https://lycksele.tromanpublik.se/organisation/4bc3689b-1df2-4669-8220-2e45a1dc2033",
+    },
+    {
+        "namn": "Lysekils kommun",
+        "typ": "troman",
+        "url": "https://lysekil.tromanpublik.se/organisation/04c17fd3-0979-412b-95d9-88ca758c7f4d",
+    },
+    {
+        "namn": "Marks kommun",
+        "typ": "troman",
+        "url": "https://mark.tromanpublik.se/organisation/c05416bd-aa5b-40ad-afc2-02b0b6346455",
+    },
+    {
+        "namn": "Mjölby kommun",
+        "typ": "troman",
+        "url": "https://mjolby.tromanpublik.se/organisation/70a33fff-1169-4700-911f-cade41c1d301",
+    },
+    {
+        "namn": "Motala kommun",
+        "typ": "troman",
+        "url": "https://motala.tromanpublik.se/organisation/150f4dbb-5fc8-41ea-8553-67d3a3dcd95a",
+    },
+    {
+        "namn": "Munkedals kommun",
+        "typ": "troman",
+        "url": "https://munkedal.tromanpublik.se/organisation/5b1f1fd3-2c51-4109-a854-ce96ee6bc150",
+    },
+    {
+        "namn": "Mölndals kommun",
+        "typ": "troman",
+        "url": "https://molndal.tromanpublik.se/organisation/2ef7597f-cfae-468c-bb0e-24aaf0764657",
+    },
+    {
+        "namn": "Nacka kommun",
+        "typ": "troman",
+        "url": "https://nacka.tromanpublik.se/organisation/8cd21725-1058-4bc5-9cd6-82f78ba4a878",
+    },
+    {
+        "namn": "Nora kommun",
+        "typ": "troman",
+        "url": "https://nora.tromanpublik.se/organisation/23edda83-aa84-4826-a149-567ef073f545",
+    },
+    {
+        "namn": "Norbergs kommun",
+        "typ": "troman",
+        "url": "https://norberg.tromanpublik.se/organisation/48000533-66e3-4e3e-b84a-f552946f29ad",
+    },
+    {
+        "namn": "Norrtälje kommun",
+        "typ": "troman",
+        "url": "https://norrtalje.tromanpublik.se/organisation/fe14d0dc-9f8d-46ef-a997-570f8c97a93d",
+    },
+    {
+        "namn": "Norsjö kommun",
+        "typ": "troman",
+        "url": "https://norsjo.tromanpublik.se/organisation/f3005192-1f0d-4708-8698-781ed739fc9c",
+    },
+    {
+        "namn": "Nybro kommun",
+        "typ": "troman",
+        "url": "https://nybro.tromanpublik.se/organisation/61681487-e492-489b-8187-a72164bd00ac",
+    },
+    {
+        "namn": "Nykvarns kommun",
+        "typ": "troman",
+        "url": "https://nykvarn.tromanpublik.se/organisation/5ee02396-558d-408e-95a4-0e920a2838c8",
+    },
+    {
+        "namn": "Nyköpings kommun",
+        "typ": "troman",
+        "url": "https://nykoping.tromanpublik.se/organisation/0835d552-40cf-47a4-9308-60e69f2c28f4",
+    },
+    {
+        "namn": "Nynäshamns kommun",
+        "typ": "troman",
+        "url": "https://nynashamn.tromanpublik.se/organisation/93a83158-fb9e-4e5a-bccd-94c78f01ba81",
+    },
+    {
+        "namn": "Olofströms kommun",
+        "typ": "troman",
+        "url": "https://olofstrom.tromanpublik.se/organisation/be3473f0-39bb-46e8-9c6c-360bb76dceea",
+    },
+    {
+        "namn": "Orusts kommun",
+        "typ": "troman",
+        "url": "https://orust.tromanpublik.se/organisation/1033edf4-b8ad-42d0-945e-aee94a815c6a",
+    },
+    {
+        "namn": "Osby kommun",
+        "typ": "troman",
+        "url": "https://osby.tromanpublik.se/organisation/e9dee37f-5380-497b-a258-199246c03343",
+    },
+    {
+        "namn": "Oxelösunds kommun",
+        "typ": "troman",
+        "url": "https://oxelosund.tromanpublik.se/organisation/9b6ae153-33e4-4181-8205-35931fbfbb79",
+    },
+    {
+        "namn": "Partille kommun",
+        "typ": "troman",
+        "url": "https://partille.tromanpublik.se/organisation/21d47aec-ad2f-4ec2-a98a-86195b242580",
+    },
+    {
+        "namn": "Perstorps kommun",
+        "typ": "troman",
+        "url": "https://perstorp.tromanpublik.se/organisation/8bebb837-97e9-45a7-80d8-eb3bde1af07e",
+    },
+    {
+        "namn": "Piteå kommun",
+        "typ": "troman",
+        "url": "https://pitea.tromanpublik.se/organisation/95c9ddec-7fd3-47cb-894d-7d7a3fdbc92c",
+    },
+    {
+        "namn": "Sala kommun",
+        "typ": "troman",
+        "url": "https://sala.tromanpublik.se/organisation/a99e399a-7e7c-45e7-a853-aeb70b44f5f8",
+    },
+    {
+        "namn": "Salems kommun",
+        "typ": "troman",
+        "url": "https://salem.tromanpublik.se/organisation/dd595819-cb52-4a59-be4b-f1651770ac1b",
+    },
+    {
+        "namn": "Sigtuna kommun",
+        "typ": "troman",
+        "url": "https://sigtuna.tromanpublik.se/organisation/befa6b5d-bfbd-48d4-8283-97bf18786512",
+    },
+    {
+        "namn": "Simrishamns kommun",
+        "typ": "troman",
+        "url": "https://simrishamn.tromanpublik.se/organisation/aa6e0ee2-4cf8-4362-930c-190585f1a5ad",
+    },
+    {
+        "namn": "Skellefteå kommun",
+        "typ": "troman",
+        "url": "https://skelleftea.tromanpublik.se/organisation/b7f592f8-38c9-46d8-b103-0a6f27d5fe1c",
+    },
+    {
+        "namn": "Skövde kommun",
+        "typ": "troman",
+        "url": "https://skovde.tromanpublik.se/organisation/81e45419-0d57-462a-ad47-c54041b088ed",
+    },
+    {
+        "namn": "Sollefteå kommun",
+        "typ": "troman",
+        "url": "https://solleftea.tromanpublik.se/organisation/c830fb08-6df4-4355-a8b5-be3ab58d02ac",
+    },
+    {
+        "namn": "Sollentuna kommun",
+        "typ": "troman",
+        "url": "https://sollentuna.tromanpublik.se/organisation/1604de01-8e76-4256-ac15-2a519c2be1a4",
+    },
+    {
+        "namn": "Solna kommun",
+        "typ": "troman",
+        "url": "https://solna.tromanpublik.se/organisation/46c5d68d-a31c-4848-8d04-963c636fb6a8",
+    },
+    {
+        "namn": "Sotenäs kommun",
+        "typ": "troman",
+        "url": "https://sotenas.tromanpublik.se/organisation/d7b1a1b0-8179-480d-9a8c-1254173a8b98",
+    },
+    {
+        "namn": "Staffanstorps kommun",
+        "typ": "troman",
+        "url": "https://staffanstorp.tromanpublik.se/organisation/5a807926-6b36-423f-b754-b0c042428329",
+    },
+    {
+        "namn": "Stenungsunds kommun",
+        "typ": "troman",
+        "url": "https://stenungsund.tromanpublik.se/organisation/32c42641-4b2d-4432-82dd-a4bccc8331bc",
+    },
+    {
+        "namn": "Storumans kommun",
+        "typ": "troman",
+        "url": "https://storuman.tromanpublik.se/organisation/18ef28f5-0691-4a14-9403-cde544dc0e89",
+    },
+    {
+        "namn": "Strängnäs kommun",
+        "typ": "troman",
+        "url": "https://strangnas.tromanpublik.se/organisation/cc5030e4-bee1-478b-ab27-9855b10361f6",
+    },
+    {
+        "namn": "Sundbybergs kommun",
+        "typ": "troman",
+        "url": "https://sundbyberg.tromanpublik.se/organisation/47c5c5ab-ceff-4c7b-b720-b6c8e7ed9b23",
+    },
+    {
+        "namn": "Sundsvalls kommun",
+        "typ": "troman",
+        "url": "https://sundsvall.tromanpublik.se/organisation/3fe94728-e2e7-47d3-85b3-d06fa8125eba",
+    },
+    {
+        "namn": "Sunne kommun",
+        "typ": "troman",
+        "url": "https://sunne.tromanpublik.se/organisation/f675c7cc-2c28-483c-b35e-e471c9257b7c",
+    },
+    {
+        "namn": "Svalövs kommun",
+        "typ": "troman",
+        "url": "https://svalov.tromanpublik.se/organisation/95864840-9622-4ddb-9529-39176633cd75",
+    },
+    {
+        "namn": "Svedala kommun",
+        "typ": "troman",
+        "url": "https://svedala.tromanpublik.se/organisation/64ad169f-dd30-4a73-a95b-6d27329537f9",
+    },
+    {
+        "namn": "Säters kommun",
+        "typ": "troman",
+        "url": "https://sater.tromanpublik.se/organisation/27117897-83bd-4717-9a52-17e451483acb",
+    },
+    {
+        "namn": "Södertälje kommun",
+        "typ": "troman",
+        "url": "https://sodertalje.tromanpublik.se/organisation/26081553-f368-41e9-b868-3567df561298",
+    },
+    {
+        "namn": "Tanums kommun",
+        "typ": "troman",
+        "url": "https://tanum.tromanpublik.se/organisation/9945cd5f-2edb-4eae-8519-1b912703f221",
+    },
+    {
+        "namn": "Tierps kommun",
+        "typ": "troman",
+        "url": "https://tierp.tromanpublik.se/organisation/2e95016d-a78b-404c-8c9c-4fb7681cb636",
+    },
+    {
+        "namn": "Torsby kommun",
+        "typ": "troman",
+        "url": "https://torsby.tromanpublik.se/organisation/da15f2a5-d1b9-4b55-bc08-807a767333ef",
+    },
+    {
+        "namn": "Trelleborgs kommun",
+        "typ": "troman",
+        "url": "https://trelleborg.tromanpublik.se/organisation/7d0b1bd1-74c3-46cf-bd1f-62d3e9512029",
+    },
+    {
+        "namn": "Trosa kommun",
+        "typ": "troman",
+        "url": "https://trosa.tromanpublik.se/organisation/e6949592-8ca9-490b-87f9-547715d5146c",
+    },
+    {
+        "namn": "Tyresö kommun",
+        "typ": "troman",
+        "url": "https://tyreso.tromanpublik.se/organisation/a1a6c6e4-a5df-4862-94fc-be6c4691f817",
+    },
+    {
+        "namn": "Uddevalla kommun",
+        "typ": "troman",
+        "url": "https://uddevalla.tromanpublik.se/organisation/1770b266-061b-456d-a920-ee220e0d6080",
+    },
+    {
+        "namn": "Ulricehamns kommun",
+        "typ": "troman",
+        "url": "https://ulricehamn.tromanpublik.se/organisation/053ca305-039c-4f23-9385-ba0b08d054ea",
+    },
+    {
+        "namn": "Umeå kommun",
+        "typ": "troman",
+        "url": "https://umea.tromanpublik.se/organisation/76f7bf84-8d04-4d2f-8124-4c0968bd7099",
+    },
+    {
+        "namn": "Upplands Väsby kommun",
+        "typ": "troman",
+        "url": "https://upplandsvasby.tromanpublik.se/organisation/a0a22f43-4b75-4d5c-bee5-adf8f5279aac",
+    },
+    {
+        "namn": "Vadstena kommun",
+        "typ": "troman",
+        "url": "https://vadstena.tromanpublik.se/organisation/977bc86b-1992-422b-9d7b-ddf2de488b4d",
+    },
+    {
+        "namn": "Vaggeryds kommun",
+        "typ": "troman",
+        "url": "https://vaggeryd.tromanpublik.se/organisation/3160eada-1c3a-43ef-b471-dcef2cd811f5",
+    },
+    {
+        "namn": "Valdemarsviks kommun",
+        "typ": "troman",
+        "url": "https://valdemarsvik.tromanpublik.se/organisation/0b44015a-ba73-4320-877e-994d4b48cb08",
+    },
+    {
+        "namn": "Vallentuna kommun",
+        "typ": "troman",
+        "url": "https://vallentuna.tromanpublik.se/organisation/721a1968-4593-4d8f-a17d-2c71a8c6acdf",
+    },
+    {
+        "namn": "Varbergs kommun",
+        "typ": "troman",
+        "url": "https://varberg.tromanpublik.se/organisation/bbac4dc2-5097-4d29-aece-bb6359e783a3",
+    },
+    {
+        "namn": "Vaxholms kommun",
+        "typ": "troman",
+        "url": "https://vaxholm.tromanpublik.se/organisation/c973f4e6-65ff-44ef-9dbf-9c25e10102c2",
+    },
+    {
+        "namn": "Vimmerby kommun",
+        "typ": "troman",
+        "url": "https://vimmerby.tromanpublik.se/organisation/db050e37-c48f-4800-b6bd-9ee1277839f8",
+    },
+    {
+        "namn": "Vingåkers kommun",
+        "typ": "troman",
+        "url": "https://vingaker.tromanpublik.se/organisation/038a491b-1b66-44e5-94eb-0e341c3ce220",
+    },
+    {
+        "namn": "Värmdö kommun",
+        "typ": "troman",
+        "url": "https://varmdo.tromanpublik.se/organisation/5b294486-1f5f-4332-82d2-7269af683bf2",
+    },
+    {
+        "namn": "Växjö kommun",
+        "typ": "troman",
+        "url": "https://vaxjo.tromanpublik.se/organisation/32806894-f94e-463c-901e-45d4cc4d7552",
+    },
+    {
+        "namn": "Älvdalens kommun",
+        "typ": "troman",
+        "url": "https://alvdalen.tromanpublik.se/organisation/767ae247-d91a-4b7d-972c-a0c027876906",
+    },
+    {
+        "namn": "Åmåls kommun",
+        "typ": "troman",
+        "url": "https://amal.tromanpublik.se/organisation/0761efc2-1f41-43f1-a921-2578d3c6c5ee",
+    },
+    {
+        "namn": "Ånge kommun",
+        "typ": "troman",
+        "url": "https://ange.tromanpublik.se/organisation/43797fe5-3f9f-4d4d-bbb9-e45462824f40",
+    },
+    {
+        "namn": "Åsele kommun",
+        "typ": "troman",
+        "url": "https://asele.tromanpublik.se/organisation/4132a2d3-d041-44b9-be5b-8884f0c5e5d6",
+    },
+    {
+        "namn": "Örkelljunga kommun",
+        "typ": "troman",
+        "url": "https://orkelljunga.tromanpublik.se/organisation/d122a15a-7b81-4018-90c6-e394e8fbf361",
+    },
+    {
+        "namn": "Örnsköldsviks kommun",
+        "typ": "troman",
+        "url": "https://ornskoldsvik.tromanpublik.se/organisation/fceaa133-57f7-4836-b3ad-a5359fc93d1e",
+    },
+    {
+        "namn": "Östersunds kommun",
+        "typ": "troman",
+        "url": "https://ostersund.tromanpublik.se/organisation/2dff76dd-5cee-4511-a108-815b0991d1cc",
+    },
+    {
+        "namn": "Österåkers kommun",
+        "typ": "troman",
+        "url": "https://osteraker.tromanpublik.se/organisation/81258e86-1d49-447e-a251-388f6e8d95ba",
+    },
+    {
+        "namn": "Östhammars kommun",
+        "typ": "troman",
+        "url": "https://osthammar.tromanpublik.se/organisation/36630fc2-f28c-4432-bb49-2ecacb47f43f",
+    },
 ]
 
 
