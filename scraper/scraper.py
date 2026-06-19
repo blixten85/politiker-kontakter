@@ -903,6 +903,109 @@ REGIONER = [
         "netpub_registry": "ed59a2503b384246b8faeb79b56f999c",
         "netpub_board":    "3ab20218-17ed-45bd-b40f-0300a9c5d4c1",
     },
+    {
+        "namn": "Alvesta kommun",
+        "typ": "mailto",
+        "url": "https://www.alvesta.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Arboga kommun",
+        "typ": "mailto",
+        "url": "https://arboga.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Arjeplogs kommun",
+        "typ": "mailto",
+        "url": "https://arjeplog.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Bergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "914c1eb24cb94a2c97b37a8ef66eef16",
+        "netpub_board":    "2417e918-98ce-4413-9c09-b145c0245240",
+    },
+    {
+        "namn": "Bjurholms kommun",
+        "typ": "mailto",
+        "url": "https://www.bjurholm.se/kommun-och-politik/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter",
+    },
+    {
+        "namn": "Bjuvs kommun",
+        "typ": "mailto",
+        "url": "https://www.bjuv.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Boxholms kommun",
+        "typ": "mailto",
+        "url": "https://www.boxholm.se/kommun-och-politik/kommunfullmaktige",
+    },
+    {
+        "namn": "Bromölla kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "98f18704cecc493082761b1333bcca92",
+        "netpub_board":    "d9da0c34-e4db-48b0-a461-8e8e53ab4a0e",
+    },
+    {
+        "namn": "Dals-Eds kommun",
+        "typ": "mailto",
+        "url": "https://www.dalsed.se/kommun-och-politik/fortroendevalda/kommunfullmaktige-2022-2026/",
+    },
+    {
+        "namn": "Dorotea kommun",
+        "typ": "mailto",
+        "url": "https://www.dorotea.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Ekerö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "def31ebd7978473c94f8b6e3bbc93717",
+        "netpub_board":    "befb6976-80f0-4746-9b40-380b72d62d6f",
+    },
+    {
+        "namn": "Eksjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "90955e392d574c05937df63cc8624dff",
+        "netpub_board":    "d97686af-6ec9-4303-ae14-5889e41eb745",
+    },
+    {
+        "namn": "Eslövs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b4744ae1bd8148e1a08307642caee206",
+        "netpub_board":    "4cc77930-fa00-4f48-a22a-5ab981da7a32",
+    },
+    {
+        "namn": "Essunga kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "e385d0365dc644a4abc03ec16b998e6f",
+        "netpub_board":    "600b9a5e-e218-4452-b8d4-dc51d8920b9f",
+    },
+    {
+        "namn": "Fagersta kommun",
+        "typ": "mailto",
+        "url": "https://fagersta.se/organisation--styrning/politik-och-fortroendevalda/kommunfullmaktige",
+    },
+    {
+        "namn": "Falkenbergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a7b5af4753e745cea62d2e7f8fcad21d",
+        "netpub_board":    "1af56ab5-2413-4c60-81f7-96d0f3875338",
+    },
+    {
+        "namn": "Falu kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "30d39c931a4b414b821182eb6e72848c",
+        "netpub_board":    "c36e0272-3f4f-4646-a861-9a6ae24eec4c",
+    },
+    {
+        "namn": "Filipstads kommun",
+        "typ": "mailto",
+        "url": "https://www.filipstad.se/toppmeny/kommunochpolitik/politikochdemokrati/fortroendevaldainamnderochstyrelser.1524.html",
+    },
+    {
+        "namn": "Gullspångs kommun",
+        "typ": "mailto",
+        "url": "https://gullspang.se/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige",
+    },
 ]
 
 
