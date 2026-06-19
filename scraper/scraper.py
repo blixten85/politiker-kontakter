@@ -1006,6 +1006,128 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://gullspang.se/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige",
     },
+    {
+        "namn": "Askersunds kommun",
+        "typ": "mailto",
+        "url": "https://www.askersund.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Grästorps kommun",
+        "typ": "mailto",
+        "url": "https://www.grastorp.se/kommun-och-politik/politisk-organisation/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Götene kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "f9b3d2833ad246419c9d500f4c46ca6f",
+        "netpub_board":    "08b898e5-8938-4722-88ad-98b8d26cbc66",
+    },
+    {
+        "namn": "Halmstads kommun",
+        "typ": "mailto",
+        "url": "https://www.halmstad.se/kommunochpolitik/politikochdemokrati/kommunfullmaktige/ledamoterochersattarekommunfullmaktige.n306.html",
+    },
+    {
+        "namn": "Hallstahammars kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "02f4a58a74d749af91d3bd1e6c251db1",
+        "netpub_board":    "603d9ac0-566f-449c-8fe5-3bdd59d33ba8",
+    },
+    {
+        "namn": "Heby kommun",
+        "typ": "mailto",
+        "url": "https://www.heby.se/organisation-plats-och-politik/demokrati-dialog-och-inflytande/hitta-din-politiker",
+    },
+    {
+        "namn": "Hofors kommun",
+        "typ": "mailto",
+        "url": "https://www.hofors.se/kommun--politik/politik/fortroendevalda/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Hudiksvalls kommun",
+        "typ": "mailto",
+        "url": "https://hudiksvall.se/Sidor/Kommun-och-politik/Kommunens-organisation/Kommunfullmaktige.html",
+    },
+    {
+        "namn": "Hällefors kommun",
+        "typ": "mailto",
+        "url": "https://www.hellefors.se/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Härjedalens kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "4fa3657d195a42bb81dc6a568d846124",
+        "netpub_board":    "511718a5-ca52-4449-93e8-81f5cf0f4a2f",
+    },
+    {
+        "namn": "Jokkmokks kommun",
+        "typ": "mailto",
+        "url": "https://www.jokkmokk.se/kommun-och-politik/politik-och-delaktighet/politisk-organisation/",
+    },
+    {
+        "namn": "Karlsborgs kommun",
+        "typ": "mailto",
+        "url": "https://karlsborg.se/kommun--politik/sa-styrs-karlsborgs-kommun/politik/fortroendevalda/",
+    },
+    {
+        "namn": "Karlshamns kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "79c39e9c33df49b1b6d5ac6e12af943c",
+        "netpub_board":    "c7ca73bf-1718-4270-ac3d-e7b5c5b84cd9",
+    },
+    {
+        "namn": "Klippans kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "e65cf67fb472436c9e9e8cbb37d00743",
+        "netpub_board":    "665ce36d-153f-46cb-aefa-8a2e455f52b3",
+    },
+    {
+        "namn": "Kristinehamns kommun",
+        "typ": "mailto",
+        "url": "https://www.kristinehamn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Kungsörs kommun",
+        "typ": "mailto",
+        "url": "https://kungsor.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Laxå kommun",
+        "typ": "mailto",
+        "url": "https://www.laxa.se/Kommun-och-politik/Demokrati-och-insyn/Politisk-organisation/Kommunfullmaktige.html",
+    },
+    {
+        "namn": "Leksands kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "1c41ddabcab843dda687fc5f800f6434",
+        "netpub_board":    "caadec9c-c046-4fd3-b5aa-4f3006b9408b",
+    },
+    {
+        "namn": "Lessebo kommun",
+        "typ": "mailto",
+        "url": "https://www.lessebo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Lidköpings kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "06a2c997f2624e2185f8e9805ff58d29",
+        "netpub_board":    "308d9dc4-2bfa-4988-914a-da95d50ad4fa",
+    },
+    {
+        "namn": "Malung-Sälens kommun",
+        "typ": "mailto",
+        "url": "https://malung-salen.se/kommunochpolitik/kommunensorganisation/kommunfullmaktige.4.319b126613ec68a069b13b.html",
+    },
+    {
+        "namn": "Malå kommun",
+        "typ": "mailto",
+        "url": "https://www.mala.se/kommun-och-politik/kontakt-politiker-ordforande/",
+    },
+    {
+        "namn": "Mariestads kommun",
+        "typ": "mailto",
+        "url": "https://mariestad.se/Mariestads-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
+    },
 ]
 
 
