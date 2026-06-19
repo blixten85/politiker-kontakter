@@ -878,6 +878,31 @@ REGIONER = [
         "typ": "troman",
         "url": "https://osthammar.tromanpublik.se/organisation/36630fc2-f28c-4432-bb49-2ecacb47f43f",
     },
+    # === Kommuner via Netpublicator-registret ===
+    {
+        "namn": "Vänersborgs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "596eaf0679f34a4ab0e32ba6131a1e25",
+        "netpub_board":    "a9bbcb86-89a6-4a9d-85fd-288a24ac4de4",
+    },
+    {
+        "namn": "Västerviks kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "fe47625d5fb3456bbc61dc5f56b556c6",
+        "netpub_board":    "ddef3a1c-3845-4aaa-a423-83d352c34d38",
+    },
+    {
+        "namn": "Borlänge kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "489d0e22a9a34a658d98c4f0026b1cb3",
+        "netpub_board":    "e9f1d57f-bb08-456d-a391-b2b38935c28e",
+    },
+    {
+        "namn": "Åstorps kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "ed59a2503b384246b8faeb79b56f999c",
+        "netpub_board":    "3ab20218-17ed-45bd-b40f-0300a9c5d4c1",
+    },
 ]
 
 
