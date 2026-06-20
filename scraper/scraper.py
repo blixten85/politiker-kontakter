@@ -1321,6 +1321,27 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.timra.se/kommunpolitik/kommunensorganisation/kommunfullmaktige/kommunfullmaktigesledamoterochersattare.4.48ff27ec16df76a85d01bcd8.html",
     },
+    {
+        "namn": "Tjörns kommun",
+        "typ": "mailto",
+        "url": "https://www.tjorn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/politiker-i-kommunfullmaktige",
+    },
+    {
+        "namn": "Tomelilla kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b15ceb3379d2454fb44c4932d9e900ed",
+        "netpub_board":    "e0b0f5ae-0124-4884-af16-c9e99bd87d46",
+    },
+    {
+        "namn": "Torsås kommun",
+        "typ": "mailto",
+        "url": "https://www.torsas.se/kontakt/kontaktsok/?search-input-officals=&forum=0&parti=0",
+    },
+    {
+        "namn": "Tranemo kommun",
+        "typ": "mailto",
+        "url": "https://tranemo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
 ]
 
 
