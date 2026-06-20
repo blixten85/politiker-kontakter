@@ -1237,6 +1237,22 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.monsteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
     },
+    {
+        "namn": "Mörbylånga kommun",
+        "typ": "mailto",
+        "url": "https://www.morbylanga.se/kontakt/kommun-och-politik/kommunfullmaktige/",
+    },
+    {
+        "namn": "Nässjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "gwH89a8xU8NMNdCwKXnTKwPn5ZEPvuku",
+        "netpub_board":    "e31e0455-35a3-4da0-94b6-b015d42926f7",
+    },
+    {
+        "namn": "Ockelbo kommun",
+        "typ": "mailto",
+        "url": "https://ockelbo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
 ]
 
 
