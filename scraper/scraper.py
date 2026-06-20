@@ -1391,6 +1391,11 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.overkalix.se/kommun-och-politik/politik-och-organisation/politiker-och-fortroendevalda/",
     },
+    {
+        "namn": "Borgholms kommun",
+        "typ": "mailto",
+        "url": "https://www.borgholm.se/kommunfullmaktige-kommunens-organisation/",
+    },
 ]
 
 
