@@ -1304,6 +1304,23 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.soderhamn.se/sidor/kommun-och-politik/organisation/kommunfullmaktige/ledamoter-2022-2026.html",
     },
+    {
+        "namn": "Sölvesborgs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a72830bd5a784c7aa8d22f083e57ede8",
+        "netpub_board":    "383fe207-e242-4400-a25a-cb231f792714",
+    },
+    {
+        "namn": "Tidaholms kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "bb8e548df1a8413188cd11c1e4393afd",
+        "netpub_board":    "6cdb7081-4fb2-43f3-8eae-aa7e664053ac",
+    },
+    {
+        "namn": "Timrå kommun",
+        "typ": "mailto",
+        "url": "https://www.timra.se/kommunpolitik/kommunensorganisation/kommunfullmaktige/kommunfullmaktigesledamoterochersattare.4.48ff27ec16df76a85d01bcd8.html",
+    },
 ]
 
 
