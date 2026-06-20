@@ -1353,6 +1353,17 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.upplands-bro.se/kommun-och-politik/politik-och-demokrati/kommunfullmaktige.html",
     },
+    {
+        "namn": "Älmhults kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "0cc29b7c2c784c8c8790ae6838bd0078",
+        "netpub_board":    "c0870fd0-36bc-4c57-9d53-208538c3cae5",
+    },
+    {
+        "namn": "Älvkarleby kommun",
+        "typ": "mailto",
+        "url": "https://www.alvkarleby.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
 ]
 
 
