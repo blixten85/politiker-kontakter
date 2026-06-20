@@ -1281,6 +1281,29 @@ REGIONER = [
         "netpub_registry": "c90780267e934bcabdb4a4bc94baf562",
         "netpub_board":    "5b82da78-1a21-4999-acfc-1f9ac33f1689",
     },
+    {
+        "namn": "Surahammars kommun",
+        "typ": "mailto",
+        "url": "https://surahammar.se/kommunfullmaktige",
+    },
+    {
+        "namn": "Svenljunga kommun",
+        "typ": "mailto",
+        "url": "https://www.svenljunga.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        # Troman-baserad (bekräftad via sökresultat, t.ex. enskilda
+        # ledamotsprofiler), men savsjo.tromanpublik.se svarar med 500
+        # på enkla HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
+        "namn": "Sävsjö kommun",
+        "typ": "troman",
+        "url": "https://savsjo.tromanpublik.se/",
+    },
+    {
+        "namn": "Söderhamns kommun",
+        "typ": "mailto",
+        "url": "https://www.soderhamn.se/sidor/kommun-och-politik/organisation/kommunfullmaktige/ledamoter-2022-2026.html",
+    },
 ]
 
 
