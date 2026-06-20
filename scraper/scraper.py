@@ -1364,6 +1364,12 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.alvkarleby.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
     },
+    {
+        "namn": "Ängelholms kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "da911c503eea460aa5595d523dcc09b1",
+        "netpub_board":    "51859191-03ac-4998-beb6-9281b73f8fe3",
+    },
 ]
 
 
