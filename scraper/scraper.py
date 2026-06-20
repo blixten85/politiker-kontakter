@@ -1365,6 +1365,14 @@ REGIONER = [
         "url": "https://www.alvkarleby.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
     },
     {
+        # Troman-baserad (bekräftad via sökresultat, titeln "Förtroendevalda
+        # hos oss"), men herrljunga.tromanpublik.se svarar med 500 på enkla
+        # HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
+        "namn": "Herrljunga kommun",
+        "typ": "troman",
+        "url": "https://herrljunga.tromanpublik.se/",
+    },
+    {
         "namn": "Ängelholms kommun",
         "typ": "netpublicator",
         "netpub_registry": "da911c503eea460aa5595d523dcc09b1",
