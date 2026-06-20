@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: GitHub Community Forum
+    url: https://github.com/orgs/community/discussions
+    about: Ask questions and share ideas
+  - name: Security Issues
+    url: https://github.com/blixten85/politiker-kontakter/security/advisories
+    about: Report security vulnerabilities responsibly

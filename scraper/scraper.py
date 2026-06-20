@@ -1151,7 +1151,7 @@ REGIONER = [
     {
         "namn": "Värnamo kommun",
         "typ": "mailto",
-        "url": "http://kommun.varnamo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/ledamoter-kf.html",
+        "url": "https://kommun.varnamo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/ledamoter-kf.html",
     },
     {
         "namn": "Vara kommun",

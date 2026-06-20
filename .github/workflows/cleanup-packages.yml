@@ -1,0 +1,39 @@
+name: Cleanup old package versions
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'  # Sundays at 03:00
+  workflow_dispatch:
+
+permissions:
+  packages: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete untagged and old SHA versions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: versions } = await github.rest.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
+              package_type: 'container',
+              package_name: 'scraper',
+              per_page: 100,
+            });
+
+            const keep = new Set(['latest']);
+            let deleted = 0;
+
+            for (const v of versions) {
+              const tags = v.metadata?.container?.tags ?? [];
+              if (tags.some(t => keep.has(t))) continue;
+              await github.rest.packages.deletePackageVersionForAuthenticatedUser({
+                package_type: 'container',
+                package_name: 'scraper',
+                package_version_id: v.id,
+              });
+              deleted++;
+            }
+
+            console.log(`Deleted ${deleted} old versions`);
