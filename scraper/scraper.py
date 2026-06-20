@@ -13,8 +13,11 @@ import logging
 import os
 import re
 import sys
+import unicodedata
+from io import BytesIO
 from urllib.parse import unquote
 from playwright.async_api import async_playwright, Error as PlaywrightError
+from pypdf import PdfReader
 
 LOG_DIR  = os.environ.get("LOG_DIR",    "/logs")
 OUT_DIR  = os.environ.get("OUTPUT_DIR", "/output")
@@ -41,6 +44,11 @@ SKIP_KEYWORDS = ["noreply", "no-reply", "webmaster", "webb@", "support@", "info@
 # typ "netpublicator" = använd Netpublicator-logik (hämta profilsidor)
 # typ "troman"        = använd Troman-logik (tromanpublik.se, hämta profilsidor)
 # typ "w3d3"          = använd W3D3 Ledamotspublicering-logik (Formpipe, hämta profilsidor)
+# typ "fmr"           = använd Förtroendemannaregister-logik (Livewire-app, hämta profilsidor)
+# typ "profilsidor"   = lista med länkar till enskilda ledamotssidor (CMS-mönster), hämta profilsidor
+# typ "namnmonster"   = sidan listar namngivna ledamöter och anger ett känt
+#                        e-postmönster (t.ex. "fornamn.efternamn@kommun.se")
+#                        utan enskilda mailto-länkar - bygg adresserna från namnen
 # typ "mailto"        = skrapa mailto-länkar direkt från sidan
 # netpub_registry     = UUID för Netpublicator-registret
 # netpub_board        = UUID för Regionfullmäktige-nämnden (Netpublicator)
@@ -1408,6 +1416,41 @@ REGIONER = [
         "url": "https://politiker.kramfors.se/BoardRepresentatives.aspx?boardid=17",
     },
     {
+        "namn": "Tranås kommun",
+        "typ": "w3d3",
+        "url": "https://tranas.ondemand.formpipe.com/ledamotspublicering/BoardRepresentatives.aspx?boardid=4",
+    },
+    {
+        # Sidan listar ledamöter/ersättare med namn + parti och anger explicit
+        # mönstret "förnamn.efternamn@overtornea.se (ä/å=a, ö=o)".
+        "namn": "Övertorneå kommun",
+        "typ": "namnmonster",
+        "url": "https://overtornea.se/kommun-politik/ledamoter/",
+        "domain": "overtornea.se",
+        "section_start": "Alla ledamöter går att kontakta via epost. Kommunens politiker har e-postadress förnamn.efternamn@overtornea.se (ä/å=a, ö=o)",
+        "section_end": "Kultur- och fritidsutskottet",
+    },
+    {
+        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
+        # på varje namnrad, men anger explicit mönstret "fornamn.efternamn@are.se".
+        "namn": "Åre kommun",
+        "typ": "namnlista",
+        "url": "https://www.are.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+        "domain": "are.se",
+        "section_start": "Vill du kontakta politikerna via e-post så maila till fornamn.efternamn@are.se.",
+        "section_end": "Kontakta Åre kommun",
+        "skip_lines": [
+            "Moderata Samlingspartiet",
+            "Centerpartiet",
+            "Kristdemokraterna",
+            "Arbetarepartiet Socialdemokraterna",
+            "Vänsterpartiet",
+            "Miljöpartiet De Gröna",
+            "Sverigedemokraterna",
+            "Västjämtlands Väl",
+        ],
+    },
+    {
         # W3D3 Ledamotspublicering (samma system som Huddinge/Kramfors). Sidan är
         # aktivt blockerad (WAF, "Förfrågan avvisades") mot enkla HTTP-anrop vid
         # verifiering, men URL:en och boardid matchar bekräftat en riktig
@@ -1415,6 +1458,112 @@ REGIONER = [
         "namn": "Lunds kommun",
         "typ": "w3d3",
         "url": "https://ledamoter.lund.se/BoardRepresentatives.aspx?boardid=335",
+    },
+    {
+        "namn": "Alingsås kommun",
+        "typ": "fmr",
+        "url": "https://www.fortroendemannaregistret.alingsas.se/beslutsinstanser/480",
+    },
+    {
+        "namn": "Aneby kommun",
+        "typ": "profilsidor",
+        "url": "https://aneby.se/sidor/kommun-och-politik/kontakta-aneby-kommun/politiker/kommunfullmaktige.html",
+        "link_pattern": "/politiker/politiker/",
+        "domain": "aneby.se",
+    },
+    {
+        # Sidan listar ledamöter (och presidiet) med namn + parti, utan mailto-länkar,
+        # men anger explicit mönstret "fornamn.efternamn@bracke.se".
+        "namn": "Bräcke kommun",
+        "typ": "namnmonster",
+        "url": "https://www.bracke.se/kommun--och-demokrati/politik-och-fortroendevalda/kommunfullmaktige",
+        "domain": "bracke.se",
+        "section_start": "Ordförande:",
+        "section_end": "Arbetsordning för kommunfullmäktige",
+    },
+    {
+        "namn": "Hultsfreds kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "7b98056af7d5452282d5a2d8789e2774",
+        "netpub_board":    "9f7d447d-8552-48b5-806c-2fb102e613ef",
+    },
+    {
+        "namn": "Tingsryds kommun",
+        "typ": "profilsidor",
+        "url": "https://tingsryd.se/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter-och-ersattare/",
+        "link_pattern": "/fortroendevalda/",
+        "domain": "tingsryd.se",
+    },
+    {
+        # Sidan listar ledamöterna med namn + parti, utan mailto-länkar,
+        # men anger explicit mönstret "namn.efternamn@vindeln.se".
+        "namn": "Vindelns kommun",
+        "typ": "namnmonster",
+        "url": "https://vindeln.se/kommun-och-politik/politisk-styrning/kommunfullmaktige",
+        "domain": "vindeln.se",
+        "section_start": "Ledamöter, Kommunfullmäktige 2022-2026",
+        "section_end": "Ersättare, kommunfullmäktige 2022-2026",
+    },
+    {
+        # Nedladdningsbar PDF med namn + mailadress till samtliga ledamöter/ersättare.
+        "namn": "Laholms kommun",
+        "typ": "pdf",
+        "url": "https://www.laholm.se/download/18.21fe87d518ee72dec5df82d/1713437157280/Mailadresser%20kommunfullm%C3%A4ktige.pdf",
+        "domain": "laholm.se",
+    },
+    {
+        # Sidan listar länkar till varje politikers profilsida (/kontakter/politiker/...)
+        # där mailto-länken finns under domänen politiker.tibro.se.
+        "namn": "Tibro kommun",
+        "typ": "profilsidor",
+        "url": "https://www.tibro.se/kommun-och-politik/sa-styrs-tibro-kommun/politiker/",
+        "link_pattern": "/kontakter/politiker/",
+        "domain": "politiker.tibro.se",
+    },
+    {
+        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
+        # explicit mönstret "förnamn.efternamn@ljusnarsberg.se", utan mailto-länkar.
+        "namn": "Ljusnarsbergs kommun",
+        "typ": "namnmonster",
+        "url": "https://ljusnarsberg.se/kommun-och-politik/kommunens-organisation/fortroendevalda",
+        "domain": "ljusnarsberg.se",
+        "section_start": "Förtroendevalda Kommunfullmäktige 2022-11-10 - 2026-11-11",
+        "section_end": "Kommunstyrelsen 2023 - 2026",
+    },
+    {
+        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
+        # explicit mönstret "förnamn.efternamn@munkfors.se". Kommunfullmäktige-
+        # sektionen ligger i ett jQuery UI-accordion (exklusivt - bara en sektion
+        # kan vara öppen samtidigt), så bara den relevanta rubriken fälls ut.
+        "namn": "Munkfors kommun",
+        "typ": "namnmonster",
+        "url": "https://www.munkfors.se/kommun-och-politik/politik/politisk-organisation/fortroendevalda-politiker/",
+        "domain": "munkfors.se",
+        "section_start": "Förtroendevalda år 2022-2026",
+        "section_end": "Kontakt",
+        "expand_text": "Kommunfullmäktige",
+    },
+    {
+        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
+        # på varje namnrad, men anger explicit mönstret "Namn, Parti" och en
+        # gemensam e-postdomän för politiker (politiker.ragunda.se).
+        "namn": "Ragunda kommun",
+        "typ": "namnlista",
+        "url": "https://www.ragunda.se/kommunochpolitik/politikochmoten/ledamoter.1028.html",
+        "domain": "politiker.ragunda.se",
+        "section_start": "Kommunfullmäktiges ledamöter",
+        "section_end": "Kommunfullmäktiges valberedning",
+    },
+    {
+        # Sidan listar ledamöter/ersättare med namn + parti och anger explicit
+        # mönstret "förnamn.efternamn@stromsund.se" under rubriken "Mejl till
+        # politiker", utan mailto-länkar.
+        "namn": "Strömsunds kommun",
+        "typ": "namnmonster",
+        "url": "https://www.stromsund.se/620.html",
+        "domain": "stromsund.se",
+        "section_start": "Mejl till politiker",
+        "section_end": "Relaterad information",
     },
 ]
 
@@ -1443,6 +1592,37 @@ async def accept_cookies(page):
                 return
         except PlaywrightError:
             pass
+
+
+async def expand_collapsibles(page, only_text=None):
+    """Fäller ut hopfällda accordion-sektioner (Sitevisions env-collapse-header,
+    jQuery UI:s ui-accordion-header m.fl.), vars innehåll annars inte syns i
+    page.inner_text(). Klickar generiskt på alla element som annonserar sig som
+    hopfällda via det vanliga ARIA-attributet aria-expanded="false".
+    Om only_text anges klickas bara rubriker vars text innehåller den strängen,
+    vilket behövs för "exklusiva" accordions (jQuery UI) där en öppning stänger
+    alla andra sektioner igen."""
+    for _ in range(10):
+        headers = await page.query_selector_all('[aria-expanded="false"]')
+        if only_text:
+            filtered = []
+            for header in headers:
+                content = await header.text_content()
+                if content and only_text in content:
+                    filtered.append(header)
+            headers = filtered
+        if not headers:
+            break
+        progress = False
+        for header in headers:
+            try:
+                await header.click(timeout=2000)
+                progress = True
+            except PlaywrightError:
+                pass
+        if not progress:
+            break
+        await asyncio.sleep(0.3)
 
 
 async def scrape_netpublicator(context, namn, registry_id, board_id):
@@ -1595,6 +1775,236 @@ async def scrape_w3d3(context, namn, board_url):
     return emails
 
 
+async def scrape_fmr(context, namn, board_url):
+    """Hämtar ledamöternas profilsidor från ett Förtroendemannaregister av
+    Livewire-typ (t.ex. Alingsås). Ledamotslistan på beslutsinstans-sidan
+    renderas av Livewire efter sidladdning (tom i ren HTML), så vi väntar
+    in nätverket innan vi läser ut profillänkarna."""
+    emails = set()
+    page = await context.new_page()
+    try:
+        log.info(f"{namn}: hämtar ledamötslista {board_url}")
+        await page.goto(board_url, timeout=60000, wait_until="networkidle")
+        await asyncio.sleep(2)
+
+        person_urls = set(await page.eval_on_selector_all(
+            "a[href*='/personer/']",
+            "els => els.map(e => e.href)"
+        ))
+        log.info(f"{namn}: {len(person_urls)} profilsidor hittade")
+
+        for url in person_urls:
+            p2 = await context.new_page()
+            try:
+                await p2.goto(url, timeout=30000, wait_until="networkidle")
+                await asyncio.sleep(0.3)
+                hrefs = await p2.eval_on_selector_all(
+                    "a[href^='mailto:']",
+                    "els => els.map(e => e.href)"
+                )
+                for href in hrefs:
+                    email = email_from_mailto_href(href)
+                    if is_valid_email(email):
+                        emails.add(email)
+            except PlaywrightError:
+                pass
+            finally:
+                await p2.close()
+            await asyncio.sleep(0.3)
+
+    except PlaywrightError as e:
+        log.error(f"{namn}: {e}")
+    finally:
+        await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser funna")
+    return emails
+
+
+async def scrape_profilsidor(context, namn, url, link_pattern, domain):
+    """Hämtar en kommunfullmäktigesida med länkar till enskilda ledamöters
+    profilsidor (href innehåller link_pattern) och plockar mailto-länkar med
+    angiven domän. Generiska adresser (växel, sidansvarig, CMS-leverantör)
+    sorteras bort eftersom de annars dyker upp identiskt på varje profilsida."""
+    SKIP_LOCAL = {"info", "e-postinfo", "kommun", "kommunen", "kommunstyrelsen", "kommunfullmaktige"}
+    emails = set()
+
+    async def collect(p):
+        hrefs = await p.eval_on_selector_all(
+            "a[href^='mailto:']",
+            "els => els.map(e => e.href)"
+        )
+        for href in hrefs:
+            email = email_from_mailto_href(href)
+            if not is_valid_email(email) or not email.endswith(f"@{domain}"):
+                continue
+            if email.split("@")[0] in SKIP_LOCAL:
+                continue
+            emails.add(email)
+
+    page = await context.new_page()
+    try:
+        log.info(f"{namn}: hämtar ledamötslista {url}")
+        await page.goto(url, timeout=60000, wait_until="domcontentloaded")
+        await asyncio.sleep(1)
+        await accept_cookies(page)
+
+        person_urls = set(await page.eval_on_selector_all(
+            f"a[href*='{link_pattern}']",
+            "els => els.map(e => e.href)"
+        ))
+        log.info(f"{namn}: {len(person_urls)} profilsidor hittade")
+
+        await collect(page)
+
+        for purl in person_urls:
+            p2 = await context.new_page()
+            try:
+                await p2.goto(purl, timeout=30000, wait_until="domcontentloaded")
+                await asyncio.sleep(0.2)
+                await collect(p2)
+            except PlaywrightError:
+                pass
+            finally:
+                await p2.close()
+            await asyncio.sleep(0.2)
+
+    except PlaywrightError as e:
+        log.error(f"{namn}: {e}")
+    finally:
+        await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser funna")
+    return emails
+
+
+def _email_local_part(namn_del):
+    """Translittererar ett namn till en e-postlokaldel (å/ä/ö, versaler, accenter bort)."""
+    s = namn_del.strip().lower()
+    s = (s.replace("å", "a").replace("ä", "a").replace("ö", "o")
+           .replace("é", "e").replace("ü", "u").replace("ø", "o"))
+    s = re.sub(r"[´’'`]", "", s)
+    s = re.sub(r"[^a-z0-9\-]", "", s)
+    return s
+
+
+NAMNMONSTER_RE = re.compile(
+    r"([A-ZÅÄÖ][\wÅÄÖåäö´’\.\- ]*?)\s*\(([A-ZÖa-zö\-]{1,10})\)"
+)
+
+# Uppdragstitlar som ibland står inne i namnfältet före parentesen, t.ex.
+# "Roland Kemppainen Ordförande (FS)" - ska inte tolkas som efternamn.
+NAMNMONSTER_TITEL_RE = re.compile(
+    r"\b(förste|andra|1:e|2:e)?\s*vice\s*ordförande\b|\b(ordförande|vordf)\b",
+    re.IGNORECASE,
+)
+
+
+async def scrape_namnmonster(context, namn, url, domain, section_start, section_end=None, expand_text=None):
+    """Hämtar en sida som listar namngivna ledamöter (format "Förnamn Efternamn (Parti)")
+    där kommunen själv anger att e-postadressen följer mönstret fornamn.efternamn@domän,
+    utan enskilda mailto-länkar. Bygger adresserna utifrån namnen i texten som ligger
+    mellan section_start och section_end (om angivet, annars till sidans slut)."""
+    emails = set()
+    page = await context.new_page()
+    try:
+        log.info(f"{namn}: hämtar {url}")
+        await page.goto(url, timeout=60000, wait_until="domcontentloaded")
+        await asyncio.sleep(1)
+        await accept_cookies(page)
+        await expand_collapsibles(page, only_text=expand_text)
+
+        text = unicodedata.normalize("NFC", await page.inner_text("body"))
+        start_idx = text.find(section_start)
+        if start_idx == -1:
+            log.warning(f"{namn}: hittade inte section_start i sidan")
+            return emails
+        start_idx += len(section_start)
+        end_idx = text.find(section_end, start_idx) if section_end else -1
+        section = text[start_idx:end_idx if end_idx != -1 else None]
+
+        for match in NAMNMONSTER_RE.finditer(section):
+            full_name = match.group(1).strip()
+            full_name = NAMNMONSTER_TITEL_RE.sub("", full_name).strip()
+            parts = full_name.split()
+            if len(parts) < 2:
+                continue
+            fornamn, efternamn = parts[0], parts[-1]
+            # Hantera källtexter med felaktigt mellanslag i bindestrecksnamn,
+            # t.ex. "Per- Erik Eriksson" som egentligen är "Per-Erik Eriksson".
+            if fornamn.endswith("-") and len(parts) > 2:
+                fornamn += parts[1]
+            local = f"{_email_local_part(fornamn)}.{_email_local_part(efternamn)}"
+            email = f"{local}@{domain}"
+            if is_valid_email(email):
+                emails.add(email)
+
+    except PlaywrightError as e:
+        log.error(f"{namn}: {e}")
+    finally:
+        await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser byggda")
+    return emails
+
+
+NAMNLISTA_SKIP = {"ordinarie ledamöter", "ordinarie", "ersättare", "vakant", "presidium"}
+NAMNLISTA_RAD_RE = re.compile(
+    r"^[A-ZÅÄÖ][\wÅÄÖåäö´’\.\-]*(\s[A-ZÅÄÖ][\wÅÄÖåäö´’\.\-]*){1,3}$"
+)
+
+
+async def scrape_namnlista(context, namn, url, domain, section_start, section_end=None, skip_lines=None):
+    """Hämtar en sida som listar ledamöter som rena namnrader (utan inline-parti),
+    grupperade under partirubriker, där kommunen anger att e-postadressen följer
+    mönstret fornamn.efternamn@domän. skip_lines är de rader (partinamn m.m.)
+    inom sektionen som inte är namn och därför ska ignoreras."""
+    emails = set()
+    skip = NAMNLISTA_SKIP | {s.lower() for s in (skip_lines or set())}
+    page = await context.new_page()
+    try:
+        log.info(f"{namn}: hämtar {url}")
+        await page.goto(url, timeout=60000, wait_until="domcontentloaded")
+        await asyncio.sleep(1)
+        await accept_cookies(page)
+        await expand_collapsibles(page)
+
+        text = unicodedata.normalize("NFC", await page.inner_text("body"))
+        start_idx = text.find(section_start)
+        if start_idx == -1:
+            log.warning(f"{namn}: hittade inte section_start i sidan")
+            return emails
+        start_idx += len(section_start)
+        end_idx = text.find(section_end, start_idx) if section_end else -1
+        section = text[start_idx:end_idx if end_idx != -1 else None]
+
+        for line in section.splitlines():
+            line = re.sub(r"\s*\([^)]*\)\s*$", "", line.strip())
+            # Vissa sidor skriver "Namn, Parti[, titel]" på samma rad istället för
+            # "Namn (Parti)" - partiet/titeln efter första kommatecknet ska bort.
+            line = line.split(",")[0].strip()
+            if not line or line.lower() in skip:
+                continue
+            if not NAMNLISTA_RAD_RE.match(line):
+                continue
+            parts = line.split()
+            fornamn, efternamn = parts[0], parts[-1]
+            if fornamn.endswith("-") and len(parts) > 2:
+                fornamn += parts[1]
+            local = f"{_email_local_part(fornamn)}.{_email_local_part(efternamn)}"
+            email = f"{local}@{domain}"
+            if is_valid_email(email):
+                emails.add(email)
+
+    except PlaywrightError as e:
+        log.error(f"{namn}: {e}")
+    finally:
+        await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser funna")
+    return emails
+
+
 async def scrape_mailto(context, namn, url):
     """Skrapar mailto-länkar direkt från en sida (fallback för övriga regioner)."""
     emails = set()
@@ -1626,6 +2036,26 @@ async def scrape_mailto(context, namn, url):
         log.error(f"{namn}: {e}")
     finally:
         await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser funna")
+    return emails
+
+
+async def scrape_pdf_lista(context, namn, url, domain):
+    """Skrapar namn+mailadress-par ur en nedladdningsbar PDF-lista."""
+    emails = set()
+    try:
+        log.info(f"{namn}: hämtar {url}")
+        response = await context.request.get(url, timeout=60000)
+        data = await response.body()
+        reader = PdfReader(BytesIO(data))
+        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        for email in EMAIL_RE.findall(text):
+            email = email.lower()
+            if email.endswith(f"@{domain}") and is_valid_email(email):
+                emails.add(email)
+    except Exception as e:
+        log.error(f"{namn}: {e}")
 
     log.info(f"{namn}: {len(emails)} adresser funna")
     return emails
@@ -1677,8 +2107,37 @@ async def main():
                 emails = await scrape_troman(context, namn, region["url"])
             elif region["typ"] == "w3d3":
                 emails = await scrape_w3d3(context, namn, region["url"])
+            elif region["typ"] == "fmr":
+                emails = await scrape_fmr(context, namn, region["url"])
+            elif region["typ"] == "profilsidor":
+                emails = await scrape_profilsidor(
+                    context, namn,
+                    region["url"],
+                    region["link_pattern"],
+                    region["domain"],
+                )
+            elif region["typ"] == "namnmonster":
+                emails = await scrape_namnmonster(
+                    context, namn,
+                    region["url"],
+                    region["domain"],
+                    region["section_start"],
+                    region.get("section_end"),
+                    region.get("expand_text"),
+                )
             elif region["typ"] == "mailto":
                 emails = await scrape_mailto(context, namn, region["url"])
+            elif region["typ"] == "pdf":
+                emails = await scrape_pdf_lista(context, namn, region["url"], region["domain"])
+            elif region["typ"] == "namnlista":
+                emails = await scrape_namnlista(
+                    context, namn,
+                    region["url"],
+                    region["domain"],
+                    region["section_start"],
+                    region.get("section_end"),
+                    region.get("skip_lines"),
+                )
             else:
                 raise ValueError(f"{namn}: okänd typ '{region['typ']}'")
 
