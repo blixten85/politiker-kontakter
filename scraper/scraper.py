@@ -1342,6 +1342,17 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://tranemo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
     },
+    {
+        "namn": "Trollhättans stad",
+        "typ": "netpublicator",
+        "netpub_registry": "fb58e9d1017946f180379dad2c94b468",
+        "netpub_board":    "4fdf8c09-553f-4f40-9446-6c6a22cff74c",
+    },
+    {
+        "namn": "Upplands-Bro kommun",
+        "typ": "mailto",
+        "url": "https://www.upplands-bro.se/kommun-och-politik/politik-och-demokrati/kommunfullmaktige.html",
+    },
 ]
 
 
