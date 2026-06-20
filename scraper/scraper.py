@@ -1378,6 +1378,19 @@ REGIONER = [
         "netpub_registry": "da911c503eea460aa5595d523dcc09b1",
         "netpub_board":    "51859191-03ac-4998-beb6-9281b73f8fe3",
     },
+    {
+        # Sökresultat visar riktiga ledamöters mejladresser på
+        # pol.nordmaling.se, men www.nordmaling.se svarar med 503
+        # (upstream-fel) just nu - kvar som bästa kända URL.
+        "namn": "Nordmalings kommun",
+        "typ": "mailto",
+        "url": "https://www.nordmaling.se/kommun/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter",
+    },
+    {
+        "namn": "Överkalix kommun",
+        "typ": "mailto",
+        "url": "https://www.overkalix.se/kommun-och-politik/politik-och-organisation/politiker-och-fortroendevalda/",
+    },
 ]
 
 
