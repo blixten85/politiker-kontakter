@@ -1209,6 +1209,17 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://hjo.se/kommun--politik/politik-och-organisation/politik/kommunfullmaktige/ledamoter/",
     },
+    {
+        "namn": "Kristianstads kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "vq9V55dgmCL2nt9A8RAGI6S6k879aA3o",
+        "netpub_board":    "058e2aa4-0345-4eae-9e62-8bd0f6022e06",
+    },
+    {
+        "namn": "Köpings kommun",
+        "typ": "mailto",
+        "url": "https://koping.se/kommun--politik/politik-ledning-och-namnder/kommunfullmaktige.html",
+    },
 ]
 
 
