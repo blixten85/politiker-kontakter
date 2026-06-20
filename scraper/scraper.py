@@ -1253,6 +1253,22 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://ockelbo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
     },
+    {
+        "namn": "Orsa kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a13fab42083b409695fedc3139f0d5a8",
+        "netpub_board":    "4d1d098f-0ea2-45b2-aa78-05b15f848bd5",
+    },
+    {
+        "namn": "Oskarshamns kommun",
+        "typ": "mailto",
+        "url": "https://www.oskarshamn.se/mer-om-kommunen/politik-och-forvaltning/politik/politiker/",
+    },
+    {
+        "namn": "Robertsfors kommun",
+        "typ": "mailto",
+        "url": "https://www.robertsfors.se/kommunochpolitik/politikochsammantraden/kommunfullmaktige.1104.html",
+    },
 ]
 
 
