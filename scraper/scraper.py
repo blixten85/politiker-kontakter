@@ -40,6 +40,7 @@ SKIP_KEYWORDS = ["noreply", "no-reply", "webmaster", "webb@", "support@", "info@
 # === Regionkonfiguration ===
 # typ "netpublicator" = använd Netpublicator-logik (hämta profilsidor)
 # typ "troman"        = använd Troman-logik (tromanpublik.se, hämta profilsidor)
+# typ "w3d3"          = använd W3D3 Ledamotspublicering-logik (Formpipe, hämta profilsidor)
 # typ "mailto"        = skrapa mailto-länkar direkt från sidan
 # netpub_registry     = UUID för Netpublicator-registret
 # netpub_board        = UUID för Regionfullmäktige-nämnden (Netpublicator)
@@ -1396,6 +1397,25 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.borgholm.se/kommunfullmaktige-kommunens-organisation/",
     },
+    {
+        "namn": "Huddinge kommun",
+        "typ": "w3d3",
+        "url": "https://ledamotspub.huddinge.se/BoardRepresentatives.aspx?boardid=2",
+    },
+    {
+        "namn": "Kramfors kommun",
+        "typ": "w3d3",
+        "url": "https://politiker.kramfors.se/BoardRepresentatives.aspx?boardid=17",
+    },
+    {
+        # W3D3 Ledamotspublicering (samma system som Huddinge/Kramfors). Sidan är
+        # aktivt blockerad (WAF, "Förfrågan avvisades") mot enkla HTTP-anrop vid
+        # verifiering, men URL:en och boardid matchar bekräftat en riktig
+        # Kommunfullmäktige-sida - kvar som bästa kända URL (jfr Stockholm).
+        "namn": "Lunds kommun",
+        "typ": "w3d3",
+        "url": "https://ledamoter.lund.se/BoardRepresentatives.aspx?boardid=335",
+    },
 ]
 
 
@@ -1518,6 +1538,63 @@ async def scrape_troman(context, namn, org_url):
     return emails
 
 
+async def scrape_w3d3(context, namn, board_url):
+    """Hämtar ledamöternas profilsidor från W3D3 Ledamotspublicering (Formpipe) och
+    plockar e-post. E-postadressen visas som vanlig text (#MainPagePlaceholder_Email),
+    inte som en mailto-länk, och ledamotslistan kan vara sidindelad via en
+    postback-knapp (#MainPagePlaceholder_NextLink)."""
+    emails = set()
+    page = await context.new_page()
+    try:
+        log.info(f"{namn}: hämtar ledamötslista {board_url}")
+        await page.goto(board_url, timeout=60000, wait_until="domcontentloaded")
+        await asyncio.sleep(2)
+
+        person_urls = set()
+        while True:
+            hrefs = await page.eval_on_selector_all(
+                "a[href*='RepresentativeDetails.aspx']",
+                "els => els.map(e => e.href)"
+            )
+            person_urls.update(hrefs)
+
+            next_btn = await page.query_selector("#MainPagePlaceholder_NextLink")
+            if not next_btn:
+                break
+            disabled = await next_btn.get_attribute("aria-disabled")
+            if disabled == "true":
+                break
+            await next_btn.click()
+            await page.wait_for_load_state("domcontentloaded")
+            await asyncio.sleep(1)
+
+        log.info(f"{namn}: {len(person_urls)} profilsidor hittade")
+
+        for url in person_urls:
+            p2 = await context.new_page()
+            try:
+                await p2.goto(url, timeout=30000, wait_until="domcontentloaded")
+                await asyncio.sleep(0.3)
+                email_el = await p2.query_selector("#MainPagePlaceholder_Email")
+                if email_el:
+                    email = (await email_el.inner_text()).strip().lower()
+                    if is_valid_email(email):
+                        emails.add(email)
+            except PlaywrightError:
+                pass
+            finally:
+                await p2.close()
+            await asyncio.sleep(0.3)
+
+    except PlaywrightError as e:
+        log.error(f"{namn}: {e}")
+    finally:
+        await page.close()
+
+    log.info(f"{namn}: {len(emails)} adresser funna")
+    return emails
+
+
 async def scrape_mailto(context, namn, url):
     """Skrapar mailto-länkar direkt från en sida (fallback för övriga regioner)."""
     emails = set()
@@ -1598,6 +1675,8 @@ async def main():
                 )
             elif region["typ"] == "troman":
                 emails = await scrape_troman(context, namn, region["url"])
+            elif region["typ"] == "w3d3":
+                emails = await scrape_w3d3(context, namn, region["url"])
             elif region["typ"] == "mailto":
                 emails = await scrape_mailto(context, namn, region["url"])
             else:
