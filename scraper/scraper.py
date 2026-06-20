@@ -1128,6 +1128,76 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://mariestad.se/Mariestads-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
     },
+    {
+        "namn": "Sorsele kommun",
+        "typ": "mailto",
+        "url": "https://www.sorsele.se/kommun-och-politik/delta-och-paaverka/kontakta-politiker/",
+    },
+    {
+        "namn": "Storfors kommun",
+        "typ": "mailto",
+        "url": "https://www.storfors.se/kommunochpolitik/politiskorganisation/kommunfullmaktige.4.789155f3143f6bce326878.html",
+    },
+    {
+        "namn": "Täby kommun",
+        "typ": "mailto",
+        "url": "https://www.taby.se/kommun-och-politik/politik-och-beslut/kommunalrad-och-gruppledare",
+    },
+    {
+        "namn": "Töreboda kommun",
+        "typ": "mailto",
+        "url": "https://toreboda.se/Toreboda-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
+    },
+    {
+        "namn": "Värnamo kommun",
+        "typ": "mailto",
+        "url": "http://kommun.varnamo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/ledamoter-kf.html",
+    },
+    {
+        "namn": "Vara kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "f3692d5258b04380be12d6e243e2dee5",
+        "netpub_board":    "7716f01e-0db2-412f-9505-f9733f1ca25c",
+    },
+    {
+        "namn": "Ydre kommun",
+        "typ": "mailto",
+        "url": "https://www.ydre.se/ydre-kommun/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige/ledamoter",
+    },
+    {
+        "namn": "Ystads kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "d5090e5e4644480dac6cd42c7148f88f",
+        "netpub_board":    "0f75f777-c1f5-4e14-ad7a-6b4a5660c1d1",
+    },
+    {
+        "namn": "Vellinge kommun",
+        "typ": "mailto",
+        "url": "https://vellinge.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Vetlanda kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "CTA6P29drGzqtbbg9eXLaVCdwjYskX3P",
+        "netpub_board":    "e697879b-f049-4f1f-96f0-18d4288248e9",
+    },
+    {
+        "namn": "Åtvidabergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "6188c42d5b1749c08494d982a76bf6f0",
+        "netpub_board":    "6f3b5768-f31b-4bd7-b50f-7c4908b90e77",
+    },
+    {
+        "namn": "Öckerö kommun",
+        "typ": "mailto",
+        "url": "https://www.ockero.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Ödeshögs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "d7248e4da7ea4f128c8e650074727cfc",
+        "netpub_board":    "fac2a669-b00a-427a-b76a-f9373464b859",
+    },
 ]
 
 
