@@ -1269,6 +1269,18 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://www.robertsfors.se/kommunochpolitik/politikochsammantraden/kommunfullmaktige.1104.html",
     },
+    {
+        "namn": "Rättviks kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "136a5a793cf6410bb4308b9c8911ab79",
+        "netpub_board":    "dc8e2fa3-2e06-4632-930f-730fcd44301c",
+    },
+    {
+        "namn": "Skara kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "c90780267e934bcabdb4a4bc94baf562",
+        "netpub_board":    "5b82da78-1a21-4999-acfc-1f9ac33f1689",
+    },
 ]
 
 
