@@ -1198,6 +1198,12 @@ REGIONER = [
         "netpub_registry": "d7248e4da7ea4f128c8e650074727cfc",
         "netpub_board":    "fac2a669-b00a-427a-b76a-f9373464b859",
     },
+    {
+        "namn": "Bengtsfors kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b7d161d2b24c494492c3ccc43d090872",
+        "netpub_board":    "e2cccbc0-cfda-42b7-b959-a2937ac54ae7",
+    },
 ]
 
 
