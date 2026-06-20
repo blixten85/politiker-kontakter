@@ -1220,6 +1220,23 @@ REGIONER = [
         "typ": "mailto",
         "url": "https://koping.se/kommun--politik/politik-ledning-och-namnder/kommunfullmaktige.html",
     },
+    {
+        "namn": "Mora kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a0cfa985bcff4bde9739c902995c4dac",
+        "netpub_board":    "4653632b-9bde-47d0-959b-8a570801bc8a",
+    },
+    {
+        "namn": "Mullsjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "9d2611a2eaf749a1ab794120f854cafd",
+        "netpub_board":    "fb8dc480-a0da-446d-9ccf-46c88c4c7c84",
+    },
+    {
+        "namn": "Mönsterås kommun",
+        "typ": "mailto",
+        "url": "https://www.monsteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
 ]
 
 
