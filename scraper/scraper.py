@@ -1204,6 +1204,11 @@ REGIONER = [
         "netpub_registry": "b7d161d2b24c494492c3ccc43d090872",
         "netpub_board":    "e2cccbc0-cfda-42b7-b959-a2937ac54ae7",
     },
+    {
+        "namn": "Hjo kommun",
+        "typ": "mailto",
+        "url": "https://hjo.se/kommun--politik/politik-och-organisation/politik/kommunfullmaktige/ledamoter/",
+    },
 ]
 
 
