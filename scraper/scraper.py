@@ -56,32 +56,38 @@ SKIP_KEYWORDS = ["noreply", "no-reply", "webmaster", "webb@", "support@", "info@
 
 REGIONER = [
     {
+        "namn": "Region Blekinge",
+        "typ": "troman",
+        "url": "https://regionblekinge.tromanpublik.se/organisation/b58374d3-7ec3-4f1c-9fe4-61fff3773ba9",
+    },
+    {
         "namn": "Region Dalarna",
         "typ": "netpublicator",
         "netpub_registry": "5f0adfedbde841d188c336a5df571458",
         "netpub_board":    "94068ad4-69a6-4afa-bf74-af9b742e655f",
     },
     {
-        # Inget centralt mailto-register hittat - profilsidor har bara kontaktformulär.
-        # Kräver annan lösning (t.ex. per-parti-sidor) för att ge träffar.
-        "namn": "Region Stockholm",
-        "typ": "mailto",
-        "url": "https://www.regionstockholm.se/demokrati-politik/dina-politiker/politiker/",
-    },
-    {
-        "namn": "Region Uppsala",
+        # Troman-registret för Gotland exponerar inga e-postadresser alls.
+        # Kvar som bästa kända källa, ger troligen 0 träffar tills en annan
+        # källa (t.ex. partisidor på gotland.se) läggs till.
+        "namn": "Region Gotland",
         "typ": "troman",
-        "url": "https://regionuppsala.tromanpublik.se/organisation/25ba180e-a289-4375-a248-2b549a0c47c8",
+        "url": "https://gotland.tromanpublik.se/organisation/9bc13dfd-c20e-474f-b68e-be766963da33",
     },
     {
-        "namn": "Region Sörmland",
-        "typ": "mailto",
-        "url": "https://regionsormland.se/demokrati-insyn/politisk-organisation/sok-politiker-och-politiska-forsamlingar/",
-    },
-    {
-        "namn": "Region Östergötland",
+        "namn": "Region Gävleborg",
         "typ": "troman",
-        "url": "https://regionostergotland.tromanpublik.se/organisation/bbe5d34b-1050-460e-b052-9d131e030638",
+        "url": "https://regiongavleborg.tromanpublik.se/organisation/cf7e8574-e79f-4393-ac37-b0e5802dd866",
+    },
+    {
+        "namn": "Region Halland",
+        "typ": "troman",
+        "url": "https://regionhalland.tromanpublik.se/organisation/5aecfa49-fa87-41d3-8033-32d7539e126d",
+    },
+    {
+        "namn": "Region Jämtland Härjedalen",
+        "typ": "troman",
+        "url": "https://regionjh.tromanpublik.se/organisation/cb286917-b049-4c75-b58f-9cddfefe28fb",
     },
     {
         "namn": "Region Jönköpings län",
@@ -90,20 +96,20 @@ REGIONER = [
         "netpub_board":    "ae335bbd-bcf7-48aa-b85e-ae0601083505",
     },
     {
-        "namn": "Region Kronoberg",
-        "typ": "mailto",
-        "url": "https://www.regionkronoberg.se/politik-och-demokrati/politisk-organisation/regionfullmaktige/regionfullmaktiges-ledamoter/",
-    },
-    {
         "namn": "Region Kalmar län",
         "typ": "netpublicator",
         "netpub_registry": "b0f8d6ec62f049168372d66425925826",
         "netpub_board":    "eeb607af-2017-44a9-a18d-a4b945628a5b",
     },
     {
-        "namn": "Region Blekinge",
+        "namn": "Region Kronoberg",
+        "typ": "mailto",
+        "url": "https://www.regionkronoberg.se/politik-och-demokrati/politisk-organisation/regionfullmaktige/regionfullmaktiges-ledamoter/",
+    },
+    {
+        "namn": "Region Norrbotten",
         "typ": "troman",
-        "url": "https://regionblekinge.tromanpublik.se/organisation/b58374d3-7ec3-4f1c-9fe4-61fff3773ba9",
+        "url": "https://norrbotten.tromanpublik.se/organisation/71837ba7-5ece-4aaf-988c-153aecf02a5e",
     },
     {
         # Aktivt blockerad (403/WAF) mot enkla HTTP-anrop vid verifiering - kvar
@@ -113,19 +119,41 @@ REGIONER = [
         "url": "https://www.skane.se/politik-och-demokrati/politik/politiska-organ/regionfullmaktige/",
     },
     {
-        "namn": "Region Halland",
-        "typ": "troman",
-        "url": "https://regionhalland.tromanpublik.se/organisation/5aecfa49-fa87-41d3-8033-32d7539e126d",
+        # Inget centralt mailto-register hittat - profilsidor har bara kontaktformulär.
+        # Kräver annan lösning (t.ex. per-parti-sidor) för att ge träffar.
+        "namn": "Region Stockholm",
+        "typ": "mailto",
+        "url": "https://www.regionstockholm.se/demokrati-politik/dina-politiker/politiker/",
     },
     {
-        "namn": "Västra Götalandsregionen",
+        "namn": "Region Sörmland",
+        "typ": "mailto",
+        "url": "https://regionsormland.se/demokrati-insyn/politisk-organisation/sok-politiker-och-politiska-forsamlingar/",
+    },
+    {
+        "namn": "Region Uppsala",
         "typ": "troman",
-        "url": "https://vgregion.tromanpublik.se/organisation/251b1684-8d78-4a82-9205-da0e8232c53a",
+        "url": "https://regionuppsala.tromanpublik.se/organisation/25ba180e-a289-4375-a248-2b549a0c47c8",
     },
     {
         "namn": "Region Värmland",
         "typ": "troman",
         "url": "https://regionvarmland.tromanpublik.se/organisation/08876366-236d-47c4-aa43-c06b7a29faba",
+    },
+    {
+        "namn": "Region Västerbotten",
+        "typ": "troman",
+        "url": "https://regionvasterbotten.tromanpublik.se/organisation/01cdebd5-80eb-4094-8afb-9bc554d0fc8e",
+    },
+    {
+        "namn": "Region Västernorrland",
+        "typ": "troman",
+        "url": "https://rvn.tromanpublik.se/organisation/fa64f1c8-bf86-4ef0-8aaa-7db6334ed653",
+    },
+    {
+        "namn": "Region Västmanland",
+        "typ": "troman",
+        "url": "https://regionvastmanland.tromanpublik.se/organisation/e7dc3ed4-ab5c-4984-a342-e4b2bbd16c12",
     },
     {
         # Troman-baserad men exakt organisations-UUID för regionfullmäktige kunde
@@ -136,105 +164,14 @@ REGIONER = [
         "url": "https://regionorebrolan.tromanpublik.se/",
     },
     {
-        "namn": "Region Västmanland",
+        "namn": "Region Östergötland",
         "typ": "troman",
-        "url": "https://regionvastmanland.tromanpublik.se/organisation/e7dc3ed4-ab5c-4984-a342-e4b2bbd16c12",
+        "url": "https://regionostergotland.tromanpublik.se/organisation/bbe5d34b-1050-460e-b052-9d131e030638",
     },
     {
-        "namn": "Region Gävleborg",
+        "namn": "Västra Götalandsregionen",
         "typ": "troman",
-        "url": "https://regiongavleborg.tromanpublik.se/organisation/cf7e8574-e79f-4393-ac37-b0e5802dd866",
-    },
-    {
-        "namn": "Region Västernorrland",
-        "typ": "troman",
-        "url": "https://rvn.tromanpublik.se/organisation/fa64f1c8-bf86-4ef0-8aaa-7db6334ed653",
-    },
-    {
-        "namn": "Region Jämtland Härjedalen",
-        "typ": "troman",
-        "url": "https://regionjh.tromanpublik.se/organisation/cb286917-b049-4c75-b58f-9cddfefe28fb",
-    },
-    {
-        "namn": "Region Västerbotten",
-        "typ": "troman",
-        "url": "https://regionvasterbotten.tromanpublik.se/organisation/01cdebd5-80eb-4094-8afb-9bc554d0fc8e",
-    },
-    {
-        "namn": "Region Norrbotten",
-        "typ": "troman",
-        "url": "https://norrbotten.tromanpublik.se/organisation/71837ba7-5ece-4aaf-988c-153aecf02a5e",
-    },
-    {
-        # Troman-registret för Gotland exponerar inga e-postadresser alls.
-        # Kvar som bästa kända källa, ger troligen 0 träffar tills en annan
-        # källa (t.ex. partisidor på gotland.se) läggs till.
-        "namn": "Region Gotland",
-        "typ": "troman",
-        "url": "https://gotland.tromanpublik.se/organisation/9bc13dfd-c20e-474f-b68e-be766963da33",
-    },
-
-    # === Kommuner (första omgången, av ~290) ===
-    # Verifierade Troman-baserade kommunfullmäktige
-    {
-        "namn": "Göteborgs Stad",
-        "typ": "troman",
-        "url": "https://goteborg.tromanpublik.se/organisation/8f8da821-ebcd-4d1a-8a91-b1427de24de5",
-    },
-    {
-        "namn": "Linköpings kommun",
-        "typ": "troman",
-        "url": "https://linkoping.tromanpublik.se/organisation/f837afca-8263-462d-b73f-b8058346ca19",
-    },
-    {
-        "namn": "Örebro kommun",
-        "typ": "troman",
-        "url": "https://orebro.tromanpublik.se/organisation/59a7d59a-4f7b-4bde-997f-9f0d45255b44",
-    },
-    {
-        "namn": "Helsingborgs stad",
-        "typ": "troman",
-        "url": "https://helsingborg.tromanpublik.se/organisation/c972abcd-f878-496d-bd4f-f76cfd22899b",
-    },
-    {
-        "namn": "Norrköpings kommun",
-        "typ": "troman",
-        "url": "https://norrkoping.tromanpublik.se/organisation/8e518403-bcf5-4595-bbe2-ed2f042600bc",
-    },
-    {
-        # Eget system (Evald), inte Netpublicator/Troman. Aktivt blockerad (403)
-        # mot enkla HTTP-anrop vid verifiering - kvar som bästa kända URL.
-        "namn": "Stockholms stad",
-        "typ": "mailto",
-        "url": "https://evald.stockholm.se/extern/Organ/1052",
-    },
-    {
-        # JS-renderad MeetingPlus-portal utan synliga mailto-länkar vid
-        # verifiering - ger troligen 0 träffar tills en annan källa läggs till.
-        "namn": "Malmö stad",
-        "typ": "mailto",
-        "url": "https://motenmedborgarportal.malmo.se/committees/kommunfullmaktige/representatives",
-    },
-    {
-        # Eget sök/filter-system utan centralt mailto-register - profilsidor
-        # kan ha e-post men kräver annan crawl-logik än de tre stödda typerna.
-        "namn": "Uppsala kommun",
-        "typ": "mailto",
-        "url": "https://www.uppsala.se/kommun-och-politik/sa-fungerar-kommunen/fortroendevalda/",
-    },
-    {
-        # Ledamotssidan visar endast telefonnummer, inga e-postadresser alls.
-        # Kvar som bästa kända källa, ger troligen 0 träffar.
-        "namn": "Västerås stad",
-        "typ": "mailto",
-        "url": "https://www.vasteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter.html",
-    },
-    {
-        # Kommunens Netpublicator-instans används bara för möteshandlingar,
-        # inte det publika "elected"-registret som regionen använder.
-        "namn": "Jönköpings kommun",
-        "typ": "mailto",
-        "url": "https://www.jonkoping.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+        "url": "https://vgregion.tromanpublik.se/organisation/251b1684-8d78-4a82-9205-da0e8232c53a",
     },
     # === Kommuner (andra omgången, Troman-verifierade) ===
     {
@@ -243,9 +180,41 @@ REGIONER = [
         "url": "https://ale.tromanpublik.se/organisation/284d0c84-42de-411a-907d-8ef34000966d",
     },
     {
+        "namn": "Alingsås kommun",
+        "typ": "fmr",
+        "url": "https://www.fortroendemannaregistret.alingsas.se/beslutsinstanser/480",
+    },
+    {
+        "namn": "Alvesta kommun",
+        "typ": "mailto",
+        "url": "https://www.alvesta.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Aneby kommun",
+        "typ": "profilsidor",
+        "url": "https://aneby.se/sidor/kommun-och-politik/kontakta-aneby-kommun/politiker/kommunfullmaktige.html",
+        "link_pattern": "/politiker/politiker/",
+        "domain": "aneby.se",
+    },
+    {
+        "namn": "Arboga kommun",
+        "typ": "mailto",
+        "url": "https://arboga.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Arjeplogs kommun",
+        "typ": "mailto",
+        "url": "https://arjeplog.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
         "namn": "Arvika kommun",
         "typ": "troman",
         "url": "https://arvika.tromanpublik.se/organisation/40d54ad7-dc0d-4d03-9c3c-b8666947110d",
+    },
+    {
+        "namn": "Askersunds kommun",
+        "typ": "mailto",
+        "url": "https://www.askersund.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
     },
     {
         "namn": "Avesta kommun",
@@ -253,9 +222,42 @@ REGIONER = [
         "url": "https://avesta.tromanpublik.se/organisation/d5272b72-712f-4d1e-a663-cbe6638d9f62",
     },
     {
+        "namn": "Bengtsfors kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b7d161d2b24c494492c3ccc43d090872",
+        "netpub_board":    "e2cccbc0-cfda-42b7-b959-a2937ac54ae7",
+    },
+    {
+        "namn": "Bergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "914c1eb24cb94a2c97b37a8ef66eef16",
+        "netpub_board":    "2417e918-98ce-4413-9c09-b145c0245240",
+    },
+    {
+        "namn": "Bjurholms kommun",
+        "typ": "mailto",
+        "url": "https://www.bjurholm.se/kommun-och-politik/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter",
+    },
+    {
+        "namn": "Bjuvs kommun",
+        "typ": "mailto",
+        "url": "https://www.bjuv.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
+    {
         "namn": "Bollebygds kommun",
         "typ": "troman",
         "url": "https://bollebygd.tromanpublik.se/organisation/bbab0ee2-5c13-4e03-b072-97862d52c740",
+    },
+    {
+        "namn": "Borgholms kommun",
+        "typ": "mailto",
+        "url": "https://www.borgholm.se/kommunfullmaktige-kommunens-organisation/",
+    },
+    {
+        "namn": "Borlänge kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "489d0e22a9a34a658d98c4f0026b1cb3",
+        "netpub_board":    "e9f1d57f-bb08-456d-a391-b2b38935c28e",
     },
     {
         "namn": "Borås kommun",
@@ -268,6 +270,27 @@ REGIONER = [
         "url": "https://botkyrka.tromanpublik.se/organisation/b447fd5e-c354-4796-ba82-3b0f838940da",
     },
     {
+        "namn": "Boxholms kommun",
+        "typ": "mailto",
+        "url": "https://www.boxholm.se/kommun-och-politik/kommunfullmaktige",
+    },
+    {
+        "namn": "Bromölla kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "98f18704cecc493082761b1333bcca92",
+        "netpub_board":    "d9da0c34-e4db-48b0-a461-8e8e53ab4a0e",
+    },
+    {
+        # Sidan listar ledamöter (och presidiet) med namn + parti, utan mailto-länkar,
+        # men anger explicit mönstret "fornamn.efternamn@bracke.se".
+        "namn": "Bräcke kommun",
+        "typ": "namnmonster",
+        "url": "https://www.bracke.se/kommun--och-demokrati/politik-och-fortroendevalda/kommunfullmaktige",
+        "domain": "bracke.se",
+        "section_start": "Ordförande:",
+        "section_end": "Arbetsordning för kommunfullmäktige",
+    },
+    {
         "namn": "Burlövs kommun",
         "typ": "troman",
         "url": "https://burlov.tromanpublik.se/organisation/1059cec2-780d-46ee-8557-d557aaeaa8c7",
@@ -276,6 +299,11 @@ REGIONER = [
         "namn": "Båstads kommun",
         "typ": "troman",
         "url": "https://bastad.tromanpublik.se/organisation/92b85d1d-53ac-4383-8046-bd9b124fd85f",
+    },
+    {
+        "namn": "Dals-Eds kommun",
+        "typ": "mailto",
+        "url": "https://www.dalsed.se/kommun-och-politik/fortroendevalda/kommunfullmaktige-2022-2026/",
     },
     {
         "namn": "Danderyds kommun",
@@ -288,9 +316,26 @@ REGIONER = [
         "url": "https://degerfors.tromanpublik.se/organisation/5cab7073-b84f-4282-9edd-54e939571bd5",
     },
     {
+        "namn": "Dorotea kommun",
+        "typ": "mailto",
+        "url": "https://www.dorotea.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
         "namn": "Eda kommun",
         "typ": "troman",
         "url": "https://eda.tromanpublik.se/organisation/8715f78b-ea24-4464-b371-3602d2a9c47a",
+    },
+    {
+        "namn": "Ekerö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "def31ebd7978473c94f8b6e3bbc93717",
+        "netpub_board":    "befb6976-80f0-4746-9b40-380b72d62d6f",
+    },
+    {
+        "namn": "Eksjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "90955e392d574c05937df63cc8624dff",
+        "netpub_board":    "d97686af-6ec9-4303-ae14-5889e41eb745",
     },
     {
         "namn": "Emmaboda kommun",
@@ -301,6 +346,40 @@ REGIONER = [
         "namn": "Eskilstuna kommun",
         "typ": "troman",
         "url": "https://eskilstuna.tromanpublik.se/organisation/2e40ae20-e555-4954-88b9-bf7c14680374",
+    },
+    {
+        "namn": "Eslövs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b4744ae1bd8148e1a08307642caee206",
+        "netpub_board":    "4cc77930-fa00-4f48-a22a-5ab981da7a32",
+    },
+    {
+        "namn": "Essunga kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "e385d0365dc644a4abc03ec16b998e6f",
+        "netpub_board":    "600b9a5e-e218-4452-b8d4-dc51d8920b9f",
+    },
+    {
+        "namn": "Fagersta kommun",
+        "typ": "mailto",
+        "url": "https://fagersta.se/organisation--styrning/politik-och-fortroendevalda/kommunfullmaktige",
+    },
+    {
+        "namn": "Falkenbergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a7b5af4753e745cea62d2e7f8fcad21d",
+        "netpub_board":    "1af56ab5-2413-4c60-81f7-96d0f3875338",
+    },
+    {
+        "namn": "Falu kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "30d39c931a4b414b821182eb6e72848c",
+        "netpub_board":    "c36e0272-3f4f-4646-a861-9a6ae24eec4c",
+    },
+    {
+        "namn": "Filipstads kommun",
+        "typ": "mailto",
+        "url": "https://www.filipstad.se/toppmeny/kommunochpolitik/politikochdemokrati/fortroendevaldainamnderochstyrelser.1524.html",
     },
     {
         "namn": "Finspångs kommun",
@@ -338,6 +417,16 @@ REGIONER = [
         "url": "https://gnosjo.tromanpublik.se/organisation/992934df-7a20-4518-8c57-8f061616522a",
     },
     {
+        "namn": "Grästorps kommun",
+        "typ": "mailto",
+        "url": "https://www.grastorp.se/kommun-och-politik/politisk-organisation/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Gullspångs kommun",
+        "typ": "mailto",
+        "url": "https://gullspang.se/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige",
+    },
+    {
         "namn": "Gällivare kommun",
         "typ": "troman",
         "url": "https://gallivare.tromanpublik.se/organisation/cf429125-c8f1-444a-9981-719a5df6c789",
@@ -346,6 +435,19 @@ REGIONER = [
         "namn": "Gävle kommun",
         "typ": "troman",
         "url": "https://gavle.tromanpublik.se/organisation/b4ca3498-5172-4b98-a157-bc6f7303e956",
+    },
+    # === Kommuner (första omgången, av ~290) ===
+    # Verifierade Troman-baserade kommunfullmäktige
+    {
+        "namn": "Göteborgs Stad",
+        "typ": "troman",
+        "url": "https://goteborg.tromanpublik.se/organisation/8f8da821-ebcd-4d1a-8a91-b1427de24de5",
+    },
+    {
+        "namn": "Götene kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "f9b3d2833ad246419c9d500f4c46ca6f",
+        "netpub_board":    "08b898e5-8938-4722-88ad-98b8d26cbc66",
     },
     {
         "namn": "Hagfors kommun",
@@ -356,6 +458,17 @@ REGIONER = [
         "namn": "Hallsbergs kommun",
         "typ": "troman",
         "url": "https://hallsberg.tromanpublik.se/organisation/d6b41149-cf0c-431f-9106-edbed43b090c",
+    },
+    {
+        "namn": "Hallstahammars kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "02f4a58a74d749af91d3bd1e6c251db1",
+        "netpub_board":    "603d9ac0-566f-449c-8fe5-3bdd59d33ba8",
+    },
+    {
+        "namn": "Halmstads kommun",
+        "typ": "mailto",
+        "url": "https://www.halmstad.se/kommunochpolitik/politikochdemokrati/kommunfullmaktige/ledamoterochersattarekommunfullmaktige.n306.html",
     },
     {
         "namn": "Hammarö kommun",
@@ -373,14 +486,69 @@ REGIONER = [
         "url": "https://haparanda.tromanpublik.se/organisation/28f83e2d-96f8-4034-9537-deae22b73d95",
     },
     {
+        "namn": "Heby kommun",
+        "typ": "mailto",
+        "url": "https://www.heby.se/organisation-plats-och-politik/demokrati-dialog-och-inflytande/hitta-din-politiker",
+    },
+    {
         "namn": "Hedemora kommun",
         "typ": "troman",
         "url": "https://hedemora.tromanpublik.se/organisation/314dc275-ee52-4957-9ef8-f28fbfad1c35",
     },
     {
+        "namn": "Helsingborgs stad",
+        "typ": "troman",
+        "url": "https://helsingborg.tromanpublik.se/organisation/c972abcd-f878-496d-bd4f-f76cfd22899b",
+    },
+    {
+        # Troman-baserad (bekräftad via sökresultat, titeln "Förtroendevalda
+        # hos oss"), men herrljunga.tromanpublik.se svarar med 500 på enkla
+        # HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
+        "namn": "Herrljunga kommun",
+        "typ": "troman",
+        "url": "https://herrljunga.tromanpublik.se/",
+    },
+    {
+        "namn": "Hjo kommun",
+        "typ": "mailto",
+        "url": "https://hjo.se/kommun--politik/politik-och-organisation/politik/kommunfullmaktige/ledamoter/",
+    },
+    {
+        "namn": "Hofors kommun",
+        "typ": "mailto",
+        "url": "https://www.hofors.se/kommun--politik/politik/fortroendevalda/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Huddinge kommun",
+        "typ": "w3d3",
+        "url": "https://ledamotspub.huddinge.se/BoardRepresentatives.aspx?boardid=2",
+    },
+    {
+        "namn": "Hudiksvalls kommun",
+        "typ": "mailto",
+        "url": "https://hudiksvall.se/Sidor/Kommun-och-politik/Kommunens-organisation/Kommunfullmaktige.html",
+    },
+    {
+        "namn": "Hultsfreds kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "7b98056af7d5452282d5a2d8789e2774",
+        "netpub_board":    "9f7d447d-8552-48b5-806c-2fb102e613ef",
+    },
+    {
         "namn": "Hylte kommun",
         "typ": "troman",
         "url": "https://hylte.tromanpublik.se/organisation/0ae75ca2-0e7b-4df7-801b-c60a86c1228f",
+    },
+    {
+        "namn": "Hällefors kommun",
+        "typ": "mailto",
+        "url": "https://www.hellefors.se/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Härjedalens kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "4fa3657d195a42bb81dc6a568d846124",
+        "netpub_board":    "511718a5-ca52-4449-93e8-81f5cf0f4a2f",
     },
     {
         "namn": "Härnösands kommun",
@@ -403,9 +571,21 @@ REGIONER = [
         "url": "https://hoganas.tromanpublik.se/organisation/c94b500b-8b85-4a77-9804-8bc4642f4221",
     },
     {
+        "namn": "Jokkmokks kommun",
+        "typ": "mailto",
+        "url": "https://www.jokkmokk.se/kommun-och-politik/politik-och-delaktighet/politisk-organisation/",
+    },
+    {
         "namn": "Järfälla kommun",
         "typ": "troman",
         "url": "https://jarfalla.tromanpublik.se/organisation/ec55e51d-9fab-44d4-9909-59d44678c599",
+    },
+    {
+        # Kommunens Netpublicator-instans används bara för möteshandlingar,
+        # inte det publika "elected"-registret som regionen använder.
+        "namn": "Jönköpings kommun",
+        "typ": "mailto",
+        "url": "https://www.jonkoping.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
     },
     {
         "namn": "Kalix kommun",
@@ -416,6 +596,17 @@ REGIONER = [
         "namn": "Kalmar kommun",
         "typ": "troman",
         "url": "https://kalmar.tromanpublik.se/organisation/5368c2ed-f82d-4577-b6c0-03f34170d357",
+    },
+    {
+        "namn": "Karlsborgs kommun",
+        "typ": "mailto",
+        "url": "https://karlsborg.se/kommun--politik/sa-styrs-karlsborgs-kommun/politik/fortroendevalda/",
+    },
+    {
+        "namn": "Karlshamns kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "79c39e9c33df49b1b6d5ac6e12af943c",
+        "netpub_board":    "c7ca73bf-1718-4270-ac3d-e7b5c5b84cd9",
     },
     {
         "namn": "Karlskoga kommun",
@@ -448,9 +639,31 @@ REGIONER = [
         "url": "https://kinda.tromanpublik.se/organisation/9dedab02-646d-4ac9-afd8-be42a602c01d",
     },
     {
+        "namn": "Klippans kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "e65cf67fb472436c9e9e8cbb37d00743",
+        "netpub_board":    "665ce36d-153f-46cb-aefa-8a2e455f52b3",
+    },
+    {
         "namn": "Knivsta kommun",
         "typ": "troman",
         "url": "https://knivsta.tromanpublik.se/organisation/9e2541c0-d9e4-45ad-b529-5ff0d72bdd5d",
+    },
+    {
+        "namn": "Kramfors kommun",
+        "typ": "w3d3",
+        "url": "https://politiker.kramfors.se/BoardRepresentatives.aspx?boardid=17",
+    },
+    {
+        "namn": "Kristianstads kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "vq9V55dgmCL2nt9A8RAGI6S6k879aA3o",
+        "netpub_board":    "058e2aa4-0345-4eae-9e62-8bd0f6022e06",
+    },
+    {
+        "namn": "Kristinehamns kommun",
+        "typ": "mailto",
+        "url": "https://www.kristinehamn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
     },
     {
         "namn": "Krokoms kommun",
@@ -468,6 +681,11 @@ REGIONER = [
         "url": "https://kungsbacka.tromanpublik.se/organisation/7723aaee-423b-43a6-b631-3564b63dd746",
     },
     {
+        "namn": "Kungsörs kommun",
+        "typ": "mailto",
+        "url": "https://kungsor.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
+    },
+    {
         "namn": "Kungälvs kommun",
         "typ": "troman",
         "url": "https://kungalv.tromanpublik.se/organisation/87044574-bac2-4ba3-8a7c-70eeb8122720",
@@ -478,9 +696,26 @@ REGIONER = [
         "url": "https://kavlinge.tromanpublik.se/organisation/17759e2c-0d22-4616-862f-2e2187b5258e",
     },
     {
+        "namn": "Köpings kommun",
+        "typ": "mailto",
+        "url": "https://koping.se/kommun--politik/politik-ledning-och-namnder/kommunfullmaktige.html",
+    },
+    {
+        # Nedladdningsbar PDF med namn + mailadress till samtliga ledamöter/ersättare.
+        "namn": "Laholms kommun",
+        "typ": "pdf",
+        "url": "https://www.laholm.se/download/18.21fe87d518ee72dec5df82d/1713437157280/Mailadresser%20kommunfullm%C3%A4ktige.pdf",
+        "domain": "laholm.se",
+    },
+    {
         "namn": "Landskrona kommun",
         "typ": "troman",
         "url": "https://landskrona.tromanpublik.se/organisation/ddadc7ad-bd40-4d7a-bcb1-1b80c0c08e0a",
+    },
+    {
+        "namn": "Laxå kommun",
+        "typ": "mailto",
+        "url": "https://www.laxa.se/Kommun-och-politik/Demokrati-och-insyn/Politisk-organisation/Kommunfullmaktige.html",
     },
     {
         "namn": "Lekebergs kommun",
@@ -488,14 +723,31 @@ REGIONER = [
         "url": "https://lekeberg.tromanpublik.se/organisation/dc2fe6d2-e731-4863-ac1d-90cd359263c3",
     },
     {
+        "namn": "Leksands kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "1c41ddabcab843dda687fc5f800f6434",
+        "netpub_board":    "caadec9c-c046-4fd3-b5aa-4f3006b9408b",
+    },
+    {
         "namn": "Lerums kommun",
         "typ": "troman",
         "url": "https://lerum.tromanpublik.se/organisation/46089da5-8ee8-46b3-a120-c564b86482cc",
     },
     {
+        "namn": "Lessebo kommun",
+        "typ": "mailto",
+        "url": "https://www.lessebo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
+    {
         "namn": "Lidingö kommun",
         "typ": "troman",
         "url": "https://lidingo.tromanpublik.se/organisation/88b78d38-bf85-4f96-ae75-87fb7c777768",
+    },
+    {
+        "namn": "Lidköpings kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "06a2c997f2624e2185f8e9805ff58d29",
+        "netpub_board":    "308d9dc4-2bfa-4988-914a-da95d50ad4fa",
     },
     {
         "namn": "Lilla Edets kommun",
@@ -508,9 +760,24 @@ REGIONER = [
         "url": "https://lindesberg.tromanpublik.se/organisation/756b67ac-8320-4c9f-8832-4e9147b9c8d2",
     },
     {
+        "namn": "Linköpings kommun",
+        "typ": "troman",
+        "url": "https://linkoping.tromanpublik.se/organisation/f837afca-8263-462d-b73f-b8058346ca19",
+    },
+    {
         "namn": "Ljungby kommun",
         "typ": "troman",
         "url": "https://ljungby.tromanpublik.se/organisation/c44560f5-67cc-4a94-b04d-022d80911e99",
+    },
+    {
+        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
+        # explicit mönstret "förnamn.efternamn@ljusnarsberg.se", utan mailto-länkar.
+        "namn": "Ljusnarsbergs kommun",
+        "typ": "namnmonster",
+        "url": "https://ljusnarsberg.se/kommun-och-politik/kommunens-organisation/fortroendevalda",
+        "domain": "ljusnarsberg.se",
+        "section_start": "Förtroendevalda Kommunfullmäktige 2022-11-10 - 2026-11-11",
+        "section_end": "Kommunstyrelsen 2023 - 2026",
     },
     {
         "namn": "Lomma kommun",
@@ -523,6 +790,15 @@ REGIONER = [
         "url": "https://ludvika.tromanpublik.se/organisation/b9e1853b-4ef5-4a37-b7f0-99a9b033562c",
     },
     {
+        # W3D3 Ledamotspublicering (samma system som Huddinge/Kramfors). Sidan är
+        # aktivt blockerad (WAF, "Förfrågan avvisades") mot enkla HTTP-anrop vid
+        # verifiering, men URL:en och boardid matchar bekräftat en riktig
+        # Kommunfullmäktige-sida - kvar som bästa kända URL (jfr Stockholm).
+        "namn": "Lunds kommun",
+        "typ": "w3d3",
+        "url": "https://ledamoter.lund.se/BoardRepresentatives.aspx?boardid=335",
+    },
+    {
         "namn": "Lycksele kommun",
         "typ": "troman",
         "url": "https://lycksele.tromanpublik.se/organisation/4bc3689b-1df2-4669-8220-2e45a1dc2033",
@@ -531,6 +807,28 @@ REGIONER = [
         "namn": "Lysekils kommun",
         "typ": "troman",
         "url": "https://lysekil.tromanpublik.se/organisation/04c17fd3-0979-412b-95d9-88ca758c7f4d",
+    },
+    {
+        # JS-renderad MeetingPlus-portal utan synliga mailto-länkar vid
+        # verifiering - ger troligen 0 träffar tills en annan källa läggs till.
+        "namn": "Malmö stad",
+        "typ": "mailto",
+        "url": "https://motenmedborgarportal.malmo.se/committees/kommunfullmaktige/representatives",
+    },
+    {
+        "namn": "Malung-Sälens kommun",
+        "typ": "mailto",
+        "url": "https://malung-salen.se/kommunochpolitik/kommunensorganisation/kommunfullmaktige.4.319b126613ec68a069b13b.html",
+    },
+    {
+        "namn": "Malå kommun",
+        "typ": "mailto",
+        "url": "https://www.mala.se/kommun-och-politik/kontakt-politiker-ordforande/",
+    },
+    {
+        "namn": "Mariestads kommun",
+        "typ": "mailto",
+        "url": "https://mariestad.se/Mariestads-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
     },
     {
         "namn": "Marks kommun",
@@ -543,9 +841,21 @@ REGIONER = [
         "url": "https://mjolby.tromanpublik.se/organisation/70a33fff-1169-4700-911f-cade41c1d301",
     },
     {
+        "namn": "Mora kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a0cfa985bcff4bde9739c902995c4dac",
+        "netpub_board":    "4653632b-9bde-47d0-959b-8a570801bc8a",
+    },
+    {
         "namn": "Motala kommun",
         "typ": "troman",
         "url": "https://motala.tromanpublik.se/organisation/150f4dbb-5fc8-41ea-8553-67d3a3dcd95a",
+    },
+    {
+        "namn": "Mullsjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "9d2611a2eaf749a1ab794120f854cafd",
+        "netpub_board":    "fb8dc480-a0da-446d-9ccf-46c88c4c7c84",
     },
     {
         "namn": "Munkedals kommun",
@@ -553,9 +863,32 @@ REGIONER = [
         "url": "https://munkedal.tromanpublik.se/organisation/5b1f1fd3-2c51-4109-a854-ce96ee6bc150",
     },
     {
+        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
+        # explicit mönstret "förnamn.efternamn@munkfors.se". Kommunfullmäktige-
+        # sektionen ligger i ett jQuery UI-accordion (exklusivt - bara en sektion
+        # kan vara öppen samtidigt), så bara den relevanta rubriken fälls ut.
+        "namn": "Munkfors kommun",
+        "typ": "namnmonster",
+        "url": "https://www.munkfors.se/kommun-och-politik/politik/politisk-organisation/fortroendevalda-politiker/",
+        "domain": "munkfors.se",
+        "section_start": "Förtroendevalda år 2022-2026",
+        "section_end": "Kontakt",
+        "expand_text": "Kommunfullmäktige",
+    },
+    {
         "namn": "Mölndals kommun",
         "typ": "troman",
         "url": "https://molndal.tromanpublik.se/organisation/2ef7597f-cfae-468c-bb0e-24aaf0764657",
+    },
+    {
+        "namn": "Mönsterås kommun",
+        "typ": "mailto",
+        "url": "https://www.monsteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
+    },
+    {
+        "namn": "Mörbylånga kommun",
+        "typ": "mailto",
+        "url": "https://www.morbylanga.se/kontakt/kommun-och-politik/kommunfullmaktige/",
     },
     {
         "namn": "Nacka kommun",
@@ -571,6 +904,19 @@ REGIONER = [
         "namn": "Norbergs kommun",
         "typ": "troman",
         "url": "https://norberg.tromanpublik.se/organisation/48000533-66e3-4e3e-b84a-f552946f29ad",
+    },
+    {
+        # Sökresultat visar riktiga ledamöters mejladresser på
+        # pol.nordmaling.se, men www.nordmaling.se svarar med 503
+        # (upstream-fel) just nu - kvar som bästa kända URL.
+        "namn": "Nordmalings kommun",
+        "typ": "mailto",
+        "url": "https://www.nordmaling.se/kommun/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter",
+    },
+    {
+        "namn": "Norrköpings kommun",
+        "typ": "troman",
+        "url": "https://norrkoping.tromanpublik.se/organisation/8e518403-bcf5-4595-bbe2-ed2f042600bc",
     },
     {
         "namn": "Norrtälje kommun",
@@ -603,9 +949,26 @@ REGIONER = [
         "url": "https://nynashamn.tromanpublik.se/organisation/93a83158-fb9e-4e5a-bccd-94c78f01ba81",
     },
     {
+        "namn": "Nässjö kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "gwH89a8xU8NMNdCwKXnTKwPn5ZEPvuku",
+        "netpub_board":    "e31e0455-35a3-4da0-94b6-b015d42926f7",
+    },
+    {
+        "namn": "Ockelbo kommun",
+        "typ": "mailto",
+        "url": "https://ockelbo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
         "namn": "Olofströms kommun",
         "typ": "troman",
         "url": "https://olofstrom.tromanpublik.se/organisation/be3473f0-39bb-46e8-9c6c-360bb76dceea",
+    },
+    {
+        "namn": "Orsa kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a13fab42083b409695fedc3139f0d5a8",
+        "netpub_board":    "4d1d098f-0ea2-45b2-aa78-05b15f848bd5",
     },
     {
         "namn": "Orusts kommun",
@@ -616,6 +979,11 @@ REGIONER = [
         "namn": "Osby kommun",
         "typ": "troman",
         "url": "https://osby.tromanpublik.se/organisation/e9dee37f-5380-497b-a258-199246c03343",
+    },
+    {
+        "namn": "Oskarshamns kommun",
+        "typ": "mailto",
+        "url": "https://www.oskarshamn.se/mer-om-kommunen/politik-och-forvaltning/politik/politiker/",
     },
     {
         "namn": "Oxelösunds kommun",
@@ -638,6 +1006,28 @@ REGIONER = [
         "url": "https://pitea.tromanpublik.se/organisation/95c9ddec-7fd3-47cb-894d-7d7a3fdbc92c",
     },
     {
+        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
+        # på varje namnrad, men anger explicit mönstret "Namn, Parti" och en
+        # gemensam e-postdomän för politiker (politiker.ragunda.se).
+        "namn": "Ragunda kommun",
+        "typ": "namnlista",
+        "url": "https://www.ragunda.se/kommunochpolitik/politikochmoten/ledamoter.1028.html",
+        "domain": "politiker.ragunda.se",
+        "section_start": "Kommunfullmäktiges ledamöter",
+        "section_end": "Kommunfullmäktiges valberedning",
+    },
+    {
+        "namn": "Robertsfors kommun",
+        "typ": "mailto",
+        "url": "https://www.robertsfors.se/kommunochpolitik/politikochsammantraden/kommunfullmaktige.1104.html",
+    },
+    {
+        "namn": "Rättviks kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "136a5a793cf6410bb4308b9c8911ab79",
+        "netpub_board":    "dc8e2fa3-2e06-4632-930f-730fcd44301c",
+    },
+    {
         "namn": "Sala kommun",
         "typ": "troman",
         "url": "https://sala.tromanpublik.se/organisation/a99e399a-7e7c-45e7-a853-aeb70b44f5f8",
@@ -656,6 +1046,12 @@ REGIONER = [
         "namn": "Simrishamns kommun",
         "typ": "troman",
         "url": "https://simrishamn.tromanpublik.se/organisation/aa6e0ee2-4cf8-4362-930c-190585f1a5ad",
+    },
+    {
+        "namn": "Skara kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "c90780267e934bcabdb4a4bc94baf562",
+        "netpub_board":    "5b82da78-1a21-4999-acfc-1f9ac33f1689",
     },
     {
         "namn": "Skellefteå kommun",
@@ -683,6 +1079,11 @@ REGIONER = [
         "url": "https://solna.tromanpublik.se/organisation/46c5d68d-a31c-4848-8d04-963c636fb6a8",
     },
     {
+        "namn": "Sorsele kommun",
+        "typ": "mailto",
+        "url": "https://www.sorsele.se/kommun-och-politik/delta-och-paaverka/kontakta-politiker/",
+    },
+    {
         "namn": "Sotenäs kommun",
         "typ": "troman",
         "url": "https://sotenas.tromanpublik.se/organisation/d7b1a1b0-8179-480d-9a8c-1254173a8b98",
@@ -698,6 +1099,18 @@ REGIONER = [
         "url": "https://stenungsund.tromanpublik.se/organisation/32c42641-4b2d-4432-82dd-a4bccc8331bc",
     },
     {
+        # Eget system (Evald), inte Netpublicator/Troman. Aktivt blockerad (403)
+        # mot enkla HTTP-anrop vid verifiering - kvar som bästa kända URL.
+        "namn": "Stockholms stad",
+        "typ": "mailto",
+        "url": "https://evald.stockholm.se/extern/Organ/1052",
+    },
+    {
+        "namn": "Storfors kommun",
+        "typ": "mailto",
+        "url": "https://www.storfors.se/kommunochpolitik/politiskorganisation/kommunfullmaktige.4.789155f3143f6bce326878.html",
+    },
+    {
         "namn": "Storumans kommun",
         "typ": "troman",
         "url": "https://storuman.tromanpublik.se/organisation/18ef28f5-0691-4a14-9403-cde544dc0e89",
@@ -706,6 +1119,17 @@ REGIONER = [
         "namn": "Strängnäs kommun",
         "typ": "troman",
         "url": "https://strangnas.tromanpublik.se/organisation/cc5030e4-bee1-478b-ab27-9855b10361f6",
+    },
+    {
+        # Sidan listar ledamöter/ersättare med namn + parti och anger explicit
+        # mönstret "förnamn.efternamn@stromsund.se" under rubriken "Mejl till
+        # politiker", utan mailto-länkar.
+        "namn": "Strömsunds kommun",
+        "typ": "namnmonster",
+        "url": "https://www.stromsund.se/620.html",
+        "domain": "stromsund.se",
+        "section_start": "Mejl till politiker",
+        "section_end": "Relaterad information",
     },
     {
         "namn": "Sundbybergs kommun",
@@ -723,6 +1147,11 @@ REGIONER = [
         "url": "https://sunne.tromanpublik.se/organisation/f675c7cc-2c28-483c-b35e-e471c9257b7c",
     },
     {
+        "namn": "Surahammars kommun",
+        "typ": "mailto",
+        "url": "https://surahammar.se/kommunfullmaktige",
+    },
+    {
         "namn": "Svalövs kommun",
         "typ": "troman",
         "url": "https://svalov.tromanpublik.se/organisation/95864840-9622-4ddb-9529-39176633cd75",
@@ -733,9 +1162,27 @@ REGIONER = [
         "url": "https://svedala.tromanpublik.se/organisation/64ad169f-dd30-4a73-a95b-6d27329537f9",
     },
     {
+        "namn": "Svenljunga kommun",
+        "typ": "mailto",
+        "url": "https://www.svenljunga.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
         "namn": "Säters kommun",
         "typ": "troman",
         "url": "https://sater.tromanpublik.se/organisation/27117897-83bd-4717-9a52-17e451483acb",
+    },
+    {
+        # Troman-baserad (bekräftad via sökresultat, t.ex. enskilda
+        # ledamotsprofiler), men savsjo.tromanpublik.se svarar med 500
+        # på enkla HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
+        "namn": "Sävsjö kommun",
+        "typ": "troman",
+        "url": "https://savsjo.tromanpublik.se/",
+    },
+    {
+        "namn": "Söderhamns kommun",
+        "typ": "mailto",
+        "url": "https://www.soderhamn.se/sidor/kommun-och-politik/organisation/kommunfullmaktige/ledamoter-2022-2026.html",
     },
     {
         "namn": "Södertälje kommun",
@@ -743,9 +1190,30 @@ REGIONER = [
         "url": "https://sodertalje.tromanpublik.se/organisation/26081553-f368-41e9-b868-3567df561298",
     },
     {
+        "namn": "Sölvesborgs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "a72830bd5a784c7aa8d22f083e57ede8",
+        "netpub_board":    "383fe207-e242-4400-a25a-cb231f792714",
+    },
+    {
         "namn": "Tanums kommun",
         "typ": "troman",
         "url": "https://tanum.tromanpublik.se/organisation/9945cd5f-2edb-4eae-8519-1b912703f221",
+    },
+    {
+        # Sidan listar länkar till varje politikers profilsida (/kontakter/politiker/...)
+        # där mailto-länken finns under domänen politiker.tibro.se.
+        "namn": "Tibro kommun",
+        "typ": "profilsidor",
+        "url": "https://www.tibro.se/kommun-och-politik/sa-styrs-tibro-kommun/politiker/",
+        "link_pattern": "/kontakter/politiker/",
+        "domain": "politiker.tibro.se",
+    },
+    {
+        "namn": "Tidaholms kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "bb8e548df1a8413188cd11c1e4393afd",
+        "netpub_board":    "6cdb7081-4fb2-43f3-8eae-aa7e664053ac",
     },
     {
         "namn": "Tierps kommun",
@@ -753,14 +1221,58 @@ REGIONER = [
         "url": "https://tierp.tromanpublik.se/organisation/2e95016d-a78b-404c-8c9c-4fb7681cb636",
     },
     {
+        "namn": "Timrå kommun",
+        "typ": "mailto",
+        "url": "https://www.timra.se/kommunpolitik/kommunensorganisation/kommunfullmaktige/kommunfullmaktigesledamoterochersattare.4.48ff27ec16df76a85d01bcd8.html",
+    },
+    {
+        "namn": "Tingsryds kommun",
+        "typ": "profilsidor",
+        "url": "https://tingsryd.se/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter-och-ersattare/",
+        "link_pattern": "/fortroendevalda/",
+        "domain": "tingsryd.se",
+    },
+    {
+        "namn": "Tjörns kommun",
+        "typ": "mailto",
+        "url": "https://www.tjorn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/politiker-i-kommunfullmaktige",
+    },
+    {
+        "namn": "Tomelilla kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "b15ceb3379d2454fb44c4932d9e900ed",
+        "netpub_board":    "e0b0f5ae-0124-4884-af16-c9e99bd87d46",
+    },
+    {
         "namn": "Torsby kommun",
         "typ": "troman",
         "url": "https://torsby.tromanpublik.se/organisation/da15f2a5-d1b9-4b55-bc08-807a767333ef",
     },
     {
+        "namn": "Torsås kommun",
+        "typ": "mailto",
+        "url": "https://www.torsas.se/kontakt/kontaktsok/?search-input-officals=&forum=0&parti=0",
+    },
+    {
+        "namn": "Tranemo kommun",
+        "typ": "mailto",
+        "url": "https://tranemo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Tranås kommun",
+        "typ": "w3d3",
+        "url": "https://tranas.ondemand.formpipe.com/ledamotspublicering/BoardRepresentatives.aspx?boardid=4",
+    },
+    {
         "namn": "Trelleborgs kommun",
         "typ": "troman",
         "url": "https://trelleborg.tromanpublik.se/organisation/7d0b1bd1-74c3-46cf-bd1f-62d3e9512029",
+    },
+    {
+        "namn": "Trollhättans stad",
+        "typ": "netpublicator",
+        "netpub_registry": "fb58e9d1017946f180379dad2c94b468",
+        "netpub_board":    "4fdf8c09-553f-4f40-9446-6c6a22cff74c",
     },
     {
         "namn": "Trosa kommun",
@@ -771,6 +1283,16 @@ REGIONER = [
         "namn": "Tyresö kommun",
         "typ": "troman",
         "url": "https://tyreso.tromanpublik.se/organisation/a1a6c6e4-a5df-4862-94fc-be6c4691f817",
+    },
+    {
+        "namn": "Täby kommun",
+        "typ": "mailto",
+        "url": "https://www.taby.se/kommun-och-politik/politik-och-beslut/kommunalrad-och-gruppledare",
+    },
+    {
+        "namn": "Töreboda kommun",
+        "typ": "mailto",
+        "url": "https://toreboda.se/Toreboda-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
     },
     {
         "namn": "Uddevalla kommun",
@@ -793,6 +1315,18 @@ REGIONER = [
         "url": "https://upplandsvasby.tromanpublik.se/organisation/a0a22f43-4b75-4d5c-bee5-adf8f5279aac",
     },
     {
+        "namn": "Upplands-Bro kommun",
+        "typ": "mailto",
+        "url": "https://www.upplands-bro.se/kommun-och-politik/politik-och-demokrati/kommunfullmaktige.html",
+    },
+    {
+        # Eget sök/filter-system utan centralt mailto-register - profilsidor
+        # kan ha e-post men kräver annan crawl-logik än de tre stödda typerna.
+        "namn": "Uppsala kommun",
+        "typ": "mailto",
+        "url": "https://www.uppsala.se/kommun-och-politik/sa-fungerar-kommunen/fortroendevalda/",
+    },
+    {
         "namn": "Vadstena kommun",
         "typ": "troman",
         "url": "https://vadstena.tromanpublik.se/organisation/977bc86b-1992-422b-9d7b-ddf2de488b4d",
@@ -813,6 +1347,12 @@ REGIONER = [
         "url": "https://vallentuna.tromanpublik.se/organisation/721a1968-4593-4d8f-a17d-2c71a8c6acdf",
     },
     {
+        "namn": "Vara kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "f3692d5258b04380be12d6e243e2dee5",
+        "netpub_board":    "7716f01e-0db2-412f-9505-f9733f1ca25c",
+    },
+    {
         "namn": "Varbergs kommun",
         "typ": "troman",
         "url": "https://varberg.tromanpublik.se/organisation/bbac4dc2-5097-4d29-aece-bb6359e783a3",
@@ -823,14 +1363,42 @@ REGIONER = [
         "url": "https://vaxholm.tromanpublik.se/organisation/c973f4e6-65ff-44ef-9dbf-9c25e10102c2",
     },
     {
+        "namn": "Vellinge kommun",
+        "typ": "mailto",
+        "url": "https://vellinge.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Vetlanda kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "CTA6P29drGzqtbbg9eXLaVCdwjYskX3P",
+        "netpub_board":    "e697879b-f049-4f1f-96f0-18d4288248e9",
+    },
+    {
         "namn": "Vimmerby kommun",
         "typ": "troman",
         "url": "https://vimmerby.tromanpublik.se/organisation/db050e37-c48f-4800-b6bd-9ee1277839f8",
     },
     {
+        # Sidan listar ledamöterna med namn + parti, utan mailto-länkar,
+        # men anger explicit mönstret "namn.efternamn@vindeln.se".
+        "namn": "Vindelns kommun",
+        "typ": "namnmonster",
+        "url": "https://vindeln.se/kommun-och-politik/politisk-styrning/kommunfullmaktige",
+        "domain": "vindeln.se",
+        "section_start": "Ledamöter, Kommunfullmäktige 2022-2026",
+        "section_end": "Ersättare, kommunfullmäktige 2022-2026",
+    },
+    {
         "namn": "Vingåkers kommun",
         "typ": "troman",
         "url": "https://vingaker.tromanpublik.se/organisation/038a491b-1b66-44e5-94eb-0e341c3ce220",
+    },
+    # === Kommuner via Netpublicator-registret ===
+    {
+        "namn": "Vänersborgs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "596eaf0679f34a4ab0e32ba6131a1e25",
+        "netpub_board":    "a9bbcb86-89a6-4a9d-85fd-288a24ac4de4",
     },
     {
         "namn": "Värmdö kommun",
@@ -838,14 +1406,38 @@ REGIONER = [
         "url": "https://varmdo.tromanpublik.se/organisation/5b294486-1f5f-4332-82d2-7269af683bf2",
     },
     {
+        "namn": "Värnamo kommun",
+        "typ": "mailto",
+        "url": "https://kommun.varnamo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/ledamoter-kf.html",
+    },
+    {
+        "namn": "Västerviks kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "fe47625d5fb3456bbc61dc5f56b556c6",
+        "netpub_board":    "ddef3a1c-3845-4aaa-a423-83d352c34d38",
+    },
+    {
+        # Ledamotssidan visar endast telefonnummer, inga e-postadresser alls.
+        # Kvar som bästa kända källa, ger troligen 0 träffar.
+        "namn": "Västerås stad",
+        "typ": "mailto",
+        "url": "https://www.vasteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter.html",
+    },
+    {
         "namn": "Växjö kommun",
         "typ": "troman",
         "url": "https://vaxjo.tromanpublik.se/organisation/32806894-f94e-463c-901e-45d4cc4d7552",
     },
     {
-        "namn": "Älvdalens kommun",
-        "typ": "troman",
-        "url": "https://alvdalen.tromanpublik.se/organisation/767ae247-d91a-4b7d-972c-a0c027876906",
+        "namn": "Ydre kommun",
+        "typ": "mailto",
+        "url": "https://www.ydre.se/ydre-kommun/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige/ledamoter",
+    },
+    {
+        "namn": "Ystads kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "d5090e5e4644480dac6cd42c7148f88f",
+        "netpub_board":    "0f75f777-c1f5-4e14-ad7a-6b4a5660c1d1",
     },
     {
         "namn": "Åmåls kommun",
@@ -858,9 +1450,79 @@ REGIONER = [
         "url": "https://ange.tromanpublik.se/organisation/43797fe5-3f9f-4d4d-bbb9-e45462824f40",
     },
     {
+        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
+        # på varje namnrad, men anger explicit mönstret "fornamn.efternamn@are.se".
+        "namn": "Åre kommun",
+        "typ": "namnlista",
+        "url": "https://www.are.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+        "domain": "are.se",
+        "section_start": "Vill du kontakta politikerna via e-post så maila till fornamn.efternamn@are.se.",
+        "section_end": "Kontakta Åre kommun",
+        "skip_lines": [
+            "Moderata Samlingspartiet",
+            "Centerpartiet",
+            "Kristdemokraterna",
+            "Arbetarepartiet Socialdemokraterna",
+            "Vänsterpartiet",
+            "Miljöpartiet De Gröna",
+            "Sverigedemokraterna",
+            "Västjämtlands Väl",
+        ],
+    },
+    {
         "namn": "Åsele kommun",
         "typ": "troman",
         "url": "https://asele.tromanpublik.se/organisation/4132a2d3-d041-44b9-be5b-8884f0c5e5d6",
+    },
+    {
+        "namn": "Åstorps kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "ed59a2503b384246b8faeb79b56f999c",
+        "netpub_board":    "3ab20218-17ed-45bd-b40f-0300a9c5d4c1",
+    },
+    {
+        "namn": "Åtvidabergs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "6188c42d5b1749c08494d982a76bf6f0",
+        "netpub_board":    "6f3b5768-f31b-4bd7-b50f-7c4908b90e77",
+    },
+    {
+        "namn": "Älmhults kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "0cc29b7c2c784c8c8790ae6838bd0078",
+        "netpub_board":    "c0870fd0-36bc-4c57-9d53-208538c3cae5",
+    },
+    {
+        "namn": "Älvdalens kommun",
+        "typ": "troman",
+        "url": "https://alvdalen.tromanpublik.se/organisation/767ae247-d91a-4b7d-972c-a0c027876906",
+    },
+    {
+        "namn": "Älvkarleby kommun",
+        "typ": "mailto",
+        "url": "https://www.alvkarleby.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
+    },
+    {
+        "namn": "Ängelholms kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "da911c503eea460aa5595d523dcc09b1",
+        "netpub_board":    "51859191-03ac-4998-beb6-9281b73f8fe3",
+    },
+    {
+        "namn": "Öckerö kommun",
+        "typ": "mailto",
+        "url": "https://www.ockero.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
+    },
+    {
+        "namn": "Ödeshögs kommun",
+        "typ": "netpublicator",
+        "netpub_registry": "d7248e4da7ea4f128c8e650074727cfc",
+        "netpub_board":    "fac2a669-b00a-427a-b76a-f9373464b859",
+    },
+    {
+        "namn": "Örebro kommun",
+        "typ": "troman",
+        "url": "https://orebro.tromanpublik.se/organisation/59a7d59a-4f7b-4bde-997f-9f0d45255b44",
     },
     {
         "namn": "Örkelljunga kommun",
@@ -887,538 +1549,10 @@ REGIONER = [
         "typ": "troman",
         "url": "https://osthammar.tromanpublik.se/organisation/36630fc2-f28c-4432-bb49-2ecacb47f43f",
     },
-    # === Kommuner via Netpublicator-registret ===
-    {
-        "namn": "Vänersborgs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "596eaf0679f34a4ab0e32ba6131a1e25",
-        "netpub_board":    "a9bbcb86-89a6-4a9d-85fd-288a24ac4de4",
-    },
-    {
-        "namn": "Västerviks kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "fe47625d5fb3456bbc61dc5f56b556c6",
-        "netpub_board":    "ddef3a1c-3845-4aaa-a423-83d352c34d38",
-    },
-    {
-        "namn": "Borlänge kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "489d0e22a9a34a658d98c4f0026b1cb3",
-        "netpub_board":    "e9f1d57f-bb08-456d-a391-b2b38935c28e",
-    },
-    {
-        "namn": "Åstorps kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "ed59a2503b384246b8faeb79b56f999c",
-        "netpub_board":    "3ab20218-17ed-45bd-b40f-0300a9c5d4c1",
-    },
-    {
-        "namn": "Alvesta kommun",
-        "typ": "mailto",
-        "url": "https://www.alvesta.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
-    },
-    {
-        "namn": "Arboga kommun",
-        "typ": "mailto",
-        "url": "https://arboga.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Arjeplogs kommun",
-        "typ": "mailto",
-        "url": "https://arjeplog.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
-    },
-    {
-        "namn": "Bergs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "914c1eb24cb94a2c97b37a8ef66eef16",
-        "netpub_board":    "2417e918-98ce-4413-9c09-b145c0245240",
-    },
-    {
-        "namn": "Bjurholms kommun",
-        "typ": "mailto",
-        "url": "https://www.bjurholm.se/kommun-och-politik/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter",
-    },
-    {
-        "namn": "Bjuvs kommun",
-        "typ": "mailto",
-        "url": "https://www.bjuv.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Boxholms kommun",
-        "typ": "mailto",
-        "url": "https://www.boxholm.se/kommun-och-politik/kommunfullmaktige",
-    },
-    {
-        "namn": "Bromölla kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "98f18704cecc493082761b1333bcca92",
-        "netpub_board":    "d9da0c34-e4db-48b0-a461-8e8e53ab4a0e",
-    },
-    {
-        "namn": "Dals-Eds kommun",
-        "typ": "mailto",
-        "url": "https://www.dalsed.se/kommun-och-politik/fortroendevalda/kommunfullmaktige-2022-2026/",
-    },
-    {
-        "namn": "Dorotea kommun",
-        "typ": "mailto",
-        "url": "https://www.dorotea.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
-    },
-    {
-        "namn": "Ekerö kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "def31ebd7978473c94f8b6e3bbc93717",
-        "netpub_board":    "befb6976-80f0-4746-9b40-380b72d62d6f",
-    },
-    {
-        "namn": "Eksjö kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "90955e392d574c05937df63cc8624dff",
-        "netpub_board":    "d97686af-6ec9-4303-ae14-5889e41eb745",
-    },
-    {
-        "namn": "Eslövs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "b4744ae1bd8148e1a08307642caee206",
-        "netpub_board":    "4cc77930-fa00-4f48-a22a-5ab981da7a32",
-    },
-    {
-        "namn": "Essunga kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "e385d0365dc644a4abc03ec16b998e6f",
-        "netpub_board":    "600b9a5e-e218-4452-b8d4-dc51d8920b9f",
-    },
-    {
-        "namn": "Fagersta kommun",
-        "typ": "mailto",
-        "url": "https://fagersta.se/organisation--styrning/politik-och-fortroendevalda/kommunfullmaktige",
-    },
-    {
-        "namn": "Falkenbergs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "a7b5af4753e745cea62d2e7f8fcad21d",
-        "netpub_board":    "1af56ab5-2413-4c60-81f7-96d0f3875338",
-    },
-    {
-        "namn": "Falu kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "30d39c931a4b414b821182eb6e72848c",
-        "netpub_board":    "c36e0272-3f4f-4646-a861-9a6ae24eec4c",
-    },
-    {
-        "namn": "Filipstads kommun",
-        "typ": "mailto",
-        "url": "https://www.filipstad.se/toppmeny/kommunochpolitik/politikochdemokrati/fortroendevaldainamnderochstyrelser.1524.html",
-    },
-    {
-        "namn": "Gullspångs kommun",
-        "typ": "mailto",
-        "url": "https://gullspang.se/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Askersunds kommun",
-        "typ": "mailto",
-        "url": "https://www.askersund.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Grästorps kommun",
-        "typ": "mailto",
-        "url": "https://www.grastorp.se/kommun-och-politik/politisk-organisation/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Götene kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "f9b3d2833ad246419c9d500f4c46ca6f",
-        "netpub_board":    "08b898e5-8938-4722-88ad-98b8d26cbc66",
-    },
-    {
-        "namn": "Halmstads kommun",
-        "typ": "mailto",
-        "url": "https://www.halmstad.se/kommunochpolitik/politikochdemokrati/kommunfullmaktige/ledamoterochersattarekommunfullmaktige.n306.html",
-    },
-    {
-        "namn": "Hallstahammars kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "02f4a58a74d749af91d3bd1e6c251db1",
-        "netpub_board":    "603d9ac0-566f-449c-8fe5-3bdd59d33ba8",
-    },
-    {
-        "namn": "Heby kommun",
-        "typ": "mailto",
-        "url": "https://www.heby.se/organisation-plats-och-politik/demokrati-dialog-och-inflytande/hitta-din-politiker",
-    },
-    {
-        "namn": "Hofors kommun",
-        "typ": "mailto",
-        "url": "https://www.hofors.se/kommun--politik/politik/fortroendevalda/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Hudiksvalls kommun",
-        "typ": "mailto",
-        "url": "https://hudiksvall.se/Sidor/Kommun-och-politik/Kommunens-organisation/Kommunfullmaktige.html",
-    },
-    {
-        "namn": "Hällefors kommun",
-        "typ": "mailto",
-        "url": "https://www.hellefors.se/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Härjedalens kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "4fa3657d195a42bb81dc6a568d846124",
-        "netpub_board":    "511718a5-ca52-4449-93e8-81f5cf0f4a2f",
-    },
-    {
-        "namn": "Jokkmokks kommun",
-        "typ": "mailto",
-        "url": "https://www.jokkmokk.se/kommun-och-politik/politik-och-delaktighet/politisk-organisation/",
-    },
-    {
-        "namn": "Karlsborgs kommun",
-        "typ": "mailto",
-        "url": "https://karlsborg.se/kommun--politik/sa-styrs-karlsborgs-kommun/politik/fortroendevalda/",
-    },
-    {
-        "namn": "Karlshamns kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "79c39e9c33df49b1b6d5ac6e12af943c",
-        "netpub_board":    "c7ca73bf-1718-4270-ac3d-e7b5c5b84cd9",
-    },
-    {
-        "namn": "Klippans kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "e65cf67fb472436c9e9e8cbb37d00743",
-        "netpub_board":    "665ce36d-153f-46cb-aefa-8a2e455f52b3",
-    },
-    {
-        "namn": "Kristinehamns kommun",
-        "typ": "mailto",
-        "url": "https://www.kristinehamn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
-    },
-    {
-        "namn": "Kungsörs kommun",
-        "typ": "mailto",
-        "url": "https://kungsor.se/kommun-och-politik/politik-och-beslut/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Laxå kommun",
-        "typ": "mailto",
-        "url": "https://www.laxa.se/Kommun-och-politik/Demokrati-och-insyn/Politisk-organisation/Kommunfullmaktige.html",
-    },
-    {
-        "namn": "Leksands kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "1c41ddabcab843dda687fc5f800f6434",
-        "netpub_board":    "caadec9c-c046-4fd3-b5aa-4f3006b9408b",
-    },
-    {
-        "namn": "Lessebo kommun",
-        "typ": "mailto",
-        "url": "https://www.lessebo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Lidköpings kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "06a2c997f2624e2185f8e9805ff58d29",
-        "netpub_board":    "308d9dc4-2bfa-4988-914a-da95d50ad4fa",
-    },
-    {
-        "namn": "Malung-Sälens kommun",
-        "typ": "mailto",
-        "url": "https://malung-salen.se/kommunochpolitik/kommunensorganisation/kommunfullmaktige.4.319b126613ec68a069b13b.html",
-    },
-    {
-        "namn": "Malå kommun",
-        "typ": "mailto",
-        "url": "https://www.mala.se/kommun-och-politik/kontakt-politiker-ordforande/",
-    },
-    {
-        "namn": "Mariestads kommun",
-        "typ": "mailto",
-        "url": "https://mariestad.se/Mariestads-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
-    },
-    {
-        "namn": "Sorsele kommun",
-        "typ": "mailto",
-        "url": "https://www.sorsele.se/kommun-och-politik/delta-och-paaverka/kontakta-politiker/",
-    },
-    {
-        "namn": "Storfors kommun",
-        "typ": "mailto",
-        "url": "https://www.storfors.se/kommunochpolitik/politiskorganisation/kommunfullmaktige.4.789155f3143f6bce326878.html",
-    },
-    {
-        "namn": "Täby kommun",
-        "typ": "mailto",
-        "url": "https://www.taby.se/kommun-och-politik/politik-och-beslut/kommunalrad-och-gruppledare",
-    },
-    {
-        "namn": "Töreboda kommun",
-        "typ": "mailto",
-        "url": "https://toreboda.se/Toreboda-kommun/Kommun--politik/Politik-och-delaktighet/Politisk-organisation/Kommunfullmaktige",
-    },
-    {
-        "namn": "Värnamo kommun",
-        "typ": "mailto",
-        "url": "https://kommun.varnamo.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/ledamoter-kf.html",
-    },
-    {
-        "namn": "Vara kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "f3692d5258b04380be12d6e243e2dee5",
-        "netpub_board":    "7716f01e-0db2-412f-9505-f9733f1ca25c",
-    },
-    {
-        "namn": "Ydre kommun",
-        "typ": "mailto",
-        "url": "https://www.ydre.se/ydre-kommun/kommun-och-politik/kommunens-organisation/politisk-organisation/kommunfullmaktige/ledamoter",
-    },
-    {
-        "namn": "Ystads kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "d5090e5e4644480dac6cd42c7148f88f",
-        "netpub_board":    "0f75f777-c1f5-4e14-ad7a-6b4a5660c1d1",
-    },
-    {
-        "namn": "Vellinge kommun",
-        "typ": "mailto",
-        "url": "https://vellinge.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Vetlanda kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "CTA6P29drGzqtbbg9eXLaVCdwjYskX3P",
-        "netpub_board":    "e697879b-f049-4f1f-96f0-18d4288248e9",
-    },
-    {
-        "namn": "Åtvidabergs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "6188c42d5b1749c08494d982a76bf6f0",
-        "netpub_board":    "6f3b5768-f31b-4bd7-b50f-7c4908b90e77",
-    },
-    {
-        "namn": "Öckerö kommun",
-        "typ": "mailto",
-        "url": "https://www.ockero.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Ödeshögs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "d7248e4da7ea4f128c8e650074727cfc",
-        "netpub_board":    "fac2a669-b00a-427a-b76a-f9373464b859",
-    },
-    {
-        "namn": "Bengtsfors kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "b7d161d2b24c494492c3ccc43d090872",
-        "netpub_board":    "e2cccbc0-cfda-42b7-b959-a2937ac54ae7",
-    },
-    {
-        "namn": "Hjo kommun",
-        "typ": "mailto",
-        "url": "https://hjo.se/kommun--politik/politik-och-organisation/politik/kommunfullmaktige/ledamoter/",
-    },
-    {
-        "namn": "Kristianstads kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "vq9V55dgmCL2nt9A8RAGI6S6k879aA3o",
-        "netpub_board":    "058e2aa4-0345-4eae-9e62-8bd0f6022e06",
-    },
-    {
-        "namn": "Köpings kommun",
-        "typ": "mailto",
-        "url": "https://koping.se/kommun--politik/politik-ledning-och-namnder/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Mora kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "a0cfa985bcff4bde9739c902995c4dac",
-        "netpub_board":    "4653632b-9bde-47d0-959b-8a570801bc8a",
-    },
-    {
-        "namn": "Mullsjö kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "9d2611a2eaf749a1ab794120f854cafd",
-        "netpub_board":    "fb8dc480-a0da-446d-9ccf-46c88c4c7c84",
-    },
-    {
-        "namn": "Mönsterås kommun",
-        "typ": "mailto",
-        "url": "https://www.monsteras.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/",
-    },
-    {
-        "namn": "Mörbylånga kommun",
-        "typ": "mailto",
-        "url": "https://www.morbylanga.se/kontakt/kommun-och-politik/kommunfullmaktige/",
-    },
-    {
-        "namn": "Nässjö kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "gwH89a8xU8NMNdCwKXnTKwPn5ZEPvuku",
-        "netpub_board":    "e31e0455-35a3-4da0-94b6-b015d42926f7",
-    },
-    {
-        "namn": "Ockelbo kommun",
-        "typ": "mailto",
-        "url": "https://ockelbo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Orsa kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "a13fab42083b409695fedc3139f0d5a8",
-        "netpub_board":    "4d1d098f-0ea2-45b2-aa78-05b15f848bd5",
-    },
-    {
-        "namn": "Oskarshamns kommun",
-        "typ": "mailto",
-        "url": "https://www.oskarshamn.se/mer-om-kommunen/politik-och-forvaltning/politik/politiker/",
-    },
-    {
-        "namn": "Robertsfors kommun",
-        "typ": "mailto",
-        "url": "https://www.robertsfors.se/kommunochpolitik/politikochsammantraden/kommunfullmaktige.1104.html",
-    },
-    {
-        "namn": "Rättviks kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "136a5a793cf6410bb4308b9c8911ab79",
-        "netpub_board":    "dc8e2fa3-2e06-4632-930f-730fcd44301c",
-    },
-    {
-        "namn": "Skara kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "c90780267e934bcabdb4a4bc94baf562",
-        "netpub_board":    "5b82da78-1a21-4999-acfc-1f9ac33f1689",
-    },
-    {
-        "namn": "Surahammars kommun",
-        "typ": "mailto",
-        "url": "https://surahammar.se/kommunfullmaktige",
-    },
-    {
-        "namn": "Svenljunga kommun",
-        "typ": "mailto",
-        "url": "https://www.svenljunga.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        # Troman-baserad (bekräftad via sökresultat, t.ex. enskilda
-        # ledamotsprofiler), men savsjo.tromanpublik.se svarar med 500
-        # på enkla HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
-        "namn": "Sävsjö kommun",
-        "typ": "troman",
-        "url": "https://savsjo.tromanpublik.se/",
-    },
-    {
-        "namn": "Söderhamns kommun",
-        "typ": "mailto",
-        "url": "https://www.soderhamn.se/sidor/kommun-och-politik/organisation/kommunfullmaktige/ledamoter-2022-2026.html",
-    },
-    {
-        "namn": "Sölvesborgs kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "a72830bd5a784c7aa8d22f083e57ede8",
-        "netpub_board":    "383fe207-e242-4400-a25a-cb231f792714",
-    },
-    {
-        "namn": "Tidaholms kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "bb8e548df1a8413188cd11c1e4393afd",
-        "netpub_board":    "6cdb7081-4fb2-43f3-8eae-aa7e664053ac",
-    },
-    {
-        "namn": "Timrå kommun",
-        "typ": "mailto",
-        "url": "https://www.timra.se/kommunpolitik/kommunensorganisation/kommunfullmaktige/kommunfullmaktigesledamoterochersattare.4.48ff27ec16df76a85d01bcd8.html",
-    },
-    {
-        "namn": "Tjörns kommun",
-        "typ": "mailto",
-        "url": "https://www.tjorn.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige/politiker-i-kommunfullmaktige",
-    },
-    {
-        "namn": "Tomelilla kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "b15ceb3379d2454fb44c4932d9e900ed",
-        "netpub_board":    "e0b0f5ae-0124-4884-af16-c9e99bd87d46",
-    },
-    {
-        "namn": "Torsås kommun",
-        "typ": "mailto",
-        "url": "https://www.torsas.se/kontakt/kontaktsok/?search-input-officals=&forum=0&parti=0",
-    },
-    {
-        "namn": "Tranemo kommun",
-        "typ": "mailto",
-        "url": "https://tranemo.se/kommun--politik/kommunens-organisation/kommunfullmaktige",
-    },
-    {
-        "namn": "Trollhättans stad",
-        "typ": "netpublicator",
-        "netpub_registry": "fb58e9d1017946f180379dad2c94b468",
-        "netpub_board":    "4fdf8c09-553f-4f40-9446-6c6a22cff74c",
-    },
-    {
-        "namn": "Upplands-Bro kommun",
-        "typ": "mailto",
-        "url": "https://www.upplands-bro.se/kommun-och-politik/politik-och-demokrati/kommunfullmaktige.html",
-    },
-    {
-        "namn": "Älmhults kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "0cc29b7c2c784c8c8790ae6838bd0078",
-        "netpub_board":    "c0870fd0-36bc-4c57-9d53-208538c3cae5",
-    },
-    {
-        "namn": "Älvkarleby kommun",
-        "typ": "mailto",
-        "url": "https://www.alvkarleby.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige.html",
-    },
-    {
-        # Troman-baserad (bekräftad via sökresultat, titeln "Förtroendevalda
-        # hos oss"), men herrljunga.tromanpublik.se svarar med 500 på enkla
-        # HTTP-anrop (WAF/bot-block) - kvar som bästa kända URL.
-        "namn": "Herrljunga kommun",
-        "typ": "troman",
-        "url": "https://herrljunga.tromanpublik.se/",
-    },
-    {
-        "namn": "Ängelholms kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "da911c503eea460aa5595d523dcc09b1",
-        "netpub_board":    "51859191-03ac-4998-beb6-9281b73f8fe3",
-    },
-    {
-        # Sökresultat visar riktiga ledamöters mejladresser på
-        # pol.nordmaling.se, men www.nordmaling.se svarar med 503
-        # (upstream-fel) just nu - kvar som bästa kända URL.
-        "namn": "Nordmalings kommun",
-        "typ": "mailto",
-        "url": "https://www.nordmaling.se/kommun/kommunens-organisation/kommunfullmaktige/kommunfullmaktiges-ledamoter",
-    },
     {
         "namn": "Överkalix kommun",
         "typ": "mailto",
         "url": "https://www.overkalix.se/kommun-och-politik/politik-och-organisation/politiker-och-fortroendevalda/",
-    },
-    {
-        "namn": "Borgholms kommun",
-        "typ": "mailto",
-        "url": "https://www.borgholm.se/kommunfullmaktige-kommunens-organisation/",
-    },
-    {
-        "namn": "Huddinge kommun",
-        "typ": "w3d3",
-        "url": "https://ledamotspub.huddinge.se/BoardRepresentatives.aspx?boardid=2",
-    },
-    {
-        "namn": "Kramfors kommun",
-        "typ": "w3d3",
-        "url": "https://politiker.kramfors.se/BoardRepresentatives.aspx?boardid=17",
-    },
-    {
-        "namn": "Tranås kommun",
-        "typ": "w3d3",
-        "url": "https://tranas.ondemand.formpipe.com/ledamotspublicering/BoardRepresentatives.aspx?boardid=4",
     },
     {
         # Sidan listar ledamöter/ersättare med namn + parti och anger explicit
@@ -1429,141 +1563,6 @@ REGIONER = [
         "domain": "overtornea.se",
         "section_start": "Alla ledamöter går att kontakta via epost. Kommunens politiker har e-postadress förnamn.efternamn@overtornea.se (ä/å=a, ö=o)",
         "section_end": "Kultur- och fritidsutskottet",
-    },
-    {
-        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
-        # på varje namnrad, men anger explicit mönstret "fornamn.efternamn@are.se".
-        "namn": "Åre kommun",
-        "typ": "namnlista",
-        "url": "https://www.are.se/kommun-och-politik/kommunens-organisation/kommunfullmaktige",
-        "domain": "are.se",
-        "section_start": "Vill du kontakta politikerna via e-post så maila till fornamn.efternamn@are.se.",
-        "section_end": "Kontakta Åre kommun",
-        "skip_lines": [
-            "Moderata Samlingspartiet",
-            "Centerpartiet",
-            "Kristdemokraterna",
-            "Arbetarepartiet Socialdemokraterna",
-            "Vänsterpartiet",
-            "Miljöpartiet De Gröna",
-            "Sverigedemokraterna",
-            "Västjämtlands Väl",
-        ],
-    },
-    {
-        # W3D3 Ledamotspublicering (samma system som Huddinge/Kramfors). Sidan är
-        # aktivt blockerad (WAF, "Förfrågan avvisades") mot enkla HTTP-anrop vid
-        # verifiering, men URL:en och boardid matchar bekräftat en riktig
-        # Kommunfullmäktige-sida - kvar som bästa kända URL (jfr Stockholm).
-        "namn": "Lunds kommun",
-        "typ": "w3d3",
-        "url": "https://ledamoter.lund.se/BoardRepresentatives.aspx?boardid=335",
-    },
-    {
-        "namn": "Alingsås kommun",
-        "typ": "fmr",
-        "url": "https://www.fortroendemannaregistret.alingsas.se/beslutsinstanser/480",
-    },
-    {
-        "namn": "Aneby kommun",
-        "typ": "profilsidor",
-        "url": "https://aneby.se/sidor/kommun-och-politik/kontakta-aneby-kommun/politiker/kommunfullmaktige.html",
-        "link_pattern": "/politiker/politiker/",
-        "domain": "aneby.se",
-    },
-    {
-        # Sidan listar ledamöter (och presidiet) med namn + parti, utan mailto-länkar,
-        # men anger explicit mönstret "fornamn.efternamn@bracke.se".
-        "namn": "Bräcke kommun",
-        "typ": "namnmonster",
-        "url": "https://www.bracke.se/kommun--och-demokrati/politik-och-fortroendevalda/kommunfullmaktige",
-        "domain": "bracke.se",
-        "section_start": "Ordförande:",
-        "section_end": "Arbetsordning för kommunfullmäktige",
-    },
-    {
-        "namn": "Hultsfreds kommun",
-        "typ": "netpublicator",
-        "netpub_registry": "7b98056af7d5452282d5a2d8789e2774",
-        "netpub_board":    "9f7d447d-8552-48b5-806c-2fb102e613ef",
-    },
-    {
-        "namn": "Tingsryds kommun",
-        "typ": "profilsidor",
-        "url": "https://tingsryd.se/politik/kommunfullmaktige/kommunfullmaktiges-ledamoter-och-ersattare/",
-        "link_pattern": "/fortroendevalda/",
-        "domain": "tingsryd.se",
-    },
-    {
-        # Sidan listar ledamöterna med namn + parti, utan mailto-länkar,
-        # men anger explicit mönstret "namn.efternamn@vindeln.se".
-        "namn": "Vindelns kommun",
-        "typ": "namnmonster",
-        "url": "https://vindeln.se/kommun-och-politik/politisk-styrning/kommunfullmaktige",
-        "domain": "vindeln.se",
-        "section_start": "Ledamöter, Kommunfullmäktige 2022-2026",
-        "section_end": "Ersättare, kommunfullmäktige 2022-2026",
-    },
-    {
-        # Nedladdningsbar PDF med namn + mailadress till samtliga ledamöter/ersättare.
-        "namn": "Laholms kommun",
-        "typ": "pdf",
-        "url": "https://www.laholm.se/download/18.21fe87d518ee72dec5df82d/1713437157280/Mailadresser%20kommunfullm%C3%A4ktige.pdf",
-        "domain": "laholm.se",
-    },
-    {
-        # Sidan listar länkar till varje politikers profilsida (/kontakter/politiker/...)
-        # där mailto-länken finns under domänen politiker.tibro.se.
-        "namn": "Tibro kommun",
-        "typ": "profilsidor",
-        "url": "https://www.tibro.se/kommun-och-politik/sa-styrs-tibro-kommun/politiker/",
-        "link_pattern": "/kontakter/politiker/",
-        "domain": "politiker.tibro.se",
-    },
-    {
-        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
-        # explicit mönstret "förnamn.efternamn@ljusnarsberg.se", utan mailto-länkar.
-        "namn": "Ljusnarsbergs kommun",
-        "typ": "namnmonster",
-        "url": "https://ljusnarsberg.se/kommun-och-politik/kommunens-organisation/fortroendevalda",
-        "domain": "ljusnarsberg.se",
-        "section_start": "Förtroendevalda Kommunfullmäktige 2022-11-10 - 2026-11-11",
-        "section_end": "Kommunstyrelsen 2023 - 2026",
-    },
-    {
-        # Sidan listar fullmäktiges ledamöter/ersättare med namn + parti och anger
-        # explicit mönstret "förnamn.efternamn@munkfors.se". Kommunfullmäktige-
-        # sektionen ligger i ett jQuery UI-accordion (exklusivt - bara en sektion
-        # kan vara öppen samtidigt), så bara den relevanta rubriken fälls ut.
-        "namn": "Munkfors kommun",
-        "typ": "namnmonster",
-        "url": "https://www.munkfors.se/kommun-och-politik/politik/politisk-organisation/fortroendevalda-politiker/",
-        "domain": "munkfors.se",
-        "section_start": "Förtroendevalda år 2022-2026",
-        "section_end": "Kontakt",
-        "expand_text": "Kommunfullmäktige",
-    },
-    {
-        # Sidan listar ledamöter/ersättare grupperade per parti utan inline-parti
-        # på varje namnrad, men anger explicit mönstret "Namn, Parti" och en
-        # gemensam e-postdomän för politiker (politiker.ragunda.se).
-        "namn": "Ragunda kommun",
-        "typ": "namnlista",
-        "url": "https://www.ragunda.se/kommunochpolitik/politikochmoten/ledamoter.1028.html",
-        "domain": "politiker.ragunda.se",
-        "section_start": "Kommunfullmäktiges ledamöter",
-        "section_end": "Kommunfullmäktiges valberedning",
-    },
-    {
-        # Sidan listar ledamöter/ersättare med namn + parti och anger explicit
-        # mönstret "förnamn.efternamn@stromsund.se" under rubriken "Mejl till
-        # politiker", utan mailto-länkar.
-        "namn": "Strömsunds kommun",
-        "typ": "namnmonster",
-        "url": "https://www.stromsund.se/620.html",
-        "domain": "stromsund.se",
-        "section_start": "Mejl till politiker",
-        "section_end": "Relaterad information",
     },
 ]
 
