@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Karlsborgs kommun
+N:;;;;
+ORG:Karlsborgs kommun
+EMAIL;TYPE=WORK:anders.lundgren@karlsborg.se
+EMAIL;TYPE=WORK:birgitta.svensson@karlsborg.se
+EMAIL;TYPE=WORK:johan.persson@karlsborg.se
+EMAIL;TYPE=WORK:monica.staudinger@karlsborg.se
+EMAIL;TYPE=WORK:rolf.andersson@karlsborg.se
+EMAIL;TYPE=WORK:staffan.myrsell@karlsborg.se
+EMAIL;TYPE=WORK:torbjorn.colling@karlsborg.se
+END:VCARD
