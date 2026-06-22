@@ -1,0 +1,23 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Arboga kommun
+N:;;;;
+ORG:Arboga kommun
+EMAIL;TYPE=WORK:arboga.kommun@arboga.se
+EMAIL;TYPE=WORK:christina.johansson@arboga.se
+EMAIL;TYPE=WORK:elisabeth.kaufmann@arboga.se
+EMAIL;TYPE=WORK:eva.aldenluthman@arboga.se
+EMAIL;TYPE=WORK:hakan.tomasson@arboga.se
+EMAIL;TYPE=WORK:hans.ivarsson@arboga.se
+EMAIL;TYPE=WORK:kajsa.landstrom@arboga.se
+EMAIL;TYPE=WORK:kerstin.rosenkvist@arboga.se
+EMAIL;TYPE=WORK:manuel.huerta@arboga.se
+EMAIL;TYPE=WORK:marianne.samuelsson@arboga.se
+EMAIL;TYPE=WORK:marie-louise.soderstrom@arboga.se
+EMAIL;TYPE=WORK:martin.nyqvist@arboga.se
+EMAIL;TYPE=WORK:mats.ohgren@arboga.se
+EMAIL;TYPE=WORK:mikael.vonmelsted@arboga.se
+EMAIL;TYPE=WORK:rahaf.ramdo@arboga.se
+EMAIL;TYPE=WORK:rickard.fallqvist@arboga.se
+EMAIL;TYPE=WORK:tony.pehrsson@arboga.se
+END:VCARD

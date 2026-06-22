@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Malmö stad
+N:;;;;
+ORG:Malmö stad
+EMAIL;TYPE=WORK:kommunstyrelsen@malmo.se
+EMAIL;TYPE=WORK:malmostad@malmo.se
+END:VCARD
