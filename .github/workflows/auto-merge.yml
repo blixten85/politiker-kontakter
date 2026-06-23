@@ -25,7 +25,12 @@ jobs:
           steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
           steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
           steps.metadata.outputs.update-type == 'version-update:semver-major')
-        run: gh pr merge --auto --delete-branch --squash "$PR_URL"
+        run: |
+          for i in 1 2 3 4 5; do
+            gh pr merge --auto --delete-branch --squash "$PR_URL" && break
+            echo "attempt $i failed, retrying in 60s..."
+            sleep 60
+          done
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ github.token }}
@@ -35,7 +40,12 @@ jobs:
           steps.metadata.outputs.package-ecosystem != 'github_actions' && (
           steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
           steps.metadata.outputs.update-type == 'version-update:semver-minor')
-        run: gh pr merge --auto --delete-branch --squash "$PR_URL"
+        run: |
+          for i in 1 2 3 4 5; do
+            gh pr merge --auto --delete-branch --squash "$PR_URL" && break
+            echo "attempt $i failed, retrying in 60s..."
+            sleep 60
+          done
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ github.token }}
@@ -62,7 +72,11 @@ jobs:
       - name: Auto-merge Claude AI PRs once checks pass
         run: |
           gh pr ready "$PR_URL" || true
-          gh pr merge --auto --squash --delete-branch "$PR_URL"
+          for i in 1 2 3 4 5; do
+            gh pr merge --auto --squash --delete-branch "$PR_URL" && break
+            echo "attempt $i failed, retrying in 60s..."
+            sleep 60
+          done
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ github.token }}
@@ -74,7 +88,11 @@ jobs:
       - name: Auto-merge Codex AI PRs once checks pass
         run: |
           gh pr ready "$PR_URL" || true
-          gh pr merge --auto --squash --delete-branch "$PR_URL"
+          for i in 1 2 3 4 5; do
+            gh pr merge --auto --squash --delete-branch "$PR_URL" && break
+            echo "attempt $i failed, retrying in 60s..."
+            sleep 60
+          done
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ github.token }}
@@ -86,7 +104,11 @@ jobs:
       - name: Auto-merge Copilot PRs once checks pass
         run: |
           gh pr ready "$PR_URL" || true
-          gh pr merge --auto --squash --delete-branch "$PR_URL"
+          for i in 1 2 3 4 5; do
+            gh pr merge --auto --squash --delete-branch "$PR_URL" && break
+            echo "attempt $i failed, retrying in 60s..."
+            sleep 60
+          done
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ github.token }}
