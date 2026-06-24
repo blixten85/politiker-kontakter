@@ -67,7 +67,11 @@ def fetch_all_current_meps() -> list[dict]:
 
 
 def decode_email(mep_id: str) -> str | None:
+    """Returnerar avkodad e-postadress, eller None om profilsidan saknar en
+    (inget mailfält publicerat). Kastar requests.HTTPError vid 4xx/5xx —
+    det är en riktig miss (rate limit, serverfel), inte "ingen email"."""
     resp = requests.get(f"https://www.europarl.europa.eu/meps/en/{mep_id}/x/home", timeout=20)
+    resp.raise_for_status()
     match = re.search(r'class="link_email[^"]*"\s+href="([^"]+)"', resp.text)
     if not match:
         return None
@@ -91,19 +95,33 @@ def main():
     session = requests.Session()
     session.headers.update({"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
 
+    # Engångsstädning: tidigare körningar (innan per-land-uppdelning) skrev
+    # area_name='Europaparlamentet' utan land. Ofarligt att köra om — bara en
+    # no-op om raderna redan är borta.
+    session.post(
+        url,
+        json={"sql": "DELETE FROM politicians WHERE area_type = 'eu' AND area_name = 'Europaparlamentet'"},
+        timeout=30,
+    )
+
     meps = fetch_all_current_meps()
     print(f"Hittade {len(meps)} EU-parlamentariker totalt (alla 27 länder).", flush=True)
 
     now_ms = int(time.time() * 1000)
     ok = fail = skipped = 0
     for i, m in enumerate(meps, 1):
-        mep_id = m["id"].split("/")[1]
+        mep_id = m["id"].rstrip("/").split("/")[-1]
         name = f"{m['givenName']} {m['familyName']}"
         country_code = m.get("api:country-of-representation")
         country_name = COUNTRY_NAMES.get(country_code, country_code)
         area_name = f"Europaparlamentet ({country_name})"
 
-        email = decode_email(mep_id)
+        try:
+            email = decode_email(mep_id)
+        except requests.HTTPError as err:
+            print(f"FEL (HTTP) för {name} (id {mep_id}): {err}", file=sys.stderr, flush=True)
+            fail += 1
+            continue
         if not email:
             print(f"VARNING: ingen email hittad för {name} (id {mep_id})", file=sys.stderr, flush=True)
             skipped += 1
