@@ -76,6 +76,7 @@ def main():
 
     now_ms = int(time.time() * 1000)
     ok = fail = skipped = 0
+    fetched_emails: list[str] = []
     for i, p in enumerate(people, 1):
         name = f"{p['tilltalsnamn']} {p['efternamn']}"
         party = p.get("parti") or None
@@ -84,6 +85,7 @@ def main():
             print(f"VARNING: ingen email hittad för {name}", file=sys.stderr, flush=True)
             skipped += 1
             continue
+        fetched_emails.append(email)
 
         resp = session.post(url, json={"sql": UPSERT_SQL, "params": [name, email, AREA_NAME, party, now_ms]}, timeout=30)
         if resp.status_code == 200 and resp.json().get("success"):
@@ -96,7 +98,21 @@ def main():
             print(f"{i}/{len(people)} klara ({ok} ok, {fail} fel, {skipped} utan email)...", flush=True)
 
     print(f"Klart. {ok} synkade, {fail} misslyckades, {skipped} utan email.", flush=True)
-    if fail > 0:
+
+    # Städa bort ledamöter som inte längre är aktuella (avgångna, ersatta)
+    # — men bara om körningen i övrigt gick helt felfritt, annars riskerar
+    # vi att radera giltiga rader på grund av ett tillfälligt fetch-/synkfel.
+    if fail == 0 and skipped == 0 and fetched_emails:
+        placeholders = ",".join("?" for _ in fetched_emails)
+        cleanup_sql = f"DELETE FROM politicians WHERE area_type = 'riksdag' AND area_name = ? AND email NOT IN ({placeholders})"
+        resp = session.post(url, json={"sql": cleanup_sql, "params": [AREA_NAME, *fetched_emails]}, timeout=30)
+        if resp.status_code == 200 and resp.json().get("success"):
+            removed = resp.json()["result"][0]["meta"]["changes"]
+            print(f"Städade bort {removed} ej längre aktuella ledamöter.", flush=True)
+        else:
+            print(f"VARNING: städning misslyckades: {resp.text}", file=sys.stderr, flush=True)
+
+    if fail > 0 or skipped > 0:
         sys.exit(1)
 
 
