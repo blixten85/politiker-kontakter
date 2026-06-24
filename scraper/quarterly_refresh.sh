@@ -15,7 +15,7 @@ echo "=== $(date -Iseconds) Startar kvartalsvis uppdatering ==="
 
 echo "--- Skrapar kommun/region (Playwright/Docker) ---"
 cd ..
-docker compose up --abort-on-container-exit
+docker compose up --abort-on-container-exit --exit-code-from scraper
 cd scraper
 
 echo "--- Synkar kommun/region till D1 ---"
