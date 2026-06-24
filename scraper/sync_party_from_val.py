@@ -46,10 +46,16 @@ def fetch_val_rows() -> list[list[str]]:
     return rows
 
 
+_AMBIGUOUS = object()  # sentinel: flera olika partier delar samma (område, namn)
+
+
 def build_party_lookup(rows: list[list[str]]) -> dict[tuple[str, str], str]:
     """Returnerar {(area_name, "Förnamn Efternamn"): partiförkortning} —
-    exakt namn, för förstahandsmatchning."""
-    lookup: dict[tuple[str, str], str] = {}
+    exakt namn, för förstahandsmatchning. Om samma (område, namn) dyker upp
+    med OLIKA partier (två olika personer med identiskt namn i samma
+    område) markeras paret tvetydigt och används inte — vi gissar inte på
+    vilken av dem som är "rätt"."""
+    lookup: dict[tuple[str, str], str | object] = {}
     for row in rows:
         valtyp, _val_till, _lanskod, _lan, _kommunkod, kommun, *_rest = row
         parti = row[8]
@@ -66,8 +72,13 @@ def build_party_lookup(rows: list[list[str]]) -> dict[tuple[str, str], str]:
             else:
                 continue
 
-        lookup[(area_name, full_name)] = parti
-    return lookup
+        key = (area_name, full_name)
+        existing = lookup.get(key)
+        if existing is not None and existing is not _AMBIGUOUS and existing != parti:
+            lookup[key] = _AMBIGUOUS
+        elif existing is None:
+            lookup[key] = parti
+    return {k: v for k, v in lookup.items() if v is not _AMBIGUOUS}
 
 
 def name_words(name: str) -> set[str]:
@@ -126,8 +137,7 @@ def main():
     token = os.environ["CLOUDFLARE_API_TOKEN_POLITIKER"]
     db_uuid = os.environ["D1_DATABASE_UUID"]
     url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/d1/database/{db_uuid}/query"
-    session = requests.Session()
-    session.headers.update({"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
 
     print("Hämtar Valmyndighetens ledamotsdata...", flush=True)
     rows = fetch_val_rows()
@@ -136,8 +146,9 @@ def main():
     print(f"{len(lookup)} unika (område, namn)-par i uppslagstabellen.", flush=True)
 
     print("Hämtar befintliga kommun-/regionpolitiker från D1...", flush=True)
-    resp = session.post(
+    resp = requests.post(
         url,
+        headers=headers,
         json={"sql": "SELECT id, name, area_name FROM politicians WHERE area_type IN ('kommun', 'region')"},
         timeout=60,
     )
@@ -165,8 +176,9 @@ def main():
 
     def update_one(item: tuple[str, str, str]) -> tuple[bool, str]:
         politician_id, name, party = item
-        resp = session.post(
+        resp = requests.post(
             url,
+            headers=headers,
             json={"sql": "UPDATE politicians SET party = ?, last_scraped_at = ? WHERE id = ?", "params": [party, now_ms, politician_id]},
             timeout=30,
         )
