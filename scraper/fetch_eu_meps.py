@@ -39,9 +39,9 @@ COUNTRY_NAMES = {
 }
 
 UPSERT_SQL = (
-    "INSERT INTO politicians (id, name, email, area_name, area_type, last_scraped_at) "
-    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, 'eu', ?) "
-    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, last_scraped_at = excluded.last_scraped_at"
+    "INSERT INTO politicians (id, name, email, area_name, area_type, party, last_scraped_at) "
+    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, 'eu', ?, ?) "
+    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, party = excluded.party, last_scraped_at = excluded.last_scraped_at"
 )
 
 
@@ -79,8 +79,8 @@ def decode_email(mep_id: str) -> str | None:
     return encoded.replace("[dot]", ".").replace("[at]", "@")[::-1]
 
 
-def sync_one(session: requests.Session, url: str, name: str, email: str, area_name: str, now_ms: int) -> bool:
-    resp = session.post(url, json={"sql": UPSERT_SQL, "params": [name, email, area_name, now_ms]}, timeout=30)
+def sync_one(session: requests.Session, url: str, name: str, email: str, area_name: str, party: str | None, now_ms: int) -> bool:
+    resp = session.post(url, json={"sql": UPSERT_SQL, "params": [name, email, area_name, party, now_ms]}, timeout=30)
     if resp.status_code == 200 and resp.json().get("success"):
         return True
     print(f"FEL: {name} <{email}>: {resp.text}", file=sys.stderr)
@@ -115,6 +115,7 @@ def main():
         country_code = m.get("api:country-of-representation")
         country_name = COUNTRY_NAMES.get(country_code, country_code)
         area_name = f"Europaparlamentet ({country_name})"
+        party = m.get("api:political-group")
 
         try:
             email = decode_email(mep_id)
@@ -129,7 +130,7 @@ def main():
 
         # Synkar DIREKT, en i taget — om processen avbryts (rate limit, krasch)
         # är allt som redan körts sparat, inget arbete går förlorat.
-        if sync_one(session, url, name, email, area_name, now_ms):
+        if sync_one(session, url, name, email, area_name, party, now_ms):
             ok += 1
         else:
             fail += 1
