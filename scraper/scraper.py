@@ -1593,20 +1593,63 @@ def _looks_like_name(s: str) -> bool:
     return bool(re.fullmatch(NAME_CANDIDATE_RE.pattern, s))
 
 
-async def extract_person_name(page) -> str:
-    """Bästa-försök att hitta personens namn på en profilsida: provar först
-    <h1>, sedan sidans <title> (med vanliga suffix som ' - Kommunnamn' eller
-    ' | Kommunnamn' bortklippta). Returnerar tom sträng om inget ser ut som
-    ett namn, så att e-posten ändå behålls utan namnkoppling."""
+# Fullständiga partinamn -> standardförkortning, så parti-fältet blir
+# konsekvent oavsett källa (troman/mailto visar redan förkortning,
+# netpublicator visar fullständigt namn).
+PARTY_FULLNAME_TO_ABBR = {
+    "socialdemokraterna": "S",
+    "moderaterna": "M",
+    "moderata samlingspartiet": "M",
+    "sverigedemokraterna": "SD",
+    "vänsterpartiet": "V",
+    "centerpartiet": "C",
+    "liberalerna": "L",
+    "kristdemokraterna": "KD",
+    "miljöpartiet": "MP",
+    "miljöpartiet de gröna": "MP",
+    "feministiskt initiativ": "FI",
+}
+
+
+def normalize_party(raw: str | None) -> str | None:
+    if not raw:
+        return None
+    raw = raw.strip()
+    return PARTY_FULLNAME_TO_ABBR.get(raw.lower(), raw) or None
+
+
+def _extract_party_from_parens(text: str) -> str | None:
+    """Plockar ut '(PARTI)' i slutet av en textsträng, t.ex.
+    'David Johansson (C)' -> 'C'. Används där partiet alltid är det sista
+    (rubriker/titlar utan efterföljande roll-text)."""
+    m = re.search(r"\(([^)]{1,20})\)\s*$", text.strip())
+    return normalize_party(m.group(1)) if m else None
+
+
+def _extract_party_anywhere(text: str) -> str | None:
+    """Plockar ut '(PARTI)' var som helst i texten, t.ex.
+    'David Johansson (C), ordförande' -> 'C'. Används där en roll kan
+    följa partiet i samma sträng (parti är då INTE sist)."""
+    m = re.search(r"\(([^)]{1,20})\)", text)
+    return normalize_party(m.group(1)) if m else None
+
+
+async def extract_person_name(page) -> tuple[str, str | None]:
+    """Bästa-försök att hitta personens namn (och, om det visas i samma
+    rubrik/titel, parti) på en profilsida: provar först <h1>, sedan sidans
+    <title> (med vanliga suffix som ' - Kommunnamn' eller ' | Kommunnamn'
+    bortklippta). Returnerar tom sträng för namnet om inget ser ut som ett
+    namn, så att e-posten ändå behålls utan namnkoppling."""
     try:
         h1 = await page.query_selector("h1")
         if h1:
             text = re.sub(r"\s+", " ", (await h1.inner_text())).strip()
             # Många sidor visar namnet som "Förnamn Efternamn (Parti)" - partiet
             # ska bort innan vi avgör om resten ser ut som ett namn.
-            text = re.sub(r"\s*\([^)]*\)\s*$", "", text).strip()
-            if _looks_like_name(text):
-                return text
+            party = _extract_party_from_parens(text)
+            name_only = re.sub(r"\s*\([^)]*\)\s*$", "", text).strip()
+            if _looks_like_name(name_only):
+                return name_only, party
     except PlaywrightError:
         pass
     try:
@@ -1615,10 +1658,11 @@ async def extract_person_name(page) -> str:
         title = ""
     if title:
         candidate = re.split(r"\s*[-|–]\s*", title)[0].strip()
-        candidate = re.sub(r"\s*\([^)]*\)\s*$", "", candidate).strip()
-        if _looks_like_name(candidate):
-            return candidate
-    return ""
+        party = _extract_party_from_parens(candidate)
+        name_only = re.sub(r"\s*\([^)]*\)\s*$", "", candidate).strip()
+        if _looks_like_name(name_only):
+            return name_only, party
+    return "", None
 
 
 def swedish_key(name: str):
@@ -1684,20 +1728,36 @@ async def scrape_netpublicator(context, namn, registry_id, board_id):
         await page.goto(board_url, timeout=60000, wait_until="domcontentloaded")
         await asyncio.sleep(2)
 
-        # Plocka alla politiker-URL:er från sidan
-        hrefs = await page.eval_on_selector_all(
-            "a[href*='/politician/']",
-            "els => els.map(e => e.href)"
+        # Plocka rollen+partiet direkt ur listningstabellen (egna kolumner
+        # per rad) — slipper en extra sidvisning per person för det.
+        rows = await page.eval_on_selector_all(
+            "table tbody tr",
+            """els => els.map(tr => {
+                const link = tr.querySelector("a[href*='/politician/']");
+                if (!link) return null;
+                const tds = tr.querySelectorAll('td');
+                const role = tds.length >= 3 ? tds[2].textContent.trim() : null;
+                let party = null;
+                if (tds.length >= 4) {
+                    const partyLink = tds[3].querySelector('a[title]');
+                    party = partyLink ? partyLink.getAttribute('title') : (tds[3].getAttribute('data-sort-value') || null);
+                }
+                return [link.href, role, party];
+            }).filter(Boolean)""",
         )
-        politician_urls = list(set(hrefs))
+        info_by_url: dict[str, tuple[str | None, str | None]] = {
+            url: (role or None, normalize_party(party)) for url, role, party in rows
+        }
+        politician_urls = list(info_by_url.keys())
         log.info(f"{namn}: {len(politician_urls)} profilsidor hittade")
 
         for url in politician_urls:
+            role, party = info_by_url.get(url, (None, None))
             p2 = await context.new_page()
             try:
                 await p2.goto(url, timeout=30000, wait_until="domcontentloaded")
                 await asyncio.sleep(0.5)
-                person_name = await extract_person_name(p2)
+                person_name, party_from_page = await extract_person_name(p2)
                 mailto_hrefs = await p2.eval_on_selector_all(
                     "a[href^='mailto:']",
                     "els => els.map(e => e.href)"
@@ -1705,7 +1765,7 @@ async def scrape_netpublicator(context, namn, registry_id, board_id):
                 for href in mailto_hrefs:
                     email = email_from_mailto_href(href)
                     if is_valid_email(email):
-                        people.add((person_name, email))
+                        people.add((person_name, email, party or party_from_page, role))
             except PlaywrightError:
                 pass
             finally:
@@ -1719,6 +1779,29 @@ async def scrape_netpublicator(context, namn, registry_id, board_id):
 
     log.info(f"{namn}: {len(people)} adresser funna")
     return people
+
+
+async def extract_troman_role(page) -> str | None:
+    """Plockar befattning (Ledamot/Ordförande/Ersättare m.m.) ur Uppdrag-
+    tabellen på en Troman-profilsida — raden vars Organisation-kolumn
+    innehåller 'fullmäktige', eftersom en person kan ha flera uppdrag
+    (t.ex. ersättare i styrelsen men ordförande i fullmäktige)."""
+    try:
+        rows = await page.eval_on_selector_all(
+            "#engagementTable tbody tr",
+            """els => els.map(tr => {
+                const tds = tr.querySelectorAll('td');
+                return tds.length >= 2 ? [tds[0].textContent.trim(), tds[1].textContent.trim()] : null;
+            }).filter(Boolean)""",
+        )
+        for org, role in rows:
+            if "fullmäktige" in org.lower():
+                return role or None
+        if rows:
+            return rows[0][1] or None
+    except PlaywrightError:
+        pass
+    return None
 
 
 async def scrape_troman(context, namn, org_url):
@@ -1742,7 +1825,8 @@ async def scrape_troman(context, namn, org_url):
             try:
                 await p2.goto(url, timeout=30000, wait_until="domcontentloaded")
                 await asyncio.sleep(0.5)
-                person_name = await extract_person_name(p2)
+                person_name, party = await extract_person_name(p2)
+                role = await extract_troman_role(p2)
                 mailto_hrefs = await p2.eval_on_selector_all(
                     "a[href^='mailto:']",
                     "els => els.map(e => e.href)"
@@ -1750,7 +1834,7 @@ async def scrape_troman(context, namn, org_url):
                 for href in mailto_hrefs:
                     email = email_from_mailto_href(href)
                     if is_valid_email(email):
-                        people.add((person_name, email))
+                        people.add((person_name, email, party, role))
             except PlaywrightError:
                 pass
             finally:
@@ -1807,8 +1891,8 @@ async def scrape_w3d3(context, namn, board_url):
                 if email_el:
                     email = (await email_el.inner_text()).strip().lower()
                     if is_valid_email(email):
-                        person_name = await extract_person_name(p2)
-                        people.add((person_name, email))
+                        person_name, party = await extract_person_name(p2)
+                        people.add((person_name, email, party, None))
             except PlaywrightError:
                 pass
             finally:
@@ -1847,7 +1931,7 @@ async def scrape_fmr(context, namn, board_url):
             try:
                 await p2.goto(url, timeout=30000, wait_until="networkidle")
                 await asyncio.sleep(0.3)
-                person_name = await extract_person_name(p2)
+                person_name, party = await extract_person_name(p2)
                 hrefs = await p2.eval_on_selector_all(
                     "a[href^='mailto:']",
                     "els => els.map(e => e.href)"
@@ -1855,7 +1939,7 @@ async def scrape_fmr(context, namn, board_url):
                 for href in hrefs:
                     email = email_from_mailto_href(href)
                     if is_valid_email(email):
-                        people.add((person_name, email))
+                        people.add((person_name, email, party, None))
             except PlaywrightError:
                 pass
             finally:
@@ -1879,7 +1963,7 @@ async def scrape_profilsidor(context, namn, url, link_pattern, domain):
     SKIP_LOCAL = {"info", "e-postinfo", "kommun", "kommunen", "kommunstyrelsen", "kommunfullmaktige"}
     people = set()
 
-    async def collect(p, person_name=""):
+    async def collect(p, person_name="", party=None):
         hrefs = await p.eval_on_selector_all(
             "a[href^='mailto:']",
             "els => els.map(e => e.href)"
@@ -1890,7 +1974,7 @@ async def scrape_profilsidor(context, namn, url, link_pattern, domain):
                 continue
             if email.split("@")[0] in SKIP_LOCAL:
                 continue
-            people.add((person_name, email))
+            people.add((person_name, email, party, None))
 
     page = await context.new_page()
     try:
@@ -1912,8 +1996,8 @@ async def scrape_profilsidor(context, namn, url, link_pattern, domain):
             try:
                 await p2.goto(purl, timeout=30000, wait_until="domcontentloaded")
                 await asyncio.sleep(0.2)
-                person_name = await extract_person_name(p2)
-                await collect(p2, person_name)
+                person_name, party = await extract_person_name(p2)
+                await collect(p2, person_name, party)
             except PlaywrightError:
                 pass
             finally:
@@ -1988,7 +2072,7 @@ async def scrape_namnmonster(context, namn, url, domain, section_start, section_
             local = f"{_email_local_part(fornamn)}.{_email_local_part(efternamn)}"
             email = f"{local}@{domain}"
             if is_valid_email(email):
-                people.add((full_name, email))
+                people.add((full_name, email, None, None))
 
     except PlaywrightError as e:
         log.error(f"{namn}: {e}")
@@ -2029,11 +2113,18 @@ async def scrape_namnlista(context, namn, url, domain, section_start, section_en
         end_idx = text.find(section_end, start_idx) if section_end else -1
         section = text[start_idx:end_idx if end_idx != -1 else None]
 
-        for line in section.splitlines():
-            line = re.sub(r"\s*\([^)]*\)\s*$", "", line.strip())
+        for raw_line in section.splitlines():
+            raw_stripped = raw_line.strip()
+            party = _extract_party_anywhere(raw_stripped)
+            line = re.sub(r"\s*\([^)]*\)\s*$", "", raw_stripped)
             # Vissa sidor skriver "Namn, Parti[, titel]" på samma rad istället för
-            # "Namn (Parti)" - partiet/titeln efter första kommatecknet ska bort.
-            line = line.split(",")[0].strip()
+            # "Namn (Parti)" - partiet/titeln efter första kommatecknet ska bort,
+            # men spara titeln (sista kommadelen) som roll om den finns.
+            line_parts = line.split(",")
+            line = line_parts[0].strip()
+            role = line_parts[-1].strip() if len(line_parts) > 1 else None
+            if party is None and len(line_parts) > 1:
+                party = normalize_party(line_parts[1].strip()) if len(line_parts) > 2 else None
             if not line or line.lower() in skip:
                 continue
             if not NAMNLISTA_RAD_RE.match(line):
@@ -2045,7 +2136,7 @@ async def scrape_namnlista(context, namn, url, domain, section_start, section_en
             local = f"{_email_local_part(fornamn)}.{_email_local_part(efternamn)}"
             email = f"{local}@{domain}"
             if is_valid_email(email):
-                people.add((line, email))
+                people.add((line, email, party, role))
 
     except PlaywrightError as e:
         log.error(f"{namn}: {e}")
@@ -2069,21 +2160,38 @@ async def scrape_mailto(context, namn, url):
 
         hrefs = await page.eval_on_selector_all(
             "a[href^='mailto:']",
-            "els => els.map(e => ({href: e.href, text: e.textContent}))"
+            """els => els.map(e => ({
+                href: e.href,
+                text: e.textContent,
+                context: e.closest('td,li,p,div') ? e.closest('td,li,p,div').textContent : ''
+            }))"""
         )
         for item in hrefs:
             email = email_from_mailto_href(item["href"])
-            if is_valid_email(email):
-                candidate = re.sub(r"\s+", " ", (item.get("text") or "")).strip()
-                person_name = candidate if _looks_like_name(candidate) else ""
-                people.add((person_name, email))
+            if not is_valid_email(email):
+                continue
+            # Omgivande cell/rad-text brukar innehålla "Namn (Parti), titel"
+            # följt av e-postadressen — mailto-länkens EGEN text är ofta bara
+            # adressen igen, inte namnet.
+            context_text = re.sub(r"\s+", " ", (item.get("context") or "")).strip()
+            before_email = context_text.split(email)[0].strip(" ,:-") if email in context_text else context_text
+            party = _extract_party_anywhere(before_email)
+            without_party = re.sub(r"\s*\([^)]*\)\s*", " ", before_email).strip()
+            # "Namn, titel" eller "Namn (Parti), titel" — ta sista kommadelen som roll.
+            name_part, _, role_part = without_party.partition(",")
+            role = role_part.strip() or None
+            person_name = name_part.strip() if _looks_like_name(name_part.strip()) else ""
+            if not person_name:
+                link_text = re.sub(r"\s+", " ", (item.get("text") or "")).strip()
+                person_name = link_text if _looks_like_name(link_text) else ""
+            people.add((person_name, email, party, role))
 
         # Fallback: regex på sidans HTML (ingen namnkoppling möjlig härifrån)
         if len(people) < 3:
             content = await page.content()
             for email in EMAIL_RE.findall(content):
                 if is_valid_email(email.lower()):
-                    people.add(("", email.lower()))
+                    people.add(("", email.lower(), None, None))
 
     except PlaywrightError as e:
         log.error(f"{namn}: {e}")
@@ -2112,9 +2220,10 @@ async def scrape_pdf_lista(context, namn, url, domain):
             if not (email.endswith(f"@{domain}") and is_valid_email(email)):
                 continue
             before = line[:match.start()].strip()
+            party = _extract_party_anywhere(before)
             name_match = NAME_CANDIDATE_RE.search(before)
             person_name = name_match.group(0).strip() if name_match else ""
-            people.add((person_name, email))
+            people.add((person_name, email, party, None))
     except Exception as e:
         log.error(f"{namn}: {e}")
 
@@ -2141,20 +2250,27 @@ def spara_vcf(namn, emails, path):
 def spara_txt(alla_people, path):
     """Skriver en läsbar lista över samtliga kommuners/regioners förtroendevalda,
     sorterad alfabetiskt på kommun/region-namn och sedan på ledamotens namn
-    (ledamöter utan känt namn sorteras in efter sin e-postadress istället)."""
+    (ledamöter utan känt namn sorteras in efter sin e-postadress istället).
+    Format per rad: 'Namn <email> (PARTI) [Roll]' — parti inom parentes,
+    roll inom hakparentes, båda valfria och utelämnas helt om okända."""
     lines = []
     for namn in sorted(alla_people.keys(), key=swedish_key):
         people = alla_people[namn]
         if not people:
             continue
         lines.append(f"## {namn}")
-        for person_namn, email in sorted(
+        for person_namn, email, party, role in sorted(
             people, key=lambda pe: swedish_key(pe[0] or pe[1])
         ):
+            suffix = ""
+            if party:
+                suffix += f" ({party})"
+            if role:
+                suffix += f" [{role}]"
             if person_namn:
-                lines.append(f"{person_namn} <{email}>")
+                lines.append(f"{person_namn} <{email}>{suffix}")
             else:
-                lines.append(email)
+                lines.append(f"{email}{suffix}")
         lines.append("")
 
     with open(path, "w", encoding="utf-8") as f:
@@ -2228,7 +2344,7 @@ async def main():
 
             if people:
                 alla_people[namn] = people
-                emails = {email for _, email in people}
+                emails = {email for _, email, _, _ in people}
                 safe = namn.replace(" ", "_").replace("/", "-")
                 spara_vcf(namn, emails, f"{OUT_DIR}/{safe}.vcf")
 
@@ -2240,7 +2356,7 @@ async def main():
     # Samlad VCF
     alla = set()
     for people in alla_people.values():
-        alla.update(email for _, email in people)
+        alla.update(email for _, email, _, _ in people)
 
     lines = [
         "BEGIN:VCARD",

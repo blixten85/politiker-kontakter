@@ -30,12 +30,17 @@ RESULTAT_FIL = os.environ.get(
 MAX_WORKERS = 10
 
 UPSERT_SQL = (
-    "INSERT INTO politicians (id, name, email, area_name, area_type, last_scraped_at) "
-    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, ?, ?) "
-    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, last_scraped_at = excluded.last_scraped_at"
+    "INSERT INTO politicians (id, name, email, area_name, area_type, party, role, last_scraped_at) "
+    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, ?, ?, ?, ?) "
+    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, party = excluded.party, role = excluded.role, last_scraped_at = excluded.last_scraped_at"
 )
 
-LINE_RE = re.compile(r"^(?:(?P<name>.+?)\s+<(?P<email_named>[^>]+)>|(?P<email_bare>\S+@\S+))$")
+# Rad-format från scraper.py: "Namn <email> (PARTI) [Roll]" — parti och
+# roll är båda valfria suffix och utelämnas helt om okända.
+LINE_RE = re.compile(
+    r"^(?:(?P<name>.+?)\s+<(?P<email_named>[^>]+)>|(?P<email_bare>\S+?@\S+?))"
+    r"(?:\s*\((?P<party>[^)]+)\))?(?:\s*\[(?P<role>[^\]]+)\])?$"
+)
 
 
 def area_type_for(area_name: str) -> str:
@@ -49,7 +54,7 @@ def area_type_for(area_name: str) -> str:
 
 
 def parse_file(path: str):
-    """Returnerar lista av (name, email, area_name, area_type)."""
+    """Returnerar lista av (name, email, area_name, area_type, party, role)."""
     rows = []
     current_area = None
     with open(path, "r", encoding="utf-8") as f:
@@ -67,13 +72,15 @@ def parse_file(path: str):
                 continue
             email = m.group("email_named") or m.group("email_bare")
             name = (m.group("name") or "").strip()
-            rows.append((name, email.lower(), current_area, area_type_for(current_area)))
+            party = (m.group("party") or "").strip() or None
+            role = (m.group("role") or "").strip() or None
+            rows.append((name, email.lower(), current_area, area_type_for(current_area), party, role))
     return rows
 
 
 def upsert_row(session: requests.Session, url: str, row) -> tuple[bool, str]:
-    name, email, area_name, area_type = row
-    payload = {"sql": UPSERT_SQL, "params": [name, email, area_name, area_type, int(time.time() * 1000)]}
+    name, email, area_name, area_type, party, role = row
+    payload = {"sql": UPSERT_SQL, "params": [name, email, area_name, area_type, party, role, int(time.time() * 1000)]}
     resp = session.post(url, json=payload, timeout=30)
     if resp.status_code != 200:
         return False, f"{email}: HTTP {resp.status_code}"
