@@ -39,10 +39,18 @@ COUNTRY_NAMES = {
 }
 
 UPSERT_SQL = (
-    "INSERT INTO politicians (id, name, email, area_name, area_type, party, last_scraped_at) "
-    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, 'eu', ?, ?) "
-    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, party = excluded.party, last_scraped_at = excluded.last_scraped_at"
+    "INSERT INTO politicians (id, name, email, area_name, area_type, party, role, last_scraped_at) "
+    "VALUES (lower(hex(randomblob(11))), ?, ?, ?, 'eu', ?, ?, ?) "
+    "ON CONFLICT(email, area_name) DO UPDATE SET name = excluded.name, party = excluded.party, role = excluded.role, last_scraped_at = excluded.last_scraped_at"
 )
+
+# Profilsidan grupperar utskottsuppdrag under rubriker <h4 class="es_title-h4">
+# Chair/Vice-Chair/Member/Substitute</h4> — en person kan ha flera uppdrag
+# (t.ex. ordförande i ett utskott, vanlig ledamot i ett annat), så vi väljer
+# det mest framträdande. Svensk översättning för konsekvens med övriga
+# kategoriers rollnamn (samma vokabulär som riksdagens utskottsroller).
+ROLE_TRANSLATION = {"Chair": "Ordförande", "Vice-Chair": "Vice ordförande", "Member": "Ledamot", "Substitute": "Suppleant"}
+ROLE_PRIORITY = {"Chair": 0, "Vice-Chair": 1, "Member": 2, "Substitute": 3}
 
 
 def fetch_all_current_meps() -> list[dict]:
@@ -66,21 +74,35 @@ def fetch_all_current_meps() -> list[dict]:
     return meps
 
 
-def decode_email(mep_id: str) -> str | None:
-    """Returnerar avkodad e-postadress, eller None om profilsidan saknar en
-    (inget mailfält publicerat). Kastar requests.HTTPError vid 4xx/5xx —
-    det är en riktig miss (rate limit, serverfel), inte "ingen email"."""
+def fetch_email_and_role(mep_id: str) -> tuple[str | None, str | None]:
+    """Returnerar (email, roll) från ledamotens profilsida — båda plockas ur
+    samma sidhämtning, ingen anledning till två separata anrop. Email blir
+    None om profilsidan saknar ett mailfält. Kastar requests.HTTPError vid
+    4xx/5xx — det är en riktig miss (rate limit, serverfel), inte "ingen
+    email"."""
     resp = requests.get(f"https://www.europarl.europa.eu/meps/en/{mep_id}/x/home", timeout=20)
     resp.raise_for_status()
-    match = re.search(r'class="link_email[^"]*"\s+href="([^"]+)"', resp.text)
-    if not match:
-        return None
-    encoded = match.group(1)
-    return encoded.replace("[dot]", ".").replace("[at]", "@")[::-1]
+    html = resp.text
+
+    email = None
+    match = re.search(r'class="link_email[^"]*"\s+href="([^"]+)"', html)
+    if match:
+        encoded = match.group(1)
+        email = encoded.replace("[dot]", ".").replace("[at]", "@")[::-1]
+
+    role = None
+    best_rank = 99
+    for m in re.finditer(r'<h4 class="es_title-h4">([^<]+)</h4>', html):
+        rank = ROLE_PRIORITY.get(m.group(1), 99)
+        if rank < best_rank:
+            role, best_rank = m.group(1), rank
+    role = ROLE_TRANSLATION.get(role)
+
+    return email, role
 
 
-def sync_one(session: requests.Session, url: str, name: str, email: str, area_name: str, party: str | None, now_ms: int) -> bool:
-    resp = session.post(url, json={"sql": UPSERT_SQL, "params": [name, email, area_name, party, now_ms]}, timeout=30)
+def sync_one(session: requests.Session, url: str, name: str, email: str, area_name: str, party: str | None, role: str | None, now_ms: int) -> bool:
+    resp = session.post(url, json={"sql": UPSERT_SQL, "params": [name, email, area_name, party, role, now_ms]}, timeout=30)
     if resp.status_code == 200 and resp.json().get("success"):
         return True
     print(f"FEL: {name} <{email}>: {resp.text}", file=sys.stderr)
@@ -118,7 +140,7 @@ def main():
         party = m.get("api:political-group")
 
         try:
-            email = decode_email(mep_id)
+            email, role = fetch_email_and_role(mep_id)
         except requests.HTTPError as err:
             print(f"FEL (HTTP) för {name} (id {mep_id}): {err}", file=sys.stderr, flush=True)
             fail += 1
@@ -130,7 +152,7 @@ def main():
 
         # Synkar DIREKT, en i taget — om processen avbryts (rate limit, krasch)
         # är allt som redan körts sparat, inget arbete går förlorat.
-        if sync_one(session, url, name, email, area_name, party, now_ms):
+        if sync_one(session, url, name, email, area_name, party, role, now_ms):
             ok += 1
         else:
             fail += 1
