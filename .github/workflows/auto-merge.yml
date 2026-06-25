@@ -67,6 +67,8 @@ jobs:
 
   claude:
     runs-on: ubuntu-latest
+    # claude/-prefix är huvudvägen; claude-etiketten är en backup för PR:er
+    # som inte döptes rätt, eller som behöver triggas om manuellt senare.
     if: startsWith(github.head_ref, 'claude/') || contains(github.event.pull_request.labels.*.name, 'claude')
     steps:
       - name: Auto-merge Claude AI PRs once checks pass
