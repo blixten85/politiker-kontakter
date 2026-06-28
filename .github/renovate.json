@@ -3,6 +3,7 @@
 
   "extends": [
     "config:best-practices",
+    "schedule:daily",
     ":dependencyDashboard",
     ":semanticCommits",
     ":separateMajorReleases",
@@ -24,7 +25,7 @@
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": [
-      "before 5am on monday"
+      "before 5am every day"
     ]
   },
 
