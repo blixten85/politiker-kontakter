@@ -1,0 +1,5 @@
+# Granska inte den genererade dataexporten — det är maskinell D1-dump,
+# inte kod, och stora diffar skulle bränna granskningskvoten i onödan.
+reviews:
+  path_filters:
+    - "!data/**"

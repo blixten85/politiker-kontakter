@@ -1,0 +1,58 @@
+name: Exportera politiker-data från D1
+
+# Läser politicians-tabellen i politiker-webapps D1 (read-only) och committar
+# en uppdaterad data/-export via PR med auto-merge. Ingen extern skrapning sker
+# här — datan kommer från den redan publika D1:n som scrapern matar.
+
+on:
+  schedule:
+    - cron: "30 4 * * 1" # måndagar 04:30 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: export-politiker
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # PAT krävs så att PR:en triggar required checks + auto-merge.yml
+          # (PR:er öppnade med GITHUB_TOKEN startar inga andra workflows).
+          token: ${{ secrets.GH_PAT }}
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Exportera från D1
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          D1_DATABASE_ID: ${{ vars.D1_DATABASE_ID }}
+        run: python3 export/export_d1.py
+
+      - name: Öppna PR vid ändring
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$(git status --porcelain data/)" ]; then
+            echo "Ingen ändring i data/ — hoppar över."
+            exit 0
+          fi
+          BRANCH="claude/data-export-$(date +%Y%m%d-%H%M)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add data/
+          git commit -m "data: uppdatera politiker-export från D1"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "data: uppdatera politiker-export från D1" \
+            --body $'Automatisk export av `politicians`-tabellen från live-D1 (read-only).\n\nMergas automatiskt av `auto-merge.yml` när checkarna passerar.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)'

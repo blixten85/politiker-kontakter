@@ -38,6 +38,14 @@ samt en samlad, alfabetiskt sorterad `Alla_kommuner_och_regioner.txt`
 (`swedish_key()` ger svensk sorteringsordning utan att förlita sig på
 OS-locale).
 
+## Publicerad data
+
+`data/` innehåller den fullständiga kontaktdatabasen (csv/json/sql), genererad
+ur politiker-webapps live-D1 av `export/export_d1.py` och
+`.github/workflows/export-politiker.yml` (veckovis, auto-mergad PR). Endast
+stabila fält exporteras (inga tidsstämplar) så diffarna inte brusar. VCF
+committas inte längre — scrapern producerar dem fortfarande lokalt.
+
 ## Lägga till kommuner/regioner
 
 Lägg till en post i listan `REGIONER` i `scraper.py` med kommunens/regionens
