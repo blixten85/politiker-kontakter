@@ -1,4 +1,5 @@
 output/
+vcf/
 logs/
 .env
 __pycache__/
